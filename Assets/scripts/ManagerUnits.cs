@@ -33,7 +33,7 @@ public class ManagerUnits : MonoBehaviour {
                 case 0: Monster Wolf = Instantiate<Monster>(WolfPrefab, new Vector3((RndStep + LastPos),10), WolfPrefab.transform.rotation); break;
                 case 1: BlackHole BlackHole = Instantiate<BlackHole>(HolePrefab, new Vector3((RndStep + LastPos), 10), HolePrefab.transform.rotation); break;
             }
-            RndStep=rnd.Next(15);
+            RndStep=rnd.Next(15)+10;
             LastPos = forgen.transform.position.x;
             
         }

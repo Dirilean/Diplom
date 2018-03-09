@@ -21,12 +21,13 @@ public class Character : Unit
     float ForJump;
     private bool isGrounded=false; //проверка, стоит ли на земле
     int MinXP=50;//минимальное хп, при котором прекращаются выстрелы
-
+    bool CheckJump;
 
 
     private void Start()
     {
         ForJump = 0;
+        CheckJump = false;
     }
 
     private void FixedUpdate()
@@ -52,13 +53,17 @@ public class Character : Unit
     {
         if (Input.GetButtonDown("Fire1")) Shoot();
         //если персонаж на земле и нажат пробел и прошло минимальное время для сл. прыжка... 
+
+        if (isGrounded && Input.GetButton("Jump")&&CheckJump==false) //&& (ForJump + 0.5F < Time.time))
         {
-            if (isGrounded && Input.GetButton("Jump") && (ForJump + 0.5F < Time.time))
-            {
-                //прикладываем силу вверх, чтобы персонаж подпрыгнул
-                rb.AddForce(new Vector2(0, 72), ForceMode2D.Impulse);
-                ForJump = Time.time;//записываем время прыжка
-            }
+            //прикладываем силу вверх, чтобы персонаж подпрыгнул
+            rb.AddForce(new Vector2(0, 72), ForceMode2D.Impulse);
+            // ForJump = Time.time;//записываем время прыжка
+            CheckJump = true;
+        }
+        if ((Input.GetButton("Jump"))==false)//если отпустили клавишу прыжка
+        {
+            CheckJump = false;
         }
     }
 
