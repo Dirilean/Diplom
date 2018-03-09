@@ -155,21 +155,20 @@ public class ManagerPlatform : MonoBehaviour
     void F9()
     {
         GenPlat(f[9], f[10], f[11]);
-        RndPak = rnd.Next(12);
+        RndPak = rnd.Next(11);
         switch (RndPak)
         {
             case 0: RndStep = GetRandom( 2, 4, 8, 12); method = 0; break;
             case 1: RndStep = GetRandom( 2, 4, 8, 12); method = 3; break;
             case 2: RndStep = GetRandom( 2, 4, 8, 12); method = 6; break;
             case 3: RndStep = 2; method = 9; break;
-            case 4: RndStep = 2; method = 12; break;
-            case 5: RndStep = 2; method = 15; break;
-            case 6: RndStep = GetRandom(2, 4, 8, 12); method = 24; break;
-            case 7: RndStep = GetRandom(2, 4, 8, 12); method = 27; break;
-            case 8: RndStep = GetRandom(2, 4, 8, 12); method = 30; break;
-            case 9: RndStep = GetRandom(2, 4, 8, 12); method = 33; break;
-            case 10: RndStep = 2; method = 36; break;
-            case 11: RndStep = 2; method = 39; break;
+            case 4: RndStep = 2; method = 15; break;
+            case 5: RndStep = GetRandom(2, 4, 8, 12); method = 24; break;
+            case 6: RndStep = GetRandom(2, 4, 8, 12); method = 27; break;
+            case 7: RndStep = GetRandom(2, 4, 8, 12); method = 30; break;
+            case 8: RndStep = GetRandom(2, 4, 8, 12); method = 33; break;
+            case 9: RndStep = 2; method = 36; break;
+            case 10: RndStep = 2; method = 39; break;
         }
         RndStep = RndStep + 4;
     }
