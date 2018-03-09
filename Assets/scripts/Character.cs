@@ -53,12 +53,15 @@ public class Character : Unit
     private void Update()
     {
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
-        if ((Input.GetButtonDown("Fire1"))) DoDamage();//ближний бой
+        if (Input.GetButtonDown("Fire1"))//ближний бой
+        {
+            Character.DoDamage(new Vector2(this.transform.position.x+0.45F,this.transform.position.y+0.45F),0.3F, 11, 15, false); //точка удара, радиус поражения, слой врага, урон, на всех?
+        }
 
         if (isGrounded && Input.GetButton("Jump")&&CheckJump==false)//прыжок 
         {
             //прикладываем силу вверх, чтобы персонаж подпрыгнул
-            rb.AddForce(new Vector2(0, 72), ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(0, 72)+this.transform.position, ForceMode2D.Impulse);
             CheckJump = true;
         }
         if ((Input.GetButton("Jump"))==false)//если отпустили клавишу прыжка
@@ -90,15 +93,8 @@ public class Character : Unit
         }
     }
 
-    private DoDamage()
-    {
-       if(IsEnemy == true)
-        {
 
-        }
-    }
-
-    public override void GetDamage()//получение урона
+    public void GetDamage()//получение урона
     {
         Debug.Log("ай");
         FireCount--;
@@ -117,13 +113,55 @@ public class Character : Unit
             FireGui.text = "Огня: " + FireCount;
         }
 
-        if (collision.GetComponent<Monster>())
+    }
+
+ 
+
+    // функция возвращает ближайший объект из массива, относительно указанной позиции
+    static GameObject NearTarget(Vector3 position, Collider2D[] array)
+    {
+        Collider2D current = null;
+        float dist = Mathf.Infinity;
+
+        foreach (Collider2D coll in array)
         {
-            IsEnemy = true;
+            float curDist = Vector3.Distance(position, coll.transform.position);
+
+            if (curDist < dist)
+            {
+                current = coll;
+                dist = curDist;
+            }
         }
-        else
+
+        return current.gameObject;
+    }
+
+    // point - точка контакта
+    // radius - радиус поражения
+    // layerMask - номер слоя, с которым будет взаимодействие
+    // damage - наносимый урон
+    // allTargets - должны-ли получить урон все цели, попавшие в зону поражения
+    public static void DoDamage(Vector2 point, float radius, int layerMask, int damage, bool allTargets)//ближний бой
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
+        if (!allTargets)//по 1 тарегу
         {
-            IsEnemy = false;
+            GameObject obj = NearTarget(point, colliders);
+            if (obj.GetComponent<Monster>())
+            {
+                obj.GetComponent <SpriteRenderer>().color=Color.red;
+                obj.GetComponent<Monster>().lives -= damage;
+            }
+            return;
+        }
+
+        foreach (Collider2D hit in colliders)//по всем
+        {
+            if (hit.GetComponent<Monster>())
+            {
+                hit.GetComponent<Monster>().lives -= damage;
+            }
         }
     }
 }

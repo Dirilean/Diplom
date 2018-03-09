@@ -37,20 +37,20 @@ public class ManagerPlatform : MonoBehaviour
            // Debug.Log("GenPos=" + (int)GenPos.x + ", LastPos=" + (int)LastPos + " rndstep=" + RndStep + " метод=" + method);
             switch (method)
             {
-                case 0: Debug.Log("генерация ф0"); F0(); break;
-                case 3: Debug.Log("генерация ф3"); F3(); break;
-                case 6: Debug.Log("генерация ф6"); F6(); break;
-                case 9: Debug.Log("генерация ф9"); F9(); break;
-                case 12: Debug.Log("генерация ф12"); F12(); break;
-                case 15: Debug.Log("генерация ф15"); F15(); break;
-                case 18: Debug.Log("генерация ф18"); F18(); break;
-                case 21: Debug.Log("генерация ф21"); F21(); break;
-                case 24: Debug.Log("генерация ф24"); F24(); break;
-                case 27: Debug.Log("генерация ф27"); F27(); break;
-                case 30: Debug.Log("генерация ф30"); F30(); break;
-                case 33: Debug.Log("генерация ф33"); F33(); break;
-                case 36: Debug.Log("генерация ф36"); F36(); break;
-                case 39: Debug.Log("генерация ф39"); F39(); break;
+                case 0: F0(); break;
+                case 3:  F3(); break;
+                case 6: F6(); break;
+                case 9:  F9(); break;
+                case 12:  F12(); break;
+                case 15: F15(); break;
+                case 18:  F18(); break;
+                case 21:  F21(); break;
+                case 24:  F24(); break;
+                case 27:  F27(); break;
+                case 30:  F30(); break;
+                case 33: F33(); break;
+                case 36:  F36(); break;
+                case 39:  F39(); break;
             }
         }
     }

@@ -12,7 +12,7 @@ public class Monster : Unit
 
     private bool isplayer;//проверка на игрока впереди
     private Vector3 napravlenie;
-    int lives = 40;
+    public int lives = 40;
 
     private void Start()
     {
@@ -22,6 +22,7 @@ public class Monster : Unit
     private void Update()
     {
         Move();
+        if (lives <= 0) Destroy(gameObject);
     }
 
     private void Move()
@@ -46,18 +47,20 @@ public class Monster : Unit
         //        return;
         //Debug.LogFormat("{0} touch {1}", gameObject.name, other.gameObject.name);
         //Debug.Log("Collided with " + other.gameObject.name);
-        Unit unit = other.collider.GetComponent<Unit>();
-        if (unit && unit is Character)
-        {
-            unit.GetDamage();
-        }
+
+
+        //Unit unit = other.collider.GetComponent<Unit>();
+        //if (unit && unit is Character)
+        //{
+        //    unit.GetDamage();
+        //}
     }
 
 
-    public override void GetDamage()
+    public void GetDamage()
     {
-        lives=lives-15;
+        lives = lives - 15;
         GetComponent<Rigidbody2D>().AddForce(transform.up * 3, ForceMode2D.Impulse);//отпрыгиваем при получении удара
-        if (lives <= 0) Die();
+        if (lives <= 0) Destroy(gameObject);
     }
 }

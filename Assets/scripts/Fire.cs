@@ -27,7 +27,7 @@ public class Fire : MonoBehaviour
 	
     private void OnTriggerEnter2D(Collider2D collider)//уничтожение пули в момент попадания в юнит
     {
-        Unit unit = collider.GetComponent<Unit>();
+        Monster unit = collider.GetComponent<Monster>();
 
         if (unit && unit.gameObject!=parent)
         {

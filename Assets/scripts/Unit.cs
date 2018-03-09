@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public virtual void GetDamage()
-    {
-        Die();
-    }
+    //public virtual void GetDamage()
+    //{
+    //    Die();
+    //}
 
-    protected virtual void Die()
-    {
-        
-        Destroy(gameObject);
-    }
+    //protected virtual void Die()
+    //{
+    //    Destroy(gameObject);
+    //}
 
 
 }

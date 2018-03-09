@@ -46,7 +46,7 @@ public class ManagerFire : MonoBehaviour {
                 RndCol = rnd.Next(4)+2;//максимально на 1 высоте
             }
             RndCol--;
-            Debug.Log(RndCol);
+            //Debug.Log(RndCol);
 
             XPos = forgen.transform.position.x-zaderzka;
             //круг вокруг нижней линии персонажа. если в него попадают колайдеры то массив заполняется ими

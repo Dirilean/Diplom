@@ -6,7 +6,7 @@ public class BlackHole : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Unit unit = collider.GetComponent<Unit>();
+        Character unit = collider.GetComponent<Character>();
         if (unit && unit is Character)
         {
             unit.GetDamage();
