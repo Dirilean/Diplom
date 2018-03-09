@@ -22,6 +22,7 @@ public class Character : Unit
     private bool isGrounded=false; //проверка, стоит ли на земле
     int MinXP=50;//минимальное хп, при котором прекращаются выстрелы
     bool CheckJump;
+    bool IsEnemy;
 
 
     private void Start()
@@ -51,14 +52,13 @@ public class Character : Unit
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1")) Shoot();
-        //если персонаж на земле и нажат пробел и прошло минимальное время для сл. прыжка... 
+        if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
+        if ((Input.GetButtonDown("Fire1"))) DoDamage();//ближний бой
 
-        if (isGrounded && Input.GetButton("Jump")&&CheckJump==false) //&& (ForJump + 0.5F < Time.time))
+        if (isGrounded && Input.GetButton("Jump")&&CheckJump==false)//прыжок 
         {
             //прикладываем силу вверх, чтобы персонаж подпрыгнул
             rb.AddForce(new Vector2(0, 72), ForceMode2D.Impulse);
-            // ForJump = Time.time;//записываем время прыжка
             CheckJump = true;
         }
         if ((Input.GetButton("Jump"))==false)//если отпустили клавишу прыжка
@@ -90,9 +90,12 @@ public class Character : Unit
         }
     }
 
-    private void Damage()//ближний бой
+    private DoDamage()
     {
+       if(IsEnemy == true)
+        {
 
+        }
     }
 
     public override void GetDamage()//получение урона
@@ -110,8 +113,17 @@ public class Character : Unit
         if (collision.GetComponent<FireSphere>())//собирание огоньков
         {
             Destroy(collision.gameObject);
-            FireCount++;
+            FireCount = FireCount + 5 ;
             FireGui.text = "Огня: " + FireCount;
+        }
+
+        if (collision.GetComponent<Monster>())
+        {
+            IsEnemy = true;
+        }
+        else
+        {
+            IsEnemy = false;
         }
     }
 }
