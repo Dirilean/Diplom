@@ -23,6 +23,7 @@ public class Character : Unit
     int MinXP=50;//минимальное хп, при котором прекращаются выстрелы
     bool CheckJump;
     bool IsEnemy;
+    Vector3 napravlenie;
 
 
     private void Start()
@@ -45,7 +46,7 @@ public class Character : Unit
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
         if (Input.GetAxis("Horizontal")!=0)
             {
-            Vector3 napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
+            napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
             GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;
             }
     }
@@ -55,7 +56,7 @@ public class Character : Unit
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1"))//ближний бой
         {
-            Character.DoDamage(new Vector2(this.transform.position.x+0.45F,this.transform.position.y+0.45F),0.3F, 11, 15, false); //точка удара, радиус поражения, слой врага, урон, на всех?
+            Character.DoDamage(new Vector2(this.transform.position.x+(0.55F* (GetComponent<SpriteRenderer>().flipX ? -1F : 1F)),this.transform.position.y+0.45F),0.3F, 11, 15, false); //точка удара, радиус поражения, слой врага, урон, на всех?
         }
 
         if (isGrounded && Input.GetButton("Jump")&&CheckJump==false)//прыжок 
@@ -150,6 +151,7 @@ public class Character : Unit
             GameObject obj = NearTarget(point, colliders);
             if (obj.GetComponent<Monster>())
             {
+                Debug.Log(point);
                 obj.GetComponent <SpriteRenderer>().color=Color.red;
                 obj.GetComponent<Monster>().lives -= damage;
             }
