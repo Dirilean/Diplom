@@ -7,14 +7,18 @@ using UnityEngine;
 public class Character : Unit
 {
     [SerializeField]
-    private int FireCount = 100;
-
+    public int FireColb = 100;//количество огня в колбе
+    [SerializeField]
+    public int lives;//количество жизней
     [SerializeField]
     private float speed = 3.3F;
     [SerializeField]
     public Fire FirePrefab;
     public Monster MonsterPrefab;
+    [SerializeField]
     public GUIText FireGui;
+    [SerializeField]
+    public GUIText LivesGui;
     [SerializeField]
     private Rigidbody2D rb;
     public float move;
@@ -24,16 +28,19 @@ public class Character : Unit
     bool CheckJump;
     bool IsEnemy;
     Vector3 napravlenie;
+    
 
 
     private void Start()
     {
         ForJump = 0;
         CheckJump = false;
+        lives = 100;
     }
 
     private void FixedUpdate()
     {
+        LivesGui.text ="Жизней: "+lives;
         CheckGround();
         //используем Input.GetAxis для оси Х. метод возвращает значение оси в пределах от -1 до 1.
         //при стандартных настройках проекта 
@@ -83,24 +90,15 @@ public class Character : Unit
     private void Shoot()//выстрелы
     {
 
-        if (FireCount > MinXP)
+        if (FireColb> MinXP)
         {
             Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F), transform.position.y + 0.7F);//место создания пули относительно персонажа
             Fire cloneFire = Instantiate<Fire>(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
             cloneFire.Napravlenie = cloneFire.transform.right * (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F);//задаем направление и скорость пули (?если  true : false)
             cloneFire.Parent = gameObject;//родителем пули является текущий объект
-            FireCount--;
-            FireGui.text = "Огня: " + FireCount;
+            FireColb--;
+            FireGui.text = "Огня: " + FireColb;
         }
-    }
-
-
-    public void GetDamage()//получение урона
-    {
-        Debug.Log("ай");
-        FireCount--;
-        GetComponent<Rigidbody2D>().AddForce(transform.up*3, ForceMode2D.Impulse);//отпрыгиваем при получении удара
-        FireGui.text = "Огня: " + FireCount;
     }
 
 
@@ -110,8 +108,8 @@ public class Character : Unit
         if (collision.GetComponent<FireSphere>())//собирание огоньков
         {
             Destroy(collision.gameObject);
-            FireCount = FireCount + 5 ;
-            FireGui.text = "Огня: " + FireCount;
+            FireColb = FireColb + 5 ;
+            FireGui.text = "Огня: " + FireColb;
         }
 
     }

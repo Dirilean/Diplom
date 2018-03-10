@@ -10,7 +10,7 @@ public class ManagerUnits : MonoBehaviour {
     [SerializeField]
     Monster WolfPrefab;
     [SerializeField]
-    BlackHole HolePrefab;
+    PassiveEnemy HolePrefab;
     System.Random rnd = new System.Random();
     int RndStep;
     int RndPack;
@@ -31,7 +31,7 @@ public class ManagerUnits : MonoBehaviour {
             switch (RndPack)
             {
                 case 0: Monster Wolf = Instantiate<Monster>(WolfPrefab, new Vector3((RndStep + LastPos),10), WolfPrefab.transform.rotation); break;
-                case 1: BlackHole BlackHole = Instantiate<BlackHole>(HolePrefab, new Vector3((RndStep + LastPos), 10), HolePrefab.transform.rotation); break;
+                case 1: PassiveEnemy BlackHole = Instantiate<PassiveEnemy>(HolePrefab, new Vector3((RndStep + LastPos), 10), HolePrefab.transform.rotation); break;
             }
             RndStep=rnd.Next(15)+10;
             LastPos = forgen.transform.position.x;
