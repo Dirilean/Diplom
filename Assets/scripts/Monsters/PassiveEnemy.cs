@@ -15,12 +15,6 @@ public class PassiveEnemy : MonoBehaviour {
     float LastTime;//Время последнего удара
     bool Udar;//одиночный удар уже был нанесен?
 
-    //private void Start()
-    //{
-    //    if (Damage == 0) Damage = 1;
-    //    if (TimeToDamage == 0) TimeToDamage = 1;
-    //}
-
     private void OnTriggerStay2D(Collider2D collider)
     {
         Character unit = collider.GetComponent<Character>();
@@ -35,7 +29,6 @@ public class PassiveEnemy : MonoBehaviour {
             unit.lives = unit.lives - Damage;
             LastTime = Time.time;
         }
-        Debug.Log(unit.lives);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

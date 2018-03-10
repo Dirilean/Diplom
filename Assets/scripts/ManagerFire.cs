@@ -56,7 +56,7 @@ public class ManagerFire : MonoBehaviour {
 
             if ((colliders.Length > 0) && (nocolliders.Length == 0)&&(YPos>0))//проверка на близость других коллайдеров
             {
-                Debug.Log("огонек: " + XPos + ", " + YPos + ", в массиве:" + colliders[0].name);
+                //Debug.Log("огонек: " + XPos + ", " + YPos + ", в массиве:" + colliders[0].name);
                 FireSphere FireSphere = Instantiate<FireSphere>(FireSpherePrefab, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation);
             }
             LastPos =forgen.transform.position.x-zaderzka;

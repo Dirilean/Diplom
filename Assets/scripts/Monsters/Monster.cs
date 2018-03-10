@@ -1,66 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+
 
 public class Monster : Unit
 
 {
     [SerializeField]
-    private float speed = 2.0F;
+    public int Damage;//количество наносимого урона
+    [SerializeField]
+    public float TimeToDamage;//время за которое наносятся один удар
+    [SerializeField]
+    public int lives;//жизни
+    [SerializeField]
+    public float speed;//скорость передвижения
+    [SerializeField]
+    public int PlusFireColb;//сколько упадет огня с монстров
 
 
-    private bool isplayer;//проверка на игрока впереди
-    private Vector3 napravlenie;
-    public int lives = 40;
+    public float radius;//радиус удара
+    public int layerMask;//слой "жертвы" (игрок)
+    public float Dalnost;//дальность удара (центр окружности)
+    public float LastTime;//Время последнего удара
 
     private void Start()
     {
-        napravlenie = transform.right;//начальное направление вправо
+        Dalnost = 0.5F;
+        radius = 0.3F;
+        layerMask = 10;
+        LastTime = 0;
     }
 
     private void Update()
     {
-        Move();
         if (lives <= 0) Destroy(gameObject);
-    }
-
-    private void Move()
-    {
-        //стенки
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right * napravlenie.x * 0.5F, 0.01F);//при попадании в область, коллайдеры записываются в массив
-        //если в массиве коллайдеров нет игрока то true
-        //пустота
-        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
-        //условие поворота
-        if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>())&& colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
-        if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
+        Vector2 point = new Vector2(transform.position.x + (Dalnost ), transform.position.y);//текущая позция удара
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
+        if ((colliders.Length > 0)&& (Time.time - TimeToDamage > LastTime))//Удар в ближнем бою
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + napravlenie, speed * Time.deltaTime);//само движение
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот}
+            DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
+            LastTime = LastTime + Time.time;
         }
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        //if (tag != "Wolf (1)" && other.gameObject.tag != "Player")
-        //        return;
-        //Debug.LogFormat("{0} touch {1}", gameObject.name, other.gameObject.name);
-        //Debug.Log("Collided with " + other.gameObject.name);
-
-
-        //Unit unit = other.collider.GetComponent<Unit>();
-        //if (unit && unit is Character)
-        //{
-        //    unit.GetDamage();
-        //}
+        
     }
 
 
-    public void GetDamage()
+    // функция возвращает ближайший объект из массива, относительно указанной позиции
+    static GameObject NearTarget(Vector3 position, Collider2D[] array)
     {
-        lives = lives - 15;
-        GetComponent<Rigidbody2D>().AddForce(transform.up * 3, ForceMode2D.Impulse);//отпрыгиваем при получении удара
-        if (lives <= 0) Destroy(gameObject);
+        Collider2D current = null;
+        float dist = Mathf.Infinity;
+
+        foreach (Collider2D coll in array)
+        {
+            float curDist = Vector3.Distance(position, coll.transform.position);
+
+            if (curDist < dist)
+            {
+                current = coll;
+                dist = curDist;
+            }
+        }
+
+        return current.gameObject;
+    }
+
+    public static void DoDamage(Vector2 point, float radius, int layerMask, int damage)//ближний бой
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
+        GameObject obj = NearTarget(point, colliders);
+        if (obj.GetComponent<Character>())
+        {
+           Debug.Log("boom");
+            obj.GetComponent<SpriteRenderer>().color = Color.red;
+            obj.GetComponent<Character>().lives -= damage;
+        }
+        obj.GetComponent<SpriteRenderer>().color = Color.white;
+        return;
     }
 }
