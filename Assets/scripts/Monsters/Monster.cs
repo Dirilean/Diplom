@@ -33,13 +33,17 @@ public class Monster : Unit
 
     private void Update()
     {
-        if (lives <= 0) Destroy(gameObject);
+        if (lives <= 0) Destroy(gameObject);//смерть
+
+        //ближний бой
         Vector2 point = new Vector2(transform.position.x + (Dalnost ), transform.position.y);//текущая позция удара
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
-        if ((colliders.Length > 0)&& (Time.time - TimeToDamage > LastTime))//Удар в ближнем бою
+        Debug.Log("col.len "+colliders.Length);
+        if ((colliders.Length > 0)&&(Time.time >= TimeToDamage + LastTime))//Удар в ближнем бою
         {
+            //Debug.Log("point " + point +", radius" + radius + ", layer" + layerMask + ", damage" + Damage + ", lasttime" + LastTime + ", time" +Time.time);
             DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
-            LastTime = LastTime + Time.time;
+            LastTime = Time.time;
         }
         
     }

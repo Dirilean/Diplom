@@ -149,7 +149,6 @@ public class Character : Unit
             GameObject obj = NearTarget(point, colliders);
             if (obj.GetComponent<Monster>())
             {
-                Debug.Log(point);
                 obj.GetComponent <SpriteRenderer>().color=Color.red;
                // obj.GetComponent<Monster>().lives -= damage;
             }
