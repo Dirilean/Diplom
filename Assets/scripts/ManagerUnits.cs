@@ -8,7 +8,7 @@ public class ManagerUnits : MonoBehaviour {
     [SerializeField]
     ForGen forgen;
     [SerializeField]
-    Monster WolfPrefab;
+    Wolf WolfPrefab;
     [SerializeField]
     PassiveEnemy HolePrefab;
     System.Random rnd = new System.Random();
@@ -28,12 +28,12 @@ public class ManagerUnits : MonoBehaviour {
 		if (forgen.transform.position.x>RndStep+LastPos)
         {
             RndPack = rnd.Next(2);
-            //switch (RndPack)
-            //{
-            //    case 0: Monster Wolf = Instantiate<Monster>(WolfPrefab, new Vector3((RndStep + LastPos),10), WolfPrefab.transform.rotation); break;
-            //    case 1: PassiveEnemy BlackHole = Instantiate<PassiveEnemy>(HolePrefab, new Vector3((RndStep + LastPos), 10), HolePrefab.transform.rotation); break;
-            //}
-            RndStep=rnd.Next(15)+10;
+            switch (RndPack)
+            {
+                case 0: Wolf Wolf = Instantiate(WolfPrefab, new Vector3((RndStep + LastPos), 10), WolfPrefab.transform.rotation); break;
+                case 1: PassiveEnemy BlackHole = Instantiate(HolePrefab, new Vector3((RndStep + LastPos), 10), HolePrefab.transform.rotation); break;
+            }
+            RndStep =rnd.Next(15)+10;
             LastPos = forgen.transform.position.x;
             
         }

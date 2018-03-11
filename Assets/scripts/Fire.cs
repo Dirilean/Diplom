@@ -31,7 +31,9 @@ public class Fire : MonoBehaviour
 
         if (unit && unit.gameObject!=parent)
         {
-           // unit.GetDamage();//получение урона от пули
+            Debug.Log("name " + unit.name + ", lives" + unit.lives);
+            unit.lives-=20;//получение урона от пули
+            Debug.Log("name "+unit.name+", lives"+unit.lives);
             Destroy(gameObject);//уничтожение около врага, а не родителя
         }
     }

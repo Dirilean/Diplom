@@ -150,7 +150,7 @@ public class Character : Unit
             if (obj.GetComponent<Monster>())
             {
                 obj.GetComponent <SpriteRenderer>().color=Color.red;
-               // obj.GetComponent<Monster>().lives -= damage;
+                obj.GetComponent<Monster>().lives -= damage;
             }
             return;
         }
@@ -159,7 +159,7 @@ public class Character : Unit
         {
             if (hit.GetComponent<Monster>())
             {
-               // hit.GetComponent<Monster>().lives -= damage;
+                hit.GetComponent<Monster>().lives -= damage;
             }
         }
     }
