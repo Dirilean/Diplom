@@ -25,6 +25,20 @@ public class Bear : Monster {
         Move();
     }
 
+    private void Update()
+    {
+        if (lives <= 0) { Die(); }
+        //ближний бой
+        Vector2 point = new Vector2(transform.position.x + (Dalnost), transform.position.y);//текущая позция удара
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
+        if ((colliders.Length > 0) && (Time.time >= TimeToDamage + LastTime))//Удар в ближнем бою
+        {
+            //Debug.Log("point " + point +", radius" + radius + ", layer" + layerMask + ", damage" + Damage + ", lasttime" + LastTime + ", time" +Time.time);
+            DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
+            LastTime = Time.time;
+        }
+    }
+
     private void Move()
     {
         Vector2 q = transform.position + transform.up * -0.1F + transform.right * napravlenie.x*0.7F;
@@ -32,9 +46,7 @@ public class Bear : Monster {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(q , 0.1F);
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.8F + transform.right * napravlenie.x * 0.8F, 0.3F);
-        Debug.Log(colliders.Length);
 
-        Debug.Log(q+", tr= "+transform.position);
         //условие поворота
         if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа

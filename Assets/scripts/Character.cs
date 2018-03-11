@@ -60,6 +60,7 @@ public class Character : Unit
 
     private void Update()
     {
+        
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1"))//ближний бой
         {

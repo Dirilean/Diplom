@@ -16,12 +16,15 @@ public class Monster : Unit
     public float speed;//скорость передвижения
     [SerializeField]
     public int PlusFireColb;//сколько упадет огня с монстров
-
+    [SerializeField]
+    FireSphere FireSpherePrefab;
 
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
     public float Dalnost;//дальность удара (центр окружности)
     public float LastTime;//Время последнего удара
+
+    public float XPos;
 
     private void Start()
     {
@@ -31,22 +34,18 @@ public class Monster : Unit
         LastTime = 0;
     }
 
-    private void Update()
+
+    public void Die()
     {
-        if (lives <= 0) Destroy(gameObject);//смерть
-
-        //ближний бой
-        Vector2 point = new Vector2(transform.position.x + (Dalnost ), transform.position.y);//текущая позция удара
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
-        if ((colliders.Length > 0)&&(Time.time >= TimeToDamage + LastTime))//Удар в ближнем бою
+        XPos = gameObject.transform.position.x;
+        for (int i = 0; i < PlusFireColb; i++)//генерирование огоньков
         {
-            //Debug.Log("point " + point +", radius" + radius + ", layer" + layerMask + ", damage" + Damage + ", lasttime" + LastTime + ", time" +Time.time);
-            DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
-            LastTime = Time.time;
+            Debug.Log("генерируем " + PlusFireColb);
+            FireSphere FireSphere = Instantiate<FireSphere>(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation);
+            XPos+=0.5F;
         }
-        
+        Destroy(gameObject);
     }
-
 
     // функция возвращает ближайший объект из массива, относительно указанной позиции
     static GameObject NearTarget(Vector3 position, Collider2D[] array)
@@ -74,7 +73,7 @@ public class Monster : Unit
         GameObject obj = NearTarget(point, colliders);
         if (obj.GetComponent<Character>())
         {
-           Debug.Log("boom");
+
             obj.GetComponent<SpriteRenderer>().color = Color.red;
             obj.GetComponent<Character>().lives -= damage;
         }
