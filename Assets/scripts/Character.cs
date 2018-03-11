@@ -28,7 +28,7 @@ public class Character : Unit
     bool CheckJump;
     bool IsEnemy;
     Vector3 napravlenie;
-    
+    int ProcentFireInColb;
 
 
     private void Start()
@@ -40,7 +40,6 @@ public class Character : Unit
 
     private void FixedUpdate()
     {
-        LivesGui.text ="Жизней: "+lives;
         CheckGround();
         //используем Input.GetAxis для оси Х. метод возвращает значение оси в пределах от -1 до 1.
         //при стандартных настройках проекта 
@@ -60,7 +59,9 @@ public class Character : Unit
 
     private void Update()
     {
-        
+        FireGui.text = "Огня: " + FireColb;
+        LivesGui.text = "Жизней: " + lives;
+        if (lives <= 0) { Destroy(gameObject); }
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1"))//ближний бой
         {
@@ -77,6 +78,7 @@ public class Character : Unit
         {
             CheckJump = false;
         }
+        if (Input.GetButtonDown("Lives")) ConvertToLives();//поменять огонь на жизни
     }
 
 
@@ -98,7 +100,7 @@ public class Character : Unit
             cloneFire.Napravlenie = cloneFire.transform.right * (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F);//задаем направление и скорость пули (?если  true : false)
             cloneFire.Parent = gameObject;//родителем пули является текущий объект
             FireColb--;
-            FireGui.text = "Огня: " + FireColb;
+
         }
     }
 
@@ -110,7 +112,7 @@ public class Character : Unit
         {
             Destroy(collision.gameObject);
             FireColb = FireColb + 5 ;
-            FireGui.text = "Огня: " + FireColb;
+
         }
 
     }
@@ -164,4 +166,14 @@ public class Character : Unit
             }
         }
     }
+
+
+    private void ConvertToLives()
+    {
+            FireColb = FireColb - 50;
+            lives = lives + 20;//добавляем жизней
+    }
+
+
+
 }

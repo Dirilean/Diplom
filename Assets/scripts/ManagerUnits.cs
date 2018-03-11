@@ -42,7 +42,6 @@ public class ManagerUnits : MonoBehaviour {
             }
             RndStep =rnd.Next(15)+5;
             LastPos = forgen.transform.position.x;
-            Debug.Log(RndStep+", nomer= "+RndPack);
         }
 	}
 }
