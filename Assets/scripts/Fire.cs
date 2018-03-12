@@ -17,19 +17,24 @@ public class Fire : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 1.6F); //уничтожить объект с задержкой в 1,6сек
+        Destroy(gameObject, 0.5F); //уничтожить объект с задержкой в 0.5сек
     }
 
     private void Update() //движение огня
     {
         transform.position = Vector3.MoveTowards(transform.position, transform.position + napravlenie, speed * Time.deltaTime);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.01F, 1 << 13);
+        if (colliders.Length>0)//уничтожение пули при касании с платформой
+        {
+            Destroy(gameObject);
+        }
     }
 	
     private void OnTriggerEnter2D(Collider2D collider)//уничтожение пули в момент попадания в юнит
     {
         Monster unit = collider.GetComponent<Monster>();
 
-        if (unit && unit.gameObject!=parent)
+        if (unit&& gameObject != parent)
         {
             unit.lives-=20;//получение урона от пули
             Destroy(gameObject);//уничтожение около врага, а не родителя

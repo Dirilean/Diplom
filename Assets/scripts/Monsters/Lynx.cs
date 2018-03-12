@@ -13,7 +13,7 @@ public class Lynx : Monster
     [SerializeField]
     Character Player;
 
-    float DistanceSee=4.5F;//видимость
+    float DistanceSee=4;//видимость
 
     private bool isplayer;//проверка на игрока впереди
     [SerializeField]
@@ -56,8 +56,8 @@ public class Lynx : Monster
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
         //условие поворота
-        if (Mathf.Abs(Player.transform.position.x - transform.position.x) < 0.2F) napravlenie = Vector3.zero;//стоять
-        else if ((Vector2.Distance(Player.transform.position, transform.position) < DistanceSee) && ((Player.transform.position.x - transform.position.x != 0)))//если игрок близко идти к нему
+        if (Mathf.Abs(Player.transform.position.x - transform.position.x) < 0.2F) napravlenie = Vector3.zero;//стоять если игрок ровно над или под
+        else if ((Vector2.Distance(Player.transform.position, transform.position) < DistanceSee) && ((Player.transform.position.x - transform.position.x != 0)))//если игрок близко - идти к нему
         {
             napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);
         }
@@ -65,7 +65,10 @@ public class Lynx : Monster
         {
             napravlenie = Vector3.right;
         }
-        else { napravlenie = -Vector3.right; }
+        else
+        {
+            napravlenie = -Vector3.right;
+        }
 
         if ((Player.transform.position.y - transform.position.y > 1.5F)&&((Player.transform.position.y - transform.position.y < 2.5F)) &&(Player.isGrounded==true)&&(isGrounded==true))//для прыжка
         {
