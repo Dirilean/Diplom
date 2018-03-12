@@ -13,7 +13,7 @@ public class Lynx : Monster
     [SerializeField]
     Character Player;
 
-    float DistanceSee=4;//видимость
+    float DistanceSee;//видимость
 
     private bool isplayer;//проверка на игрока впереди
     [SerializeField]
@@ -26,6 +26,7 @@ public class Lynx : Monster
         napravlenie = transform.right;//начальное направление вправо
         lives = 40;
         Damage = 10;
+        DistanceSee = 3;
     }
 
 
@@ -61,14 +62,12 @@ public class Lynx : Monster
         {
             napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);
         }
-        else if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1))//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
+        else if (((colliders.Length > 0) && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1))//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
         {
-            napravlenie = Vector3.right;
+            Debug.Log("right");
+            napravlenie *= -1;
         }
-        else
-        {
-            napravlenie = -Vector3.right;
-        }
+
 
         if ((Player.transform.position.y - transform.position.y > 1.5F)&&((Player.transform.position.y - transform.position.y < 2.5F)) &&(Player.isGrounded==true)&&(isGrounded==true))//для прыжка
         {
