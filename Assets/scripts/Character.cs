@@ -11,24 +11,25 @@ public class Character : Unit
     [SerializeField]
     public int lives;//количество жизней
     [SerializeField]
-    private float speed = 3.3F;
+    private float speed;
+    [SerializeField]
+    private float TempSpeed;//временная скорость (изменяется)
     [SerializeField]
     public Fire FirePrefab;
-    public Monster MonsterPrefab;
     [SerializeField]
     public GUIText FireGui;
     [SerializeField]
     public GUIText LivesGui;
     [SerializeField]
     private Rigidbody2D rb;
-    public float move;
     float ForJump;
-    private bool isGrounded=false; //проверка, стоит ли на земле
+    public bool isGrounded=false; //проверка, стоит ли на земле
     int MinXP=50;//минимальное хп, при котором прекращаются выстрелы
     bool CheckJump;
     bool IsEnemy;
     Vector3 napravlenie;
     int ProcentFireInColb;
+    
 
 
     private void Start()
@@ -36,47 +37,45 @@ public class Character : Unit
         ForJump = 0;
         CheckJump = false;
         lives = 100;
+        speed = 3.5F;
+        TempSpeed = speed;
     }
 
     private void FixedUpdate()
     {
         CheckGround();
-        //используем Input.GetAxis для оси Х. метод возвращает значение оси в пределах от -1 до 1.
-        //при стандартных настройках проекта 
-        //-1 возвращается при нажатии на клавиатуре стрелки влево (или клавиши А),
-        //1 возвращается при нажатии на клавиатуре стрелки вправо (или клавиши D)
-        move = Input.GetAxis("Horizontal");
-
-        //обращаемся к компоненту персонажа RigidBody2D. задаем ему скорость по оси Х, 
-        //равную значению оси Х умноженное на значение макс. скорости
-        rb.velocity = new Vector2(move * speed, rb.velocity.y);
-        if (Input.GetAxis("Horizontal")!=0)
-            {
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * TempSpeed, rb.velocity.y);
+        if (Input.GetAxis("Horizontal") != 0)//обычное хождение
+        {
             napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;
-            }
+            GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;  
+        }
+
+        if (isGrounded && Input.GetButton("Jump") && CheckJump == false)//прыжок 
+        {
+            //прикладываем силу чтобы персонаж подпрыгнул
+            rb.AddForce(new Vector3(transform.position.x, transform.position.y + 72), ForceMode2D.Impulse);
+            CheckJump = true;
+            TempSpeed = speed * 1.1F;
+        }
+        if (((Input.GetButton("Jump")) == false)&& isGrounded)//если отпустили клавишу прыжка
+        {
+            CheckJump = false;
+            TempSpeed = speed;
+        }
     }
 
     private void Update()
     {
         FireGui.text = "Огня: " + FireColb;
         LivesGui.text = "Жизней: " + lives;
+
         if (lives <= 0) { Destroy(gameObject); }
+
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1"))//ближний бой
         {
-            Character.DoDamage(new Vector2(this.transform.position.x+(0.55F* (GetComponent<SpriteRenderer>().flipX ? -1F : 1F)),this.transform.position.y+0.45F),0.3F, 11, 15, false); //точка удара, радиус поражения, слой врага, урон, на всех?
-        }
-
-        if (isGrounded && Input.GetButton("Jump")&&CheckJump==false)//прыжок 
-        {
-            //прикладываем силу вверх, чтобы персонаж подпрыгнул
-            rb.AddForce(new Vector3(0, 72)+this.transform.position, ForceMode2D.Impulse);
-            CheckJump = true;
-        }
-        if ((Input.GetButton("Jump"))==false)//если отпустили клавишу прыжка
-        {
-            CheckJump = false;
+            DoDamage(new Vector2(transform.position.x+(0.55F* (GetComponent<SpriteRenderer>().flipX ? -1F : 1F)),this.transform.position.y+0.45F),0.3F, 11, 15, false); //точка удара, радиус поражения, слой врага, урон, на всех?
         }
         if (Input.GetButtonDown("Lives")) ConvertToLives();//поменять огонь на жизни
     }
@@ -112,9 +111,7 @@ public class Character : Unit
         {
             Destroy(collision.gameObject);
             FireColb = FireColb + 5 ;
-
         }
-
     }
 
  
