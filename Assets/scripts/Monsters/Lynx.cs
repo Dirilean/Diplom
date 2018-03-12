@@ -64,7 +64,6 @@ public class Lynx : Monster
         }
         else if (((colliders.Length > 0) && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1))//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
         {
-            Debug.Log("right");
             napravlenie *= -1;
         }
 

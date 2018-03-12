@@ -40,9 +40,8 @@ public class Monster : Unit
         XPos = gameObject.transform.position.x;
         for (int i = 0; i < PlusFireColb; i++)//генерирование огоньков
         {
-            Debug.Log("генерируем " + PlusFireColb);
-            FireSphere FireSphere = Instantiate<FireSphere>(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation);
-            XPos+=0.5F;
+            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation);
+            XPos += 0.5F;
         }
         Destroy(gameObject);
     }
