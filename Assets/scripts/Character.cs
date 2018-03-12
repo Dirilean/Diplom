@@ -29,6 +29,8 @@ public class Character : Unit
     bool IsEnemy;
     Vector3 napravlenie;
     int ProcentFireInColb;
+    float TimeToPlusLives;//время перезарядки конвертации жизни
+    float LastTimeToPlusLives;
     
 
 
@@ -39,6 +41,9 @@ public class Character : Unit
         lives = 100;
         speed = 3.5F;
         TempSpeed = speed;
+        TimeToPlusLives = 5;
+        LastTimeToPlusLives = 0;
+
     }
 
     private void FixedUpdate()
@@ -167,8 +172,12 @@ public class Character : Unit
 
     private void ConvertToLives()
     {
+        if ((FireColb >= 50)&&(Time.time>LastTimeToPlusLives+TimeToPlusLives))//в колбе достаточно огня и прошло время перезарядки
+        {
             FireColb = FireColb - 50;
             lives = lives + 20;//добавляем жизней
+            LastTimeToPlusLives = Time.time;
+        }
     }
 
 
