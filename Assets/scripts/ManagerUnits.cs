@@ -61,7 +61,7 @@ public class ManagerUnits : MonoBehaviour {
             }
             RndStep = rnd.Next(15) + 5;
             LastPos = GenPos;
-            Debug.Log("генерация монстра в "+ (RndStep + LastPos)+", время: "+Time.time);
+            //Debug.Log("генерация монстра в "+ (RndStep + LastPos)+", время: "+Time.time);
         }
     }
 

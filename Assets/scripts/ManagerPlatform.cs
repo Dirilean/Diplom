@@ -38,7 +38,7 @@ public class ManagerPlatform : MonoBehaviour
         //Debug.Log("1=" + ((int)GenPos.x % 2) + ", 2=" + ((int)LastPos + RndStep) + " 3=" + ((int)GenPos.x));
         if (((int)GenPos.x % 2 == 0)&&(((int)LastPos + RndStep == (int)GenPos.x)))//каждую четную позицию генерации вызывай это
         {
-            Debug.Log("платформа в GenPos=" + (int)GenPos.x + ", время="+Time.time);
+           // Debug.Log("платформа в GenPos=" + (int)GenPos.x + ", время="+Time.time);
             switch (method)
             {
                 case 0: F0(); break;

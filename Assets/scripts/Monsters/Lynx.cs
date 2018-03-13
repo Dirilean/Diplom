@@ -26,7 +26,7 @@ public class Lynx : Monster
         napravlenie = transform.right;//начальное направление вправо
         lives = 40;
         Damage = 10;
-        DistanceSee = 3;
+        DistanceSee = 5;
     }
 
 
@@ -56,22 +56,38 @@ public class Lynx : Monster
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right * napravlenie.x * 0.5F, 0.01F);
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
+       
         //условие поворота
-        if ((Mathf.Abs(Player.transform.position.x - transform.position.x) < 0.2F)&&(Player!=null)) napravlenie = Vector3.zero;//стоять если игрок ровно над или под
-        else if ((Vector2.Distance(Player.transform.position, transform.position) < DistanceSee) && ((Player.transform.position.x - transform.position.x != 0)))//если игрок близко - идти к нему
+        if (Vector3.Distance(Player.transform.position,transform.position)<DistanceSee)//если видит лису
         {
-            napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);
+            if (Mathf.Abs(Player.transform.position.x - transform.position.x) < 0.3f)//если над или под
+            {
+                napravlenie = Vector3.zero;
+            }
+            else
+            {
+                napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);//поворот к игроку
+            }
         }
-        else if (((colliders.Length > 0) && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1))//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
+        else //если не видит лису
         {
-            napravlenie *= -1;
+            if (((colliders.Length > 0) && colliders.All(x => !x.GetComponent<Character>()) || (nocolliders.Length < 1))&&napravlenie!=Vector3.zero)//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа
+            {
+                napravlenie *= -1;
+            }
+            else if (napravlenie == Vector3.zero)
+            {
+                napravlenie = -Vector3.right;//если лис стоял, а игрок потерялся из зоны видимости идти налево
+            }
         }
 
 
-        if ((Player.transform.position.y - transform.position.y > 1.5F)&&((Player.transform.position.y - transform.position.y < 2.5F)) &&(Player.isGrounded==true)&&(isGrounded==true))//для прыжка
+        if ((Player.transform.position.y - transform.position.y > 1.5F)&&((Player.transform.position.y - transform.position.y < 2.5F))//смотрим по У
+            &&(Mathf.Abs(Player.transform.position.x - transform.position.x)< 3F)&&((Mathf.Abs(Player.transform.position.x - transform.position.x) > 2F))//смотрим по Х
+            &&(Player.isGrounded==true)&&(isGrounded==true))//для прыжка
         {
             //прикладываем силу вверх, чтобы персонаж подпрыгнул
-            rb.AddForce(new Vector3(0, 410) + transform.position, ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(0,300), ForceMode2D.Impulse);
             CheckJump = true;
         }
 
