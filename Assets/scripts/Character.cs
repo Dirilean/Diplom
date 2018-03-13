@@ -40,7 +40,7 @@ public class Character : Unit
         CheckJump = false;
         lives = 100;
         speed = 3.5F;
-      //  TempSpeed = speed;
+       // TempSpeed = speed;
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
 

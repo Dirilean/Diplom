@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ManagerPlatform : MonoBehaviour
 {
-    public GameObject[] f = new GameObject[41]; //все платформы на "земле"
+    public GameObject[] f = new GameObject[41]; //все платформы  в лесу
     public GameObject gr;//земля
     Vector3 GenPos;//текущая позиция генерации
+    Vector3 GenPosGr;//текущая позиция генерации земли
     Vector3 PlatGenPos;//следующая выбранная позиция генерации
     Quaternion GenQ = new Quaternion(0, 0, 0, 0);//текущий разворот
     [SerializeField]
@@ -21,20 +22,23 @@ public class ManagerPlatform : MonoBehaviour
 
     void Start()
     {
-        GenPos.x = forgen.transform.position.x;
-        LastPos = 20;
+        GenPosGr = new Vector3((forgen.transform.position.x + Static.StepGenGround), 0);
+        GenPos = new Vector3((forgen.transform.position.x+Static.StepPlatf),0);
+        LastPos = forgen.transform.position.x + Static.StepPlatf;
         RndStep = 2;
-       // Debug.Log("GenPos=" + (int)GenPos.x + ", LastPos=" + LastPos+" rndstep="+RndStep);
     }
 
 
     void Update()//генерация !главный метод, вызывающий остальные!
     {
-        GenPos.x = forgen.transform.position.x;
+        GenPosGr.x = forgen.transform.position.x;
+        GenPos.x = forgen.transform.position.x+Static.StepPlatf;
+
         if (forgen.busy != true) { GenGround(); }//если в позиции генерации пусто, создай землю
+        //Debug.Log("1=" + ((int)GenPos.x % 2) + ", 2=" + ((int)LastPos + RndStep) + " 3=" + ((int)GenPos.x));
         if (((int)GenPos.x % 2 == 0)&&(((int)LastPos + RndStep == (int)GenPos.x)))//каждую четную позицию генерации вызывай это
         {
-           // Debug.Log("GenPos=" + (int)GenPos.x + ", LastPos=" + (int)LastPos + " rndstep=" + RndStep + " метод=" + method);
+            Debug.Log("платформа в GenPos=" + (int)GenPos.x + ", время="+Time.time);
             switch (method)
             {
                 case 0: F0(); break;
@@ -57,7 +61,7 @@ public class ManagerPlatform : MonoBehaviour
 
     void GenGround()//генерирование земли
     {
-        Instantiate(gr, new Vector3(Mathf.Round(GenPos.x), GenPos.y - 3.0F), GenQ);
+        Instantiate(gr, new Vector3(Mathf.Round(GenPosGr.x), GenPosGr.y - 3.0F), GenQ);
     }
 
     public int GetRandom(params int[] values)//для выбора рандомного числа из предложеных (используется в методах создания платформ)

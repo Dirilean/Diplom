@@ -28,6 +28,7 @@ public class Monster : Unit
     public float YPos;
     System.Random rnd = new System.Random();
 
+
     private void Start()
     {
         Dalnost = 0.5F;
@@ -40,11 +41,13 @@ public class Monster : Unit
     public void Die()
     {
         XPos = gameObject.transform.position.x;
-        for (int i = 0; i < PlusFireColb; i++)//генерирование огоньков
+        int k = 0;
+        while (k < PlusFireColb)//генерирование огоньков
         {
-            YPos = (float)(rnd.NextDouble())/3+0.3F;//от 0,3 до 0,6
-            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+YPos), FireSpherePrefab.transform.rotation);
+            YPos = (float)(rnd.NextDouble()) / 3 + 0.3F;//от 0,3 до 0,6
+            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
             XPos += 0.5F;
+            k++;
         }
         Destroy(gameObject);
     }

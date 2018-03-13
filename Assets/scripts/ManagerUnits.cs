@@ -23,16 +23,19 @@ public class ManagerUnits : MonoBehaviour {
     int RndPack;
     float LastPos;
 
+    float GenPos;//текущая позиция генерации
+
     // Use this for initialization
     void Start() {
         RndStep = 0;
-        LastPos = 20;
+        GenPos = Static.ForgenPosition+ Static.StepGenMonster;
+        LastPos = GenPos;
     }
 
     // Update is called once per frame
     void Update() {
-
-        if (forgen.transform.position.x > RndStep + LastPos)
+        GenPos = forgen.transform.position.x + Static.StepGenMonster;
+        if (GenPos > RndStep + LastPos)
         {
             RndPack = rnd.Next(11);
             switch (RndPack)
@@ -57,7 +60,8 @@ public class ManagerUnits : MonoBehaviour {
                 case 13: hole(); break;
             }
             RndStep = rnd.Next(15) + 5;
-            LastPos = forgen.transform.position.x;
+            LastPos = GenPos;
+            Debug.Log("генерация монстра в "+ (RndStep + LastPos)+", время: "+Time.time);
         }
     }
 

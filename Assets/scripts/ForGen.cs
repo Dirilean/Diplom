@@ -10,9 +10,14 @@ public class ForGen : MonoBehaviour {
     Character Player;
     byte chet;//считает количество коллайдеров в триггере
 
+    private void Start()
+    {
+        transform.position = new Vector3(Static.ForgenPosition, 0);
+    }
+
     private void Update()//перемещение
     {
-        transform.position =new Vector3(Player.transform.position.x+Static.StepGen, 0);
+        transform.position =new Vector3(Player.transform.position.x+Static.ForgenPosition, 0);
     }
 
 
@@ -22,7 +27,6 @@ public class ForGen : MonoBehaviour {
         if (chet > 0)
         {
             busy = true;
-            //Debug.Log("busy=" + busy);
         }
     }
 
@@ -32,7 +36,6 @@ public class ForGen : MonoBehaviour {
         if (chet == 0)
         {
             busy = false;
-          //  Debug.Log("busy=" + busy);
         }
     }
 }
