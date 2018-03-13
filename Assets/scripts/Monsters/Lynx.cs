@@ -57,7 +57,7 @@ public class Lynx : Monster
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
         //условие поворота
-        if (Mathf.Abs(Player.transform.position.x - transform.position.x) < 0.2F) napravlenie = Vector3.zero;//стоять если игрок ровно над или под
+        if ((Mathf.Abs(Player.transform.position.x - transform.position.x) < 0.2F)&&(Player!=null)) napravlenie = Vector3.zero;//стоять если игрок ровно над или под
         else if ((Vector2.Distance(Player.transform.position, transform.position) < DistanceSee) && ((Player.transform.position.x - transform.position.x != 0)))//если игрок близко - идти к нему
         {
             napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);

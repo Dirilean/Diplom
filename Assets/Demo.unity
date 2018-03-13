@@ -665,6 +665,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7f5ae298cd0f41341a24cfd9e05e6117, type: 2}
+    - target: {fileID: 4922137441002758, guid: 182280c478877b5498044305f85b2fad, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58831159421585854, guid: 182280c478877b5498044305f85b2fad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 182280c478877b5498044305f85b2fad, type: 2}
