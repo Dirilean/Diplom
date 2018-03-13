@@ -40,7 +40,6 @@ public class Character : Unit
         CheckJump = false;
         lives = 100;
         speed = 3.5F;
-       // TempSpeed = speed;
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
 
@@ -56,17 +55,16 @@ public class Character : Unit
             GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;  
         }
 
-        if (isGrounded && Input.GetButton("Jump") && CheckJump == false)//прыжок 
+        if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
         {
             //прикладываем силу чтобы персонаж подпрыгнул
-            rb.AddForce(new Vector3(transform.position.x, transform.position.y + 72), ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(0, 72), ForceMode2D.Impulse);
             CheckJump = true;
-           // TempSpeed = speed * 1.1F;
+
         }
         if (((Input.GetButton("Jump")) == false)&& isGrounded)//если отпустили клавишу прыжка
         {
             CheckJump = false;
-           // TempSpeed = speed;
         }
     }
 
