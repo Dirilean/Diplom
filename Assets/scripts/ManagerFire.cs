@@ -37,12 +37,13 @@ public class ManagerFire : MonoBehaviour {
                 RndY = rnd.Next(5);//5 вида высоты
                 switch (RndY)//выбор высоты генерации
                 {
-                    case 0: YPos = 0.5F; break;
-                    case 1: YPos = 2.5F; break;
-                    case 2: YPos = 4.5F; break;
-                    case 3: YPos = 6.5F; break;
+                    case 0: YPos = 0F; break;
+                    case 1: YPos = 2F; break;
+                    case 2: YPos = 4F; break;
+                    case 3: YPos = 6F; break;
                     case 4: YPos = -1F; break;//будет пусто
                 }
+                YPos =YPos+(float)(rnd.NextDouble()) / 2 + 0.25F;//от 0,25 до 0,75
                 RndCol = rnd.Next(4)+2;//максимально на 1 высоте
             }
             RndCol--;
@@ -56,7 +57,6 @@ public class ManagerFire : MonoBehaviour {
 
             if ((colliders.Length > 0) && (nocolliders.Length == 0)&&(YPos>0))//проверка на близость других коллайдеров
             {
-                //Debug.Log("огонек: " + XPos + ", " + YPos + ", в массиве:" + colliders[0].name);
                 FireSphere FireSphere = Instantiate<FireSphere>(FireSpherePrefab, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation);
             }
             LastPos =forgen.transform.position.x-zaderzka;

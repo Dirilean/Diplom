@@ -41,11 +41,11 @@ public class Bear : Monster {
 
     private void Move()
     {
-        Vector2 q = transform.position + transform.up * -0.1F + transform.right * napravlenie.x*0.7F;
+        Vector2 q = transform.position + transform.up * 0.4F + transform.right * napravlenie.x*0.7F;
         //стенки
         Collider2D[] colliders = Physics2D.OverlapCircleAll(q , 0.1F);
         //пустота
-        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.8F + transform.right * napravlenie.x * 0.8F, 0.3F);
+        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.8F, 0.3F);
 
         //условие поворота
         if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков

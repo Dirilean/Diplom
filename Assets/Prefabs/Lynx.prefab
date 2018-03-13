@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245890625398220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.66, y: 2.65, z: 0}
+  m_LocalPosition: {x: 16.13, y: 6.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,18 +89,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46da7c3ef40a1e940bf808ff3930c52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  TimeToDamage: 0
-  lives: 0
-  speed: 0
-  PlusFireColb: 0
-  FireSpherePrefab: {fileID: 0}
-  radius: 0
-  layerMask: 0
+  Damage: 10
+  TimeToDamage: 1
+  lives: 40
+  speed: 1.5
+  PlusFireColb: 7
+  FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
+    type: 2}
+  radius: 1
+  layerMask: 10
   Dalnost: 0
   LastTime: 0
   XPos: 0
-  rb: {fileID: 0}
+  YPos: 0
+  rb: {fileID: 50151836268202946}
   Player: {fileID: 0}
   napravlenie: {x: 0, y: 0, z: 0}
 --- !u!212 &212822768782062350

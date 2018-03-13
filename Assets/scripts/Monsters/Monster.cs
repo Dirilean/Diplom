@@ -25,6 +25,8 @@ public class Monster : Unit
     public float LastTime;//Время последнего удара
 
     public float XPos;
+    public float YPos;
+    System.Random rnd = new System.Random();
 
     private void Start()
     {
@@ -40,7 +42,8 @@ public class Monster : Unit
         XPos = gameObject.transform.position.x;
         for (int i = 0; i < PlusFireColb; i++)//генерирование огоньков
         {
-            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation);
+            YPos = (float)(rnd.NextDouble())/3+0.3F;//от 0,3 до 0,6
+            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+YPos), FireSpherePrefab.transform.rotation);
             XPos += 0.5F;
         }
         Destroy(gameObject);

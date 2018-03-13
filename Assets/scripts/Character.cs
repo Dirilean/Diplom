@@ -40,7 +40,7 @@ public class Character : Unit
         CheckJump = false;
         lives = 100;
         speed = 3.5F;
-        TempSpeed = speed;
+      //  TempSpeed = speed;
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
 
@@ -49,7 +49,7 @@ public class Character : Unit
     private void FixedUpdate()
     {
         CheckGround();
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * TempSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
         if (Input.GetAxis("Horizontal") != 0)//обычное хождение
         {
             napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
@@ -61,12 +61,12 @@ public class Character : Unit
             //прикладываем силу чтобы персонаж подпрыгнул
             rb.AddForce(new Vector3(transform.position.x, transform.position.y + 72), ForceMode2D.Impulse);
             CheckJump = true;
-            TempSpeed = speed * 1.1F;
+           // TempSpeed = speed * 1.1F;
         }
         if (((Input.GetButton("Jump")) == false)&& isGrounded)//если отпустили клавишу прыжка
         {
             CheckJump = false;
-            TempSpeed = speed;
+           // TempSpeed = speed;
         }
     }
 

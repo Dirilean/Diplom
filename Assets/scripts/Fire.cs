@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 0.5F); //уничтожить объект с задержкой в 0.5сек
+        Destroy(gameObject, 0.7F); //уничтожить объект с задержкой в 0.5сек
     }
 
     private void Update() //движение огня
