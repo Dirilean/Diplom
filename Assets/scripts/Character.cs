@@ -58,7 +58,7 @@ public class Character : Unit
         if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
         {
             //прикладываем силу чтобы персонаж подпрыгнул
-            rb.AddForce(new Vector3(0, 72), ForceMode2D.Impulse);
+            rb.AddForce(new Vector3(10F*Input.GetAxis("Horizontal"), 72), ForceMode2D.Impulse);
             CheckJump = true;
 
         }
