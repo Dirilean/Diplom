@@ -24,14 +24,19 @@ public class Character : Unit
     private Rigidbody2D rb;
     float ForJump;
     public bool isGrounded=false; //проверка, стоит ли на земле
-    int MinXP=50;//минимальное хп, при котором прекращаются выстрелы
+    int MinFireColb=0;//минимальное хп, при котором прекращаются выстрелы
     bool CheckJump;
     bool IsEnemy;
     Vector3 napravlenie;
     int ProcentFireInColb;
     float TimeToPlusLives;//время перезарядки конвертации жизни
     float LastTimeToPlusLives;
-    
+
+    float timeDie;//время смерти
+    float zaderzhka = 1;//сколько секунд после смерти нужно ждать чтобы воскреснуть
+
+    float TimeShoot;//время выстрела
+    float delayShooy=0.3F;//задержка при выстрелах
 
 
     private void Start()
@@ -42,7 +47,7 @@ public class Character : Unit
         speed = 3.5F;
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
-
+        TimeShoot = Time.time;
     }
 
     private void FixedUpdate()
@@ -73,7 +78,7 @@ public class Character : Unit
         FireGui.text = "Огня: " + FireColb;
         LivesGui.text = "Жизней: " + lives;
 
-        if (lives <= 0) { Destroy(gameObject); }
+        if (lives <= 0) { Die(); }
 
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1"))//ближний бой
@@ -94,15 +99,14 @@ public class Character : Unit
 
     private void Shoot()//выстрелы
     {
-
-        if (FireColb> MinXP)
+        if ((FireColb> MinFireColb)&&(TimeShoot+delayShooy<Time.time))
         {
             Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F), transform.position.y + 0.7F);//место создания пули относительно персонажа
             Fire cloneFire = Instantiate<Fire>(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
             cloneFire.Napravlenie = cloneFire.transform.right * (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F);//задаем направление и скорость пули (?если  true : false)
             cloneFire.Parent = gameObject;//родителем пули является текущий объект
             FireColb--;
-
+            TimeShoot = Time.time;
         }
     }
 
@@ -178,6 +182,19 @@ public class Character : Unit
         }
     }
 
+    void Die()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        lives = 0;
+        timeDie = Time.time;
+        if (timeDie + zaderzhka > Time.time)
+        {
+            transform.position = new Vector3(0, 5);
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            lives = 100;
+            FireColb = 0;
+        }
 
+    }
 
 }

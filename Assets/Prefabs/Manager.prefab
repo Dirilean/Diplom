@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff28ed9dfd88a54fbb2ff1a05231754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forgen: {fileID: 0}
+  forgen: {fileID: 114955721608074022, guid: 182280c478877b5498044305f85b2fad, type: 2}
   WolfPrefab: {fileID: 114662285422239736, guid: 36c1a35d45ec27341a7e619a243a4d55,
     type: 2}
   HolePrefab: {fileID: 114644875614975742, guid: bac73ed065392594ebb1ed2ca072af95,
@@ -61,6 +61,8 @@ MonoBehaviour:
   BearPrefab: {fileID: 114167382350735584, guid: e383b1c14f199004f9b8ad98b707b75c,
     type: 2}
   EzhPrefab: {fileID: 114213090899609278, guid: 3cc6ae71ee597034993b9bada631bd4c,
+    type: 2}
+  LynxPrefab: {fileID: 114776350126514138, guid: 7298ec8657e8969459604f399dc30393,
     type: 2}
 --- !u!114 &114549816978589456
 MonoBehaviour:
@@ -75,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
-  forgen: {fileID: 0}
+  forgen: {fileID: 114955721608074022, guid: 182280c478877b5498044305f85b2fad, type: 2}
 --- !u!114 &114767064701194646
 MonoBehaviour:
   m_ObjectHideFlags: 1
