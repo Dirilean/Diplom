@@ -19,6 +19,8 @@ public class Monster : Unit
     [SerializeField]
     FireSphere FireSpherePrefab;
 
+    public Animator animator;
+
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
     public float Dalnost;//дальность удара (центр окружности)
@@ -72,14 +74,15 @@ public class Monster : Unit
 
     public static void DoDamage(Vector2 point, float radius, int layerMask, int damage)//ближний бой
     {
+
+     //   Animator.SetBool("attack", true);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
         GameObject obj = NearTarget(point, colliders);
         if (obj.GetComponent<Character>())
         {
-            obj.GetComponent<SpriteRenderer>().color = Color.red;
+            
             obj.GetComponent<Character>().lives -= damage;
         }
-        obj.GetComponent<SpriteRenderer>().color = Color.white;
         return;
     }
 }

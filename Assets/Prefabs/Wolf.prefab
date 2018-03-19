@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492166308426920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.78, y: 2.22, z: 0}
+  m_LocalPosition: {x: -0.6, y: 2.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -134,12 +134,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  TimeToDamage: 1
+  TimeToDamage: 2
   lives: 40
   speed: 2
   PlusFireColb: 5
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
+  animator: {fileID: 95193639012757132}
   radius: 0.5
   layerMask: 10
   Dalnost: 1

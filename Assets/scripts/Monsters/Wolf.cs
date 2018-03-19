@@ -14,6 +14,12 @@ public class Wolf : Monster {
     private Vector3 napravlenie;
     public Vector2 point;
 
+    public CharState State
+    {
+        get { return (CharState)animator.GetInteger("State"); }
+        set { animator.SetInteger("State", (int)value); }
+    }
+
     private void Start()
     {
         napravlenie = transform.right;//начальное направление вправо
@@ -25,6 +31,7 @@ public class Wolf : Monster {
     private void FixedUpdate()
     {
         Move();
+        
     }
 
     private void Update()
@@ -33,16 +40,20 @@ public class Wolf : Monster {
         //ближний бой
         point = new Vector2(transform.position.x + (Dalnost*napravlenie.x), transform.position.y+0.5F);//текущая позция удара
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
-        if ((colliders.Length > 0) && (Time.time >= TimeToDamage + LastTime))//Удар в ближнем бою
+        if (colliders.Length > 0)
         {
-           //  Debug.Log("point " + point +", radius" + radius + ", layer" + layerMask + ", damage" + Damage + ", lasttime" + LastTime + ", time" +Time.time);
-            DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
-            LastTime = Time.time;
+            State = CharState.attack;
+            if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою
+            {
+                DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
+                LastTime = Time.time;
+            }
         }
     }
 
     private void Move()
     {
+
         //стенки
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, 0.01F);
         //пустота
@@ -50,11 +61,17 @@ public class Wolf : Monster {
         //условие поворота
         if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
-        {
+        {          
             rb.velocity = new Vector2(speed*napravlenie.x, rb.velocity.y);
             GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот}
+            State = CharState.walk;
         }  
     }
 
-
+    public enum CharState
+    {
+        walk,
+        attack,
+        die
+    }
 }
