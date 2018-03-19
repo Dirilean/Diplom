@@ -22,17 +22,15 @@ public class Monster : Unit
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
     public float Dalnost;//дальность удара (центр окружности)
-    public float LastTime;//Время последнего удара
+    protected float LastTime;//Время последнего удара
 
-    public float XPos;
-    public float YPos;
+    protected float XPos;
+    protected float YPos;
     System.Random rnd = new System.Random();
 
 
     private void Start()
     {
-        Dalnost = 0.5F;
-        radius = 0.3F;
         layerMask = 10;
         LastTime = 0;
     }
@@ -78,7 +76,6 @@ public class Monster : Unit
         GameObject obj = NearTarget(point, colliders);
         if (obj.GetComponent<Character>())
         {
-
             obj.GetComponent<SpriteRenderer>().color = Color.red;
             obj.GetComponent<Character>().lives -= damage;
         }
