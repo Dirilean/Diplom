@@ -9,7 +9,7 @@ public class Monster : Unit
     [SerializeField]
     public int Damage;//количество наносимого урона
     [SerializeField]
-    public float TimeToDamage;//время за которое наносятся один удар
+    public float TimeToDamage;//время за которое наносятся один удар (указывается в префабе)
     [SerializeField]
     public int lives;//жизни
     [SerializeField]
@@ -79,8 +79,7 @@ public class Monster : Unit
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
         GameObject obj = NearTarget(point, colliders);
         if (obj.GetComponent<Character>())
-        {
-            
+        {   
             obj.GetComponent<Character>().lives -= damage;
         }
         return;

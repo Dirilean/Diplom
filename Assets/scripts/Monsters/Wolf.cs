@@ -24,7 +24,6 @@ public class Wolf : Monster {
     {
         napravlenie = transform.right;//начальное направление вправо
         lives = 40;
-        Damage = 10;
     }
 
 
@@ -42,8 +41,8 @@ public class Wolf : Monster {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
         if (colliders.Length > 0)
         {
-            State = CharState.attack;
-            if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою
+            State = CharState.attack;//анимация удара
+            if (Time.time >= TimeToDamage + LastTime-0.07)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
             {
                 DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
                 LastTime = Time.time;
