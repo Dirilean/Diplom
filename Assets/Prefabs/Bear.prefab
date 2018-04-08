@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 212018220144980872}
   - component: {fileID: 50219177173515276}
   - component: {fileID: 114167382350735584}
+  - component: {fileID: 95355682002661730}
+  - component: {fileID: 60438407262506826}
   m_Layer: 11
   m_Name: Bear
   m_TagString: Untagged
@@ -37,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715295395407638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.38, y: 2, z: 0}
+  m_LocalPosition: {x: 7.51, y: 2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,13 +73,60 @@ CircleCollider2D:
   m_GameObject: {fileID: 1715295395407638}
   m_Enabled: 1
   m_Density: 1
+  m_Material: {fileID: 6200000, guid: 7f5ae298cd0f41341a24cfd9e05e6117, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!60 &60438407262506826
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1715295395407638}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.672093, y: 0.9883721}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.31309938, y: 0.12759781}
+      - {x: 0.76972675, y: 0.55020976}
+      - {x: 0.6598835, y: 0.87334704}
+      - {x: -0.6318488, y: 0.8845215}
+      - {x: -0.7792816, y: 0.5234287}
+      - {x: -0.31343746, y: 0.12973762}
+--- !u!95 &95355682002661730
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1715295395407638}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c503eb640a8e7746a928aa980fbbe4c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114167382350735584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,12 +145,10 @@ MonoBehaviour:
   PlusFireColb: 10
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
+  animator: {fileID: 0}
   radius: 1
   layerMask: 10
   Dalnost: 0
-  LastTime: 0
-  XPos: 0
-  YPos: 0
   rb: {fileID: 50219177173515276}
 --- !u!212 &212018220144980872
 SpriteRenderer:
@@ -137,12 +184,12 @@ SpriteRenderer:
   m_SortingLayerID: 1522085469
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aba4e47c91349f14f903a7da40f933f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ccb963431dfdec428d6fdde86fb6304, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

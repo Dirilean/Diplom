@@ -52,7 +52,7 @@ public class Bear : Monster {
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот}
+            GetComponent<SpriteRenderer>().flipX = -napravlenie.x < 0.0F;//поворот}
         }
 
     }
