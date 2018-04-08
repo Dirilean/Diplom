@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 50690687105424360}
   - component: {fileID: 58538986237394460}
   - component: {fileID: 114662285422239736}
-  - component: {fileID: 61434413527697538}
   - component: {fileID: 95193639012757132}
+  - component: {fileID: 60394737534550030}
   m_Layer: 11
   m_Name: Wolf
   m_TagString: Untagged
@@ -80,8 +80,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.4}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!61 &61434413527697538
-BoxCollider2D:
+--- !u!60 &60394737534550030
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -92,7 +92,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.68532956}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -102,9 +102,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4311111, y: 0.46489647}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.69782966, y: 0.44802427}
+      - {x: 0.65296406, y: 0.80121636}
+      - {x: -0.6454381, y: 0.8047552}
+      - {x: -0.6888889, y: 0.47333336}
+      - {x: -0.2199108, y: 0.07595062}
+      - {x: 0.222063, y: 0.07679081}
 --- !u!95 &95193639012757132
 Animator:
   serializedVersion: 3
