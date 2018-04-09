@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Bear : Monster {
-
-
+public class Bear : Monster
+{
 }

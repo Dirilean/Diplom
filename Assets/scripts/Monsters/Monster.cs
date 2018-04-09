@@ -32,6 +32,8 @@ public class Monster : Unit
 
     public bool isplayer;//проверка на игрока впереди
     public Vector3 napravlenie;
+    [SerializeField]
+    public float SpriteSeeRight;//множитель направления спрайта
 
     protected float XPos;
     protected float YPos;
@@ -133,7 +135,7 @@ public class Monster : Unit
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот}
+            GetComponent<SpriteRenderer>().flipX = napravlenie.x * SpriteNapravlenie < 0.0F;//поворот}
             State = CharState.walk;
         }
     }
