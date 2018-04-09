@@ -37,7 +37,6 @@ public class ManagerPlatform : MonoBehaviour
     {
         GenPosGr.x = forgen.transform.position.x;
         GenPos.x = forgen.transform.position.x+Static.StepPlatf;
-        Debug.Log((LastFonPos + 24.0F) + " " + GenPos.x);
         if ((LastFonPos + 30.0F )<= GenPos.x)//генерация фоновых деревьев
         {
             Instantiate(ForestFon, new Vector3(Mathf.Round(GenPos.x), 0), GenQ);
