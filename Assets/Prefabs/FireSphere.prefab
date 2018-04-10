@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114990641507224528}
   - component: {fileID: 198723795895564304}
   - component: {fileID: 199311667457124998}
+  - component: {fileID: 108219909208853612}
   m_Layer: 14
   m_Name: FireSphere
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393201852641900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.385, y: 0.661, z: 0}
+  m_LocalPosition: {x: 4.57, y: 0.6, z: -0.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,6 +60,42 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!108 &108219909208853612
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393201852641900}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.9448276, b: 0.5, a: 1}
+  m_Intensity: 8
+  m_Range: 0.48325396
+  m_SpotAngle: 76.4
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.096
+    m_NormalBias: 0.4
+    m_NearPlane: 0.07241387
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 2
+  m_AreaSize: {x: 4.1861677, y: 3.0317593}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114990641507224528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,7 +170,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1368508321
+  randomSeed: -1233918227
   InitialModule:
     serializedVersion: 3
     enabled: 1

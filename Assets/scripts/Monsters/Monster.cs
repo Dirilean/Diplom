@@ -22,7 +22,7 @@ public class Monster : Unit
     public Vector2 point;//центр окружнгости для определения стен и игрока
     public Animator animator;
     [SerializeField]
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
@@ -135,7 +135,7 @@ public class Monster : Unit
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x * SpriteNapravlenie < 0.0F;//поворот}
+            GetComponent<SpriteRenderer>().flipX = napravlenie.x * SpriteSeeRight < 0.0F;//поворот}
             State = CharState.walk;
         }
     }

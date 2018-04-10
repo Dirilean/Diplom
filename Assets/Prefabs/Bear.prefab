@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715295395407638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.51, y: 2.1, z: 0}
+  m_LocalPosition: {x: -1.53, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,8 +96,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.672093, y: 0.9883721}
-    newSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 1.795, y: 1.06}
+    newSize: {x: 1.795, y: 1.06}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -105,10 +105,11 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.31309938, y: 0.12759781}
-      - {x: 0.76972675, y: 0.55020976}
-      - {x: 0.6598835, y: 0.87334704}
+      - {x: 0.70815086, y: 0.51761127}
+      - {x: 0.627285, y: 0.86972475}
+      - {x: -0.0020151138, y: 0.99639297}
       - {x: -0.6318488, y: 0.8845215}
-      - {x: -0.7792816, y: 0.5234287}
+      - {x: -0.70684004, y: 0.5198066}
       - {x: -0.31343746, y: 0.12973762}
 --- !u!95 &95355682002661730
 Animator:
@@ -119,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 1715295395407638}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1c503eb640a8e7746a928aa980fbbe4c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87fed2b4163ef8142979cf5e1b5fd010, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -138,18 +139,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847f9193bb57dfd4581da58a88d0a428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
+  Damage: 40
   TimeToDamage: 1
   lives: 50
-  speed: 1.5
+  speed: 0.5
   PlusFireColb: 10
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
-  animator: {fileID: 0}
+  point: {x: 0, y: 0}
+  animator: {fileID: 95355682002661730}
+  rb: {fileID: 50219177173515276}
   radius: 1
   layerMask: 10
-  Dalnost: 0
-  rb: {fileID: 50219177173515276}
+  Dalnost: 1.05
+  isplayer: 0
+  napravlenie: {x: 0, y: 0, z: 0}
+  SpriteSeeRight: -1
 --- !u!212 &212018220144980872
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -184,12 +189,12 @@ SpriteRenderer:
   m_SortingLayerID: 1522085469
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2ccb963431dfdec428d6fdde86fb6304, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ed9b6e5c92f9a343b48e2dba7c088d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 1.795, y: 1.06}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

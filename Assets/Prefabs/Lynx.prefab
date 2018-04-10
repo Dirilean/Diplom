@@ -84,7 +84,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245890625398220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46da7c3ef40a1e940bf808ff3930c52d, type: 3}
   m_Name: 
@@ -96,10 +96,15 @@ MonoBehaviour:
   PlusFireColb: 7
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
+  point: {x: 0, y: 0}
   animator: {fileID: 0}
+  rb: {fileID: 50151836268202946}
   radius: 1
   layerMask: 10
   Dalnost: 0
+  isplayer: 0
+  napravlenie: {x: 0, y: 0, z: 0}
+  SpriteSeeRight: 1
   rb: {fileID: 50151836268202946}
   Player: {fileID: 0}
   napravlenie: {x: 0, y: 0, z: 0}
