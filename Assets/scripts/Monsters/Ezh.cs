@@ -3,51 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Ezh : Monster {
+public class Ezh : MonoBehaviour {
 
-   
-    //private bool isplayer;//проверка на игрока впереди
-    //private Vector3 napravlenie;
+    Vector3 povorot= new Vector3(1,0,0);
+    float Predpos;
+    float Pos;
+    float LastProv=1F;//последняя проверка на движение
+    float LastTimeProv;
 
+    [SerializeField]
+    public int Damage;//количество наносимого урона
+    [SerializeField]
+    public int lives;//жизни
+    [SerializeField]
+    public float speed;//скорость передвижения
+    [SerializeField]
+    public int PlusFireColb;//сколько упадет огня с монстров
+    [SerializeField]
+    FireSphere FireSpherePrefab;
+    [SerializeField]
+    public Rigidbody2D rb;
+    protected float XPos;
+    protected float YPos;
+    System.Random rnd = new System.Random();
 
-    //private void Start()
-    //{
-    //    napravlenie = transform.right;//начальное направление вправо
-    //    lives = 40;
-    //    Damage = 10;
-    //}
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(speed * povorot.x, 0);
 
-    //private void Update()
-    //{
-    //    if (lives <= 0) { Die(); }
-    //}
+        Predpos = Pos;
+        Pos = transform.position.x;
 
-    //private void FixedUpdate()
-    //{
-    //    Move();
-    //}
+        if (LastProv + LastTimeProv < Time.time)
+        {
+            if (Predpos == transform.position.x)//если мы никуда не продвинулись
+            { povorot = povorot * -1;
+            }//вращение в другую сторону
+            LastTimeProv = Time.time;
+        }
+    }
 
-    //private void Move()
-    //{
-    //    //стенки
-    //    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.3F + transform.right * napravlenie.x * 0.5F, 0.01F);
-    //    //пустота
-    //    Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.2F + transform.right * napravlenie.x * 0.5F, 0.1F);
-    //    //условие поворота
-    //    if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
-    //    {
-    //        rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
-    //        GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот}
-    //    }
-    //}
+    private void Update()
+    {
+        //проверяем на живучесть
+        if (lives <= 0) {Die(); }
+    }
 
-    //private void OnCollisionEnter2D(Collision2D collision)//смерть и урон от соприкосновения с персонажем
-    //{
-    //    Character unit = collision.gameObject.GetComponent<Character>();
-    //    if (unit is Character)
-    //    {
-    //        lives = 0;
-    //        unit.lives -= 20;
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collider)//столкновение с игроком
+    {
+        if (collider.gameObject.name == "Player")
+        {
+            collider.gameObject.GetComponent<Character>().lives -= 20;
+            Die();
+        }
+    }
+
+    public void Die()//смерть персонажа
+    {
+        XPos = gameObject.transform.position.x;
+        int k = 0;
+        while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
+        {
+            YPos = (float)(rnd.NextDouble()) / 3 + 0.3F;//от 0,3 до 0,6 для начальной разной высоты
+            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
+            XPos += 0.5F;
+            k++;
+        }
+        Destroy(gameObject);
+    }
 }

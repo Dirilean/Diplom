@@ -49,7 +49,7 @@ public class Monster : Unit
     {
         layerMask = 10;
         LastTime = 0;
-        napravlenie = transform.right;//начальное направление вправо
+        napravlenie = Vector3.right;//начальное направление вправо
     }
 
 
