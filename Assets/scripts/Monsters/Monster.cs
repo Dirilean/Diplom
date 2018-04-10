@@ -23,6 +23,10 @@ public class Monster : Unit
     public Animator animator;
     [SerializeField]
     public Rigidbody2D rb;
+    [SerializeField]
+    ParticleSystem Smoke;
+    ParticleSystem smoke;
+    bool die;//запустили уже скрипт умирания?
 
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
@@ -50,21 +54,31 @@ public class Monster : Unit
         layerMask = 10;
         LastTime = 0;
         napravlenie = Vector3.right;//начальное направление вправо
+        die = false;
     }
 
+    IEnumerator Example()
+    {
+        yield return new WaitForSeconds(0.3F);
+        Destroy(gameObject);
+    }
 
     public void Die()//смерть персонажа
     {
-        XPos = gameObject.transform.position.x;
-        int k = 0;
-        while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
-        {
-            YPos = (float)(rnd.NextDouble()) / 3 + 0.3F;//от 0,3 до 0,6 для начальной разной высоты
-            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
-            XPos += 0.5F;
-            k++;
-        }
-        Destroy(gameObject);
+        die = true;
+            XPos = gameObject.transform.position.x;
+            smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
+            int k = 0;
+            while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
+            {
+                YPos = (float)(rnd.NextDouble()) / 3 + 0.3F;//от 0,3 до 0,6 для начальной разной высоты
+                FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
+                XPos += 0.5F;
+                k++;
+            }
+            speed = 0;
+        
+        StartCoroutine(Example());
     }
 
     // функция возвращает ближайший объект из массива, относительно указанной позиции
@@ -109,7 +123,8 @@ public class Monster : Unit
     private void Update()
     {
         //проверяем на живучесть
-        if (lives <= 0) { Die(); }
+        if ((lives <= 0)&&(die == false))
+             { Die(); }
         //вызываем ближний бой
         point = new Vector2(transform.position.x + (Dalnost * napravlenie.x), transform.position.y + 0.5F);//текущая позция удара
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);//для урона по игроку

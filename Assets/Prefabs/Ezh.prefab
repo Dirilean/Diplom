@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1594723750764766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.76, y: 2.5, z: 0}
+  m_LocalPosition: {x: 8.42, y: 0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
   rb: {fileID: 50476471182266012}
+  Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
 --- !u!212 &212090297490965460
 SpriteRenderer:
   m_ObjectHideFlags: 1

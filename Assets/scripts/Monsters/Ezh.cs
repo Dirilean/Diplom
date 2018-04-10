@@ -26,6 +26,10 @@ public class Ezh : MonoBehaviour {
     protected float XPos;
     protected float YPos;
     System.Random rnd = new System.Random();
+    [SerializeField]
+    ParticleSystem Smoke;
+    ParticleSystem smoke;
+    bool die;//запустили уже скрипт умирания?
 
     private void FixedUpdate()
     {
@@ -58,9 +62,17 @@ public class Ezh : MonoBehaviour {
         }
     }
 
+    IEnumerator Example()
+    {
+        yield return new WaitForSeconds(0.3F);
+        Destroy(gameObject);
+    }
+
     public void Die()//смерть персонажа
     {
+        die = true;
         XPos = gameObject.transform.position.x;
+        smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
         int k = 0;
         while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
         {
@@ -69,6 +81,9 @@ public class Ezh : MonoBehaviour {
             XPos += 0.5F;
             k++;
         }
-        Destroy(gameObject);
+        speed = 0;
+
+        StartCoroutine(Example());
     }
+
 }
