@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 60438407262506826}
   m_Layer: 11
   m_Name: Bear
-  m_TagString: Untagged
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,10 +150,10 @@ MonoBehaviour:
   animator: {fileID: 95355682002661730}
   rb: {fileID: 50219177173515276}
   Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+  die: 0
   radius: 1
   layerMask: 10
   Dalnost: 1.05
-  isplayer: 0
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: -1
 --- !u!212 &212018220144980872

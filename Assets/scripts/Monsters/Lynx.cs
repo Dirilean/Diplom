@@ -14,7 +14,6 @@ public class Lynx : Monster
     private bool isplayer;//проверка на игрока впереди
     public bool isGrounded;
     float betveen;//расстояние между рысью и игроком в плоскости х
-    public bool ISee;//флаг показывающий видит ли рысь игрока сейчас
 
     private void Start()
     {
@@ -41,7 +40,6 @@ public class Lynx : Monster
         //условие поворота и прыэок
         if (betveen < DistanceSee)//если видит лису
         {
-            ISee = true;
 
             //смена направления
             if (betveen < 0.3f)//если над или под
@@ -64,8 +62,6 @@ public class Lynx : Monster
         }
         else //если не видит лису
         {
-            ISee = false;
-            Debug.Log("не видит лису");
             if (((colliders.Length > 0) && colliders.All(x => !x.GetComponent<Character>()) || (nocolliders.Length < 1)) && napravlenie != Vector3.zero)//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа
             {
                 napravlenie *= -1;

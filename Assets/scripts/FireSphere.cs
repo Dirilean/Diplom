@@ -9,18 +9,22 @@ public class FireSphere : MonoBehaviour {
 
     //transform.Translate(new Vector2(1,0)*Time.deltaTime);
     public Vector2 target;
-    public float smoothTime;
-    public float smoothTime1;
+    float smoothTime;
+    float smoothTime1;
     private float Velocity = 0.0F;
     bool once;
-    Vector3 Niz;
-    Vector3 Verh;
+    Vector3 Niz;//самая нижняя точка
+    Vector3 Verh;//самая верхняя точка 
     Vector3 Now;
     System.Random rnd = new System.Random();
+    GameObject Player;
+    bool CheckPlayer;
+
+    bool blizko;//близко игрок?
 
     private void Start()
     {
-
+        Player= GameObject.FindWithTag("Player");
         smoothTime = rnd.Next(3)+1;
         smoothTime1 = smoothTime;
         target = new Vector3(0, 1);
@@ -31,7 +35,21 @@ public class FireSphere : MonoBehaviour {
 
     void Update()
     {
+        Pokoy();
+        //перемещение в сторону игрока
+        if ((Mathf.Abs(Player.transform.position.x - transform.position.x) < 1.5F) && (Mathf.Abs(Player.transform.position.y+0.5F - transform.position.y) < 1.5F))//если игрок ближе чем 1.5F
+        {
+            CheckPlayer = true;
+        }
+        if(CheckPlayer)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(Player.transform.position.x, Player.transform.position.y + 0.5F), 3F * Time.deltaTime);
+        }
+    }
 
+    //висение в невесомости, бездействие
+    private void Pokoy()
+    {
         float newPosition = Mathf.SmoothDamp(transform.position.y, Now.y, ref Velocity, smoothTime1);
         transform.position = new Vector3(transform.position.x, newPosition, transform.position.z);
         if (((Mathf.Abs(Verh.y - transform.position.y) < 0.02) || (Mathf.Abs(Niz.y - transform.position.y) < 0.02)) && (once == true))//если близко к верху, поменять таргет
@@ -45,10 +63,15 @@ public class FireSphere : MonoBehaviour {
         if (((Mathf.Abs(Verh.y - transform.position.y) > 0.02) || (Mathf.Abs(Niz.y - transform.position.y) > 0.02)) && (once == false))
         {
             once = true;
-
         }
-
     }
+
+    //private void ToPlayer()
+    //{
+    //    float newPositionX = Mathf.SmoothDamp(transform.position.x, Player.transform.position.x, ref Velocity, 3F);
+    //    float newPositionY = Mathf.SmoothDamp(transform.position.y, Player.transform.position.y, ref Velocity, 3F);
+    //    transform.position = new Vector3(transform.position.x, newPositionX, transform.position.z);
+    //}
 }
 
 

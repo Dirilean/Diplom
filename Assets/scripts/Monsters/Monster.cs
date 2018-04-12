@@ -157,7 +157,6 @@ public class Monster : Unit
     public enum CharState
     {
         walk,
-        attack,
-        die
+        attack
     }
 }

@@ -60,6 +60,10 @@ public class Ezh : MonoBehaviour {
             collider.gameObject.GetComponent<Character>().lives -= 20;
             Die();
         }
+        if (collider.gameObject.tag == "Mob")
+        {
+            povorot = povorot * -1;
+        }
     }
 
     IEnumerator Example()

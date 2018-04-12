@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 60394737534550030}
   m_Layer: 11
   m_Name: Wolf
-  m_TagString: Untagged
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492166308426920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.29, y: 0.11, z: 0}
+  m_LocalPosition: {x: 16.7, y: 6.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -149,10 +149,10 @@ MonoBehaviour:
   animator: {fileID: 95193639012757132}
   rb: {fileID: 50690687105424360}
   Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+  die: 0
   radius: 0.5
   layerMask: 10
   Dalnost: 1
-  isplayer: 0
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: 1
 --- !u!212 &212359688620060452
