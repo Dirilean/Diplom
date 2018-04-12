@@ -26,7 +26,7 @@ public class Monster : Unit
     [SerializeField]
     ParticleSystem Smoke;
     ParticleSystem smoke;
-    bool die;//запустили уже скрипт умирания?
+    public bool die;//запустили уже скрипт умирания?
 
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
@@ -34,7 +34,6 @@ public class Monster : Unit
     protected float LastTime;//Время последнего удара
 
 
-    public bool isplayer;//проверка на игрока впереди
     public Vector3 napravlenie;
     [SerializeField]
     public float SpriteSeeRight;//множитель направления спрайта
@@ -139,7 +138,7 @@ public class Monster : Unit
         }
     }
 
-    private void Move()
+    public virtual void Move()
     {
         //стенки
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, 0.02F);

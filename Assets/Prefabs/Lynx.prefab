@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245890625398220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.17, y: 6.62, z: 0}
+  m_LocalPosition: {x: 6.97, y: 2.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,12 +54,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245890625398220}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46da7c3ef40a1e940bf808ff3930c52d, type: 3}
   m_Name: 
@@ -99,15 +99,16 @@ MonoBehaviour:
   point: {x: 0, y: 0}
   animator: {fileID: 0}
   rb: {fileID: 50151836268202946}
+  Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+  die: 0
   radius: 1
   layerMask: 10
   Dalnost: 0
-  isplayer: 0
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: 1
-  rb: {fileID: 50151836268202946}
   Player: {fileID: 0}
-  napravlenie: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  ISee: 0
 --- !u!212 &212822768782062350
 SpriteRenderer:
   m_ObjectHideFlags: 1
