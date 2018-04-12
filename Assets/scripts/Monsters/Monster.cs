@@ -145,7 +145,8 @@ public class Monster : Unit
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(point.x, point.y - 0.3F), 0.2F);
         //условие поворота
-        if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>()) && colliders.All(x => !x.GetComponent<FireSphere>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
+        //if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;
+        if ((colliders.Length > 0 && colliders.Any(x => x.CompareTag("Platform"))) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);

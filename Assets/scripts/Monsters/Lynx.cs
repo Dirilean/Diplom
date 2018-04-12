@@ -38,7 +38,7 @@ public class Lynx : Monster
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
 
         //условие поворота и прыэок
-        if (betveen < DistanceSee)//если видит лису
+        if ((betveen < DistanceSee)&&(Mathf.Abs(Player.transform.position.y - transform.position.y)<DistanceSee))//если видит лису
         {
 
             //смена направления
