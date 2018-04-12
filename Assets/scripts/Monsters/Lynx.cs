@@ -6,7 +6,6 @@ using System.Linq;
 public class Lynx : Monster
 {
 
-    [SerializeField]
     Character Player;
 
     float DistanceSee;//видимость
@@ -19,6 +18,7 @@ public class Lynx : Monster
     {
         napravlenie = transform.right;//начальное направление вправо
         DistanceSee = 5;
+        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
     }
 
 

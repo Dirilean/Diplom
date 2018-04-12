@@ -31,6 +31,7 @@ public class FireSphere : MonoBehaviour {
         once = false;
         Verh = new Vector3(0, 0.15F)+transform.position;
         Niz = -new Vector3(0, 0.1F)+transform.position;
+        CheckPlayer = false;
     }
 
     void Update()
@@ -43,7 +44,7 @@ public class FireSphere : MonoBehaviour {
         }
         if(CheckPlayer)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(Player.transform.position.x, Player.transform.position.y + 0.5F), 3F * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, Player.transform.position+0.5F*Vector3.up, 4F * Time.deltaTime);
         }
     }
 
