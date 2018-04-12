@@ -10,7 +10,7 @@ public class ManagerUnits : MonoBehaviour {
     [SerializeField]
     Wolf WolfPrefab;
     [SerializeField]
-    PassiveEnemy HolePrefab;
+    PassiveEnemy MuskiPrefab;
     [SerializeField]
     Bear BearPrefab;
     [SerializeField]
@@ -37,7 +37,7 @@ public class ManagerUnits : MonoBehaviour {
         GenPos = forgen.transform.position.x + Static.StepGenMonster;
         if (GenPos > RndStep + LastPos)
         {
-            RndPack = rnd.Next(11);
+            RndPack = rnd.Next(14);
             switch (RndPack)
             {
                 case 0: wolf(); break;
@@ -55,9 +55,9 @@ public class ManagerUnits : MonoBehaviour {
                 case 9: ezh(); break;
                 case 10: ezh(); break;
 
-                case 11: hole(); break;
-                case 12: hole(); break;
-                case 13: hole(); break;
+                case 11: moski(); break;
+                case 12: moski(); break;
+                case 13: moski(); break;
             }
             RndStep = rnd.Next(15) + 5;
             LastPos = GenPos;
@@ -82,8 +82,9 @@ public class ManagerUnits : MonoBehaviour {
     {
         Ezh Ezh = Instantiate(EzhPrefab, new Vector3((RndStep + LastPos), 10), LynxPrefab.transform.rotation);
     }
-    void hole()
+    void moski()
     {
-        PassiveEnemy BlackHole = Instantiate(HolePrefab, new Vector3((RndStep + LastPos), 10), HolePrefab.transform.rotation);
+        Debug.Log("+");
+        PassiveEnemy Moski = Instantiate(MuskiPrefab, new Vector3((RndStep + LastPos), 10), MuskiPrefab.transform.rotation);
     }
 }

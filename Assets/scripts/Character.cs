@@ -85,7 +85,7 @@ public class Character : Unit
         {
             DoDamage(new Vector2(transform.position.x+(0.55F* (GetComponent<SpriteRenderer>().flipX ? -1F : 1F)),this.transform.position.y+0.45F),0.3F, 11, 15, false); //точка удара, радиус поражения, слой врага, урон, на всех?
         }
-        if (Input.GetButtonDown("Lives")) ConvertToLives();//поменять огонь на жизни
+        if (Input.GetButtonDown("Lives")&&(lives<=80)) ConvertToLives();//поменять огонь на жизни
     }
 
 
