@@ -37,7 +37,7 @@ public class Lynx : Monster
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
 
-        //условие поворота и прыэок
+        //условие поворота и прыжок
         if ((betveen < DistanceSee)&&(Mathf.Abs(Player.transform.position.y - transform.position.y)<DistanceSee))//если видит лису
         {
 
@@ -62,7 +62,7 @@ public class Lynx : Monster
         }
         else //если не видит лису
         {
-            if (((colliders.Length > 0) && colliders.All(x => !x.GetComponent<Character>()) || (nocolliders.Length < 1)) && napravlenie != Vector3.zero)//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа
+            if (((colliders.Length > 0)&&colliders.Any(x => x.CompareTag("Platform")) && colliders.All(x => !x.GetComponent<Character>()) || (nocolliders.Length < 1)) && napravlenie != Vector3.zero)//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа
             {
                 napravlenie *= -1;
             }

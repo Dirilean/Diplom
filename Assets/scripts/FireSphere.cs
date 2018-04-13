@@ -18,7 +18,8 @@ public class FireSphere : MonoBehaviour {
     Vector3 Now;
     System.Random rnd = new System.Random();
     GameObject Player;
-    bool CheckPlayer;
+    public bool CheckPlayer=false;
+    public float TimeToPlayer;
 
     bool blizko;//близко игрок?
 
@@ -31,22 +32,28 @@ public class FireSphere : MonoBehaviour {
         once = false;
         Verh = new Vector3(0, 0.15F)+transform.position;
         Niz = -new Vector3(0, 0.1F)+transform.position;
-        CheckPlayer = false;
+        TimeToPlayer = 4f;
     }
 
     void Update()
     {
-        Pokoy();
-        //перемещение в сторону игрока
+        
+        //игрок близко? начинать движение к игроку?
         if ((Mathf.Abs(Player.transform.position.x - transform.position.x) < 1.5F) && (Mathf.Abs(Player.transform.position.y+0.5F - transform.position.y) < 1.5F))//если игрок ближе чем 1.5F
         {
             CheckPlayer = true;
         }
-        if(CheckPlayer)
+
+        if(CheckPlayer)//если видит игрока
         {
-            transform.position = Vector3.Lerp(transform.position, Player.transform.position+0.5F*Vector3.up, 4F * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, Player.transform.position + 0.5F * Vector3.up, TimeToPlayer * Time.deltaTime);
+        }
+        else//если не видит игрока
+        {
+            Pokoy();
         }
     }
+
 
     //висение в невесомости, бездействие
     private void Pokoy()

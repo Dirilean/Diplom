@@ -39,7 +39,6 @@ public class Monster : Unit
     public float SpriteSeeRight;//множитель направления спрайта
 
     protected float XPos;
-    protected float YPos;
     System.Random rnd = new System.Random();
 
     public CharState State//передаем состояние анимации в аниматор
@@ -64,19 +63,18 @@ public class Monster : Unit
 
     public void Die()//смерть персонажа
     {
-        die = true;
+            die = true;
             XPos = gameObject.transform.position.x;
             smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
             int k = 0;
             while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
             {
-                YPos = (float)(rnd.NextDouble()) / 3 + 0.3F;//от 0,3 до 0,6 для начальной разной высоты
-                FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
-                XPos += 0.5F;
+                FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
+                fireSphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
+                XPos += 0.2F;
                 k++;
             }
-            speed = 0;
-        
+        speed = 0;
         StartCoroutine(Example());
     }
 
@@ -146,7 +144,7 @@ public class Monster : Unit
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(point.x, point.y - 0.3F), 0.2F);
         //условие поворота
         //if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;
-        if ((colliders.Length > 0 && colliders.Any(x => x.CompareTag("Platform"))) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области каких либо коллайдеров или пропасти, игнорирование персонажа, и огоньков
+        if ((colliders.Length > 0 && colliders.Any(x => x.CompareTag("Platform"))) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области стен
         if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
