@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212359688620060452}
   - component: {fileID: 50690687105424360}
   - component: {fileID: 58538986237394460}
-  - component: {fileID: 114662285422239736}
   - component: {fileID: 95193639012757132}
-  - component: {fileID: 60394737534550030}
+  - component: {fileID: 61221118201901594}
+  - component: {fileID: 114932655084856370}
   m_Layer: 11
   m_Name: Wolf
   m_TagString: Mob
@@ -39,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492166308426920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.81, y: 2.34, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 14.3, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,19 +80,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.4}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!60 &60394737534550030
-PolygonCollider2D:
+--- !u!61 &61221118201901594
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492166308426920}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 7f5ae298cd0f41341a24cfd9e05e6117, type: 2}
-  m_IsTrigger: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.4588889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -102,14 +102,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.69782966, y: 0.44802427}
-      - {x: 0.65296406, y: 0.80121636}
-      - {x: -0.6454381, y: 0.8047552}
-      - {x: -0.6888889, y: 0.47333336}
-      - {x: -0.2199108, y: 0.07595062}
-      - {x: 0.222063, y: 0.07679081}
+  serializedVersion: 2
+  m_Size: {x: 1.4311111, y: 0.79}
+  m_EdgeRadius: 0
 --- !u!95 &95193639012757132
 Animator:
   serializedVersion: 3
@@ -127,7 +122,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114662285422239736
+--- !u!114 &114932655084856370
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -135,11 +130,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1492166308426920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c3f63fcd51ff6e4aa9426333ebf7a82, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ec98c1f5d27e8543acf25185340a7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  TimeToDamage: 2
+  TimeToDamage: 1
   lives: 40
   speed: 2
   PlusFireColb: 5
@@ -150,6 +145,7 @@ MonoBehaviour:
   rb: {fileID: 50690687105424360}
   Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
   die: 0
+  isplayer: 0
   radius: 0.5
   layerMask: 10
   Dalnost: 1

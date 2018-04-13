@@ -8,11 +8,11 @@ public class ManagerUnits : MonoBehaviour {
     [SerializeField]
     ForGen forgen;
     [SerializeField]
-    Wolf WolfPrefab;
+    Monster WolfPrefab;
     [SerializeField]
     PassiveEnemy MuskiPrefab;
     [SerializeField]
-    Bear BearPrefab;
+    Monster BearPrefab;
     [SerializeField]
     Ezh EzhPrefab;
     [SerializeField]
@@ -68,23 +68,22 @@ public class ManagerUnits : MonoBehaviour {
 
     void wolf()
     {
-        Wolf Wolf = Instantiate(WolfPrefab, new Vector3((RndStep + LastPos), 10), WolfPrefab.transform.rotation);
+        Monster Wolf = Instantiate(WolfPrefab, new Vector3((RndStep + LastPos), 10), WolfPrefab.transform.rotation);
     }
     void bear()
     {
-        Bear Bear = Instantiate(BearPrefab, new Vector3((RndStep + LastPos), 10), BearPrefab.transform.rotation);
+        Monster Bear = Instantiate(BearPrefab, new Vector3((RndStep + LastPos), 10), BearPrefab.transform.rotation);
     }
     void lynx()
     {
-        Lynx Lynx = Instantiate(LynxPrefab, new Vector3((RndStep + LastPos), 10), BearPrefab.transform.rotation);
+        Lynx Lynx = Instantiate(LynxPrefab, new Vector3((RndStep + LastPos), 10), LynxPrefab.transform.rotation);
     }
     void ezh()
     {
-        Ezh Ezh = Instantiate(EzhPrefab, new Vector3((RndStep + LastPos), 10), LynxPrefab.transform.rotation);
+        Ezh Ezh = Instantiate(EzhPrefab, new Vector3((RndStep + LastPos), 10), EzhPrefab.transform.rotation);
     }
     void moski()
     {
-        Debug.Log("+");
         PassiveEnemy Moski = Instantiate(MuskiPrefab, new Vector3((RndStep + LastPos), 10), MuskiPrefab.transform.rotation);
     }
 }

@@ -26,11 +26,14 @@ public class Monster : Unit
     [SerializeField]
     ParticleSystem Smoke;
     ParticleSystem smoke;
-    public bool die;//запустили уже скрипт умирания?
+    bool die;//запустили уже скрипт умирания? (используется для корутины)
+    bool isplayer;//мы столкнулись с игроком?
+    Character Player;
+    float deltax;
 
     public float radius;//радиус удара
     public int layerMask;//слой "жертвы" (игрок)
-    public float Dalnost;//дальность удара (центр окружности)
+    public float Dalnost;//дальность(центр окружности) для проверки стен
     protected float LastTime;//Время последнего удара
 
 
@@ -55,7 +58,7 @@ public class Monster : Unit
         die = false;
     }
 
-    IEnumerator Example()
+    IEnumerator ForDie()
     {
         yield return new WaitForSeconds(0.3F);
         Destroy(gameObject);
@@ -75,40 +78,7 @@ public class Monster : Unit
                 k++;
             }
         speed = 0;
-        StartCoroutine(Example());
-    }
-
-    // функция возвращает ближайший объект из массива, относительно указанной позиции
-    //(вспомогательный для ближнего боя)
-    static GameObject NearTarget(Vector3 position, Collider2D[] array)
-    {
-        Collider2D current = null;
-        float dist = Mathf.Infinity;
-
-        foreach (Collider2D coll in array)
-        {
-            float curDist = Vector3.Distance(position, coll.transform.position);
-
-            if (curDist < dist)
-            {
-                current = coll;
-                dist = curDist;
-            }
-        }
-
-        return current.gameObject;
-    }
-
-    //ближний бой, центр окр, радиус окр, слой игрока, на сколько ударяем
-    public static void DoDamage(Vector2 point, float radius, int layerMask, int damage)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);
-        GameObject obj = NearTarget(point, colliders);
-        if (obj.GetComponent<Character>())
-        {   
-            obj.GetComponent<Character>().lives -= damage;
-        }
-        return;
+        StartCoroutine(ForDie());
     }
 
     private void FixedUpdate()
@@ -123,29 +93,45 @@ public class Monster : Unit
         if ((lives <= 0)&&(die == false))
              { Die(); }
         //вызываем ближний бой
-        point = new Vector2(transform.position.x + (Dalnost * napravlenie.x), transform.position.y + 0.5F);//текущая позция удара
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, radius, 1 << layerMask);//для урона по игроку
-        if (colliders.Length > 0)
+        
+        if (isplayer)//если столкнулись с игроком спереди то наносим урон
         {
-            State = CharState.attack;//анимация удара
-            if (Time.time >= TimeToDamage + LastTime - 0.07)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
+            State = CharState.attack;
+            if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
             {
-                DoDamage(point, radius, layerMask, Damage); //точка удара, радиус поражения, слой врага, урон
+                Player.lives -= Damage;
                 LastTime = Time.time;
             }
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player = collision.gameObject.GetComponent<Character>();
+        if (Player != null) { deltax = ((Player.transform.position.x - gameObject.transform.position.x) * napravlenie.x); }
+        if ((collision.gameObject.name == "Player")&&(deltax>0))//если игрок находится спереди моба и при этом коснулся триггера
+        {
+            isplayer = true;
+            LastTime = Time.time;  
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            isplayer = false;
+        }
+    }
     public virtual void Move()
     {
+        point = new Vector2(transform.position.x + (Dalnost * napravlenie.x), transform.position.y + 0.5F);//текущая позция проверки стен
         //стенки
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, 0.02F);
         //пустота
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(point.x, point.y - 0.3F), 0.2F);
         //условие поворота
-        //if ((colliders.Length > 0 && colliders.All(x => !x.GetComponent<Character>())) || (nocolliders.Length < 1)) napravlenie *= -1.0F;
         if ((colliders.Length > 0 && colliders.Any(x => x.CompareTag("Platform"))) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области стен
-        if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
+        if (!isplayer)//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
             GetComponent<SpriteRenderer>().flipX = napravlenie.x * SpriteSeeRight < 0.0F;//поворот}
