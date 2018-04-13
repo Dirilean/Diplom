@@ -967,7 +967,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4955028269751318, guid: 182280c478877b5498044305f85b2fad, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.39
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4955028269751318, guid: 182280c478877b5498044305f85b2fad, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1007,6 +1007,16 @@ Prefab:
       propertyPath: LivesGui
       value: 
       objectReference: {fileID: 2127981407}
+    - target: {fileID: 114521041103113904, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: damagehit
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114521041103113904, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: damagehitdistanse
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 182280c478877b5498044305f85b2fad, type: 2}
   m_IsPrefabParent: 0
