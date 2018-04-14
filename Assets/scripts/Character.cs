@@ -86,7 +86,7 @@ public class Character : Unit
 
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1")) DoDamage();//ближний бой
-        if (Input.GetButtonDown("Lives")&&(lives<=80)) ConvertToLives();//поменять огонь на жизни
+        if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
     }
 
     private void CheckGround()//проверка стоит ли персонаж на земле
@@ -131,10 +131,18 @@ public class Character : Unit
 
     private void ConvertToLives()//конвертирование огня в жизнь
     {
-        if ((FireColb >= 50)&&(Time.time>LastTimeToPlusLives+TimeToPlusLives))//в колбе достаточно огня и прошло время перезарядки
+        if ((FireColb >= 40)&&(Time.time>LastTimeToPlusLives+TimeToPlusLives))//в колбе достаточно огня и прошло время перезарядки
         {
-            FireColb = FireColb - 50;
-            lives = lives + 20;//добавляем жизней
+            if (lives <= 80)
+            {
+                FireColb -= 40;
+                lives = lives + 20;//добавляем жизней
+            }
+            else//если хп больше 80
+            {
+                FireColb = FireColb - (100 - lives) * 2;
+                lives = 100;
+            }
             LastTimeToPlusLives = Time.time;
         }
     }

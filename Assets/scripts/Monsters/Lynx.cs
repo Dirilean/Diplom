@@ -10,9 +10,10 @@ public class Lynx : Monster
 
     float DistanceSee;//видимость
 
-    private bool isplayer;//проверка на игрока впереди
     public bool isGrounded;
     float betveen;//расстояние между рысью и игроком в плоскости х
+    bool jumping;//прыгнули ли уже
+
 
     private void Start()
     {
@@ -35,29 +36,26 @@ public class Lynx : Monster
         //стенки
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right * napravlenie.x * 0.5F, 0.01F);
         //пустота
-        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.3F + transform.right * napravlenie.x * 0.5F, 0.3F);
+        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.6F + transform.right * napravlenie.x * 0.8F, 0.1F);
 
         //условие поворота и прыжок
-        if ((betveen < DistanceSee)&&(Mathf.Abs(Player.transform.position.y - transform.position.y)<DistanceSee))//если видит лису
+        if (((betveen < DistanceSee)&&(Mathf.Abs(Player.transform.position.y - transform.position.y)<DistanceSee)))//если видит лису
         {
 
             //смена направления
-            if (betveen < 0.3f)//если над или под
-            {
-                napravlenie = Vector3.zero;
-            }
-            else
+            //если над или под игроком на платформах разной высоты
+            if ((betveen > 2f)&&((Mathf.Abs(Player.transform.position.y - transform.position.y) < 1F)&&(Player.isGrounded==true)))
             {
                 napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);//поворот к игроку
             }
 
             //прыжок
-            if ((Player.transform.position.y - transform.position.y > 1.5F) && ((Player.transform.position.y - transform.position.y < 2.5F))//смотрим по У
+            if ((Player.transform.position.y - transform.position.y > 1F) && ((Player.transform.position.y - transform.position.y < 3F))//смотрим по У
             && (betveen < 3F) && (betveen > 2F)//смотрим по Х
             && (Player.isGrounded == true) && (isGrounded == true))//для прыжка
             {
                 //прикладываем силу вверх, чтобы персонаж подпрыгнул
-                rb.AddForce(new Vector3(10F * napravlenie.x, 25), ForceMode2D.Impulse);
+                rb.AddForce(new Vector3(10F * napravlenie.x, 20), ForceMode2D.Impulse);
             }
         }
         else //если не видит лису
@@ -74,20 +72,28 @@ public class Lynx : Monster
 
 
         //условие движения
-        if (!(colliders.Length > 0 && colliders.Any(x => x.GetComponent<Character>())))//идет если не врежется в персонажа
+        if (!isplayer)//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
             GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот
         }
 
+        if (isGrounded)
+        {
+            State = CharState.walk;
+        }
+        else
+        {
+            State = CharState.jump;
+        }
     }
 
 
     private void CheckGround()
     {
         //круг вокруг нижней линии персонажа. если в него попадают колайдеры то массив заполняется ими
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1F);
-        isGrounded = colliders.Length > 1; //один колайдер всегда внутри (кол. персонажа)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position-0.6F*Vector3.up, 0.1F);
+        isGrounded = colliders.Length > 0; // колайдера всегда внутри (кол. персонажа)
     }
 
 }

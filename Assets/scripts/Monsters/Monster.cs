@@ -26,8 +26,8 @@ public class Monster : Unit
     [SerializeField]
     ParticleSystem Smoke;
     ParticleSystem smoke;
-    bool die;//запустили уже скрипт умирания? (используется для корутины)
-    bool isplayer;//мы столкнулись с игроком?
+    public bool die;//запустили уже скрипт умирания? (используется для корутины)
+    public bool isplayer;//мы столкнулись с игроком?
     Character Player;
     float deltax;
 
@@ -96,6 +96,7 @@ public class Monster : Unit
         
         if (isplayer)//если столкнулись с игроком спереди то наносим урон
         {
+            
             State = CharState.attack;
             if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
             {
@@ -142,6 +143,7 @@ public class Monster : Unit
     public enum CharState
     {
         walk,
-        attack
+        attack,
+        jump
     }
 }
