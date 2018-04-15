@@ -41,6 +41,7 @@ public class Character : Unit
     float delayDoDamage= 0.3F;//задержка при ударах
     public int damagehit;//урон в ближнем бою
     public float damagehitdistanse;//дальность ближнего боя
+    float dalnost=2F;//дальность удара ближнего боя
 
 
     private void Start()
@@ -100,8 +101,9 @@ public class Character : Unit
     {
         if (TimeDoDamage + delayDoDamage < Time.time)
         {
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5F), Vector2.right * napravlenie.x, 2F, 1 << 11);
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5F), Vector2.right * napravlenie.x, dalnost, 1 << 11);
             hit.collider.gameObject.GetComponent<Monster>().lives -= damagehit;
+            hit.collider.gameObject.GetComponent<SpriteRenderer>().color=Color.red;
             TimeDoDamage = Time.time;
         }
     }
