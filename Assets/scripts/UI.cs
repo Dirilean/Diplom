@@ -10,12 +10,26 @@ public class UI : MonoBehaviour {
     public Image Pero;
     public Image Ogon;
     public Image Lives;
+   public float currentAlfa;//текущиая альфа
 
+    private void Start()
+    {
+        Pero.color = new Color(1, 1, 1, 0);//изначально прозрачные
+        Ogon.color= new Color(1, 1, 1, 0);
+    }
 
     void Update ()
     {
-        Ognesvet.fillAmount = Player.FireColb/ Static.LevelUp;
-        Lives.fillAmount = Player.lives/100.0F;
+        Lives.fillAmount = Mathf.Lerp(Lives.fillAmount, (Player.lives / 100.0F),Time.deltaTime*5);
+        Ognesvet.fillAmount = Mathf.Lerp(Ognesvet.fillAmount,(Player.FireColb / Static.LevelUp), Time.deltaTime);
+
+        //изменение прозрачности при перезарядке конвертации жизней
+        if (Time.time - Player.LastTimeToPlusLives < 0.1F) currentAlfa = 0.3F;//сбрасывание цвета
+        if (Time.time < Player.LastTimeToPlusLives + Player.TimeToPlusLives)//если идет перезарядка
+        {
+            currentAlfa = Mathf.Lerp(currentAlfa, 1, Time.deltaTime / Player.TimeToPlusLives*3);
+            Ognesvet.color = new Color(Ognesvet.color.r, Ognesvet.color.g, Ognesvet.color.b, currentAlfa);
+        }
         
-	}
+    }
 }

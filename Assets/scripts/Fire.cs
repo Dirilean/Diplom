@@ -26,6 +26,7 @@ public class Fire : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.01F, 1 << 13);
         if (colliders.Length>0)//уничтожение пули при касании с платформой
         {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             Destroy(gameObject);
         }
     }

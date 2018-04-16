@@ -23,8 +23,8 @@ public class Character : Unit
     int MinFireColb=0;//минимальное хп, при котором прекращаются выстрелы
     bool CheckJump;
     Vector3 napravlenie;//куда смотрит игрок
-    float TimeToPlusLives;//время перезарядки конвертации жизни
-    float LastTimeToPlusLives;//последнее время конвертьации жизней
+    public float TimeToPlusLives;//время перезарядки конвертации жизни
+    public float LastTimeToPlusLives;//последнее время конвертьации жизней
     
 
     float timeDie;//время смерти
@@ -39,6 +39,7 @@ public class Character : Unit
     public float damagehitdistanse;//дальность ближнего боя
     float dalnost=2F;//дальность удара ближнего боя
 
+    float deltaColor;//для плавного изменения цвета игрока
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class Character : Unit
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
         TimeShoot = Time.time;
+        FireColb = 0;
     }
 
     private void FixedUpdate()
@@ -81,7 +83,12 @@ public class Character : Unit
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
         if (Input.GetButtonDown("Fire1")) DoDamage();//ближний бой
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
+
+        deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);//меняем цвет лисицы
+
     }
+
 
     private void CheckGround()//проверка стоит ли персонаж на земле
     {
