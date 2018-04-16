@@ -17,10 +17,6 @@ public class Character : Unit
     [SerializeField]
     public Fire FirePrefab;
     [SerializeField]
-    public GUIText FireGui;
-    [SerializeField]
-    public GUIText LivesGui;
-    [SerializeField]
     private Rigidbody2D rb;
     float ForJump;
     public bool isGrounded=false; //проверка, стоит ли на земле
@@ -80,9 +76,6 @@ public class Character : Unit
 
     private void Update()
     {
-        FireGui.text = "Огня: " + FireColb;
-        LivesGui.text = "Жизней: " + lives;
-
         if (lives <= 0) { Die(); }
 
         if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
