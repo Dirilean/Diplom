@@ -21,6 +21,7 @@ public class Character : Unit
     float ForJump;
     public bool isGrounded=false; //проверка, стоит ли на земле
     int MinFireColb=0;//минимальное хп, при котором прекращаются выстрелы
+    [SerializeField]
     bool CheckJump;
     Vector3 napravlenie;//куда смотрит игрок
     public float TimeToPlusLives;//время перезарядки конвертации жизни
@@ -31,15 +32,29 @@ public class Character : Unit
     float zaderzhka = 1;//сколько секунд после смерти нужно ждать чтобы воскреснуть
 
     float TimeShoot;//время выстрела
-    float delayShooy=0.3F;//задержка при выстрелах
+    float delayShooy=1F;//задержка при выстрелах
 
     float TimeDoDamage;//время удара в ближнем бою
-    float delayDoDamage= 0.3F;//задержка при ударах
+    float delayDoDamage= 1F;//задержка при ударах
     public int damagehit;//урон в ближнем бою
     public float damagehitdistanse;//дальность ближнего боя
     float dalnost=2F;//дальность удара ближнего боя
 
     float deltaColor;//для плавного изменения цвета игрока
+
+    public Animator animator;
+   
+    public CharState State//передаем состояние анимации в аниматор
+    {
+        get { return (CharState)animator.GetInteger("State"); }
+        set { animator.SetInteger("State", (int)value); }
+    }
+    [SerializeField]
+    bool isstay;//проигрываем анимацию простоя?
+
+    delegate void Method();//для передачи методов атаки в корутину
+    [SerializeField]
+    bool attack;//атакуем в данный момент?
 
     private void Start()
     {
@@ -50,45 +65,69 @@ public class Character : Unit
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
         TimeShoot = Time.time;
-        FireColb = 0;
+        FireColb = 50;
+        napravlenie = Vector3.right;
+        isstay = true;
+        attack = false;
     }
 
     private void FixedUpdate()
     {
         CheckGround();
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
-        if (Input.GetAxis("Horizontal") != 0)//обычное хождение
-        {
-            napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;  
-        }
-
-        if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
-        {
-            //прикладываем силу чтобы персонаж подпрыгнул
-            rb.AddForce(new Vector3(10F*Input.GetAxis("Horizontal"), 72), ForceMode2D.Impulse);
-            CheckJump = true;
-
-        }
-        if (((Input.GetButton("Jump")) == false)&& isGrounded)//если отпустили клавишу прыжка
-        {
-            CheckJump = false;
-        }
     }
 
     private void Update()
     {
+        
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+        if (Input.GetAxis("Horizontal") != 0)//обычное хождение
+        {
+            napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
+            GetComponent<SpriteRenderer>().flipX = napravlenie.x > 0.0F;
+            State = CharState.walk;
+
+        }
+        else if ((isstay == true))//анимация простоя
+        {
+            //Debug.Log(Time.time+", "+State);
+            State = CharState.stay;
+        }
+
+        if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
+        {
+            State = CharState.stay;
+            //прикладываем силу чтобы персонаж подпрыгнул
+            rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 72), ForceMode2D.Impulse);
+            CheckJump = true;
+        }
+        if (((Input.GetButton("Jump")) == false) && isGrounded)//если отпустили клавишу прыжка
+        {
+            CheckJump = false;
+        }
+
+
         if (lives <= 0) { Die(); }
 
-        if (Input.GetButtonDown("Fire2")) Shoot();//выстрел
-        if (Input.GetButtonDown("Fire1")) DoDamage();//ближний бой
+        if ((Input.GetButtonDown("Fire2"))&&(attack==false)) StartCoroutine(ForAnimate(delayShooy, 0.4F, CharState.attack, Shoot));//выстрел
+        if ((Input.GetButtonDown("Fire1")) && (attack ==false)) StartCoroutine(ForAnimate(delayDoDamage, 0.4F, CharState.attack, DoDamage)); //ближний бой
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
 
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);//меняем цвет лисицы
-
     }
 
+
+    IEnumerator ForAnimate(float time, float delay, CharState state,Method metod)// для задержки анимации (время между кликами, через сколько после начала анимации ударить, анимация удара, метод удара)
+    {
+        isstay = false;//завершаем проигрывать анимацию простоя
+        State = state;//начинаем проирывать текущую анимацию
+        yield return new WaitForSeconds(delay);
+        metod.Invoke();//вызываем метод атаки
+        attack = true;
+        yield return new WaitForSeconds(delay);//пережидаем все время анимации удара
+        attack = false;
+        isstay = true;//заного включаем анимацию простоя 
+    }
 
     private void CheckGround()//проверка стоит ли персонаж на земле
     {
@@ -99,26 +138,22 @@ public class Character : Unit
 
     private void DoDamage()//урон в ближнем бою
     {
-        if (TimeDoDamage + delayDoDamage < Time.time)
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5F), Vector2.right * napravlenie.x, dalnost, 1 << 11);
+        if (hit == true)
         {
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5F), Vector2.right * napravlenie.x, dalnost, 1 << 11);
             hit.collider.gameObject.GetComponent<Monster>().lives -= damagehit;
-            hit.collider.gameObject.GetComponent<SpriteRenderer>().color=Color.red;
-            TimeDoDamage = Time.time;
+            hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
     private void Shoot()//выстрелы
     {
-        if ((FireColb> MinFireColb)&&(TimeShoot+delayShooy<Time.time))
-        {
-            Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F), transform.position.y + 0.7F);//место создания пули относительно персонажа
-            Fire cloneFire = Instantiate(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
-            cloneFire.Napravlenie = cloneFire.transform.right * (GetComponent<SpriteRenderer>().flipX ? -0.3F : 0.3F);//задаем направление и скорость пули (?если  true : false)
-            cloneFire.Parent = gameObject;//родителем пули является текущий объект
-            FireColb--;
-            TimeShoot = Time.time;
-        }
+
+        Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F), transform.position.y + 0.7F);//место создания пули относительно персонажа
+        Fire cloneFire = Instantiate(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
+        cloneFire.Napravlenie = cloneFire.transform.right * (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F);//задаем направление и скорость пули (?если  true : false)
+        cloneFire.Parent = gameObject;//родителем пули является текущий объект
+        FireColb--;
     }
 
 
@@ -163,4 +198,12 @@ public class Character : Unit
         }
     }
 
+    public enum CharState
+    {
+        stay,
+        walk,
+        attack,
+        jump,
+        shoot     
+    }
 }

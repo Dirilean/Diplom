@@ -261,6 +261,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114289397912394798, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: offset.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585de285dbcba494bad12a21d8e7a0a8, type: 2}
   m_IsPrefabParent: 0
@@ -1655,6 +1660,42 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212123130378835030, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212123130378835030, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a033691b8fed7e24e9ca4966de4f512e,
+        type: 3}
+    - target: {fileID: 58076435042346498, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 58076435042346498, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 212123130378835030, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.99833333
+      objectReference: {fileID: 0}
+    - target: {fileID: 212123130378835030, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.0966667
+      objectReference: {fileID: 0}
+    - target: {fileID: 114521041103113904, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2045537185}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 182280c478877b5498044305f85b2fad, type: 2}
   m_IsPrefabParent: 0
@@ -2069,6 +2110,7 @@ MonoBehaviour:
   Pero: {fileID: 1822293968}
   Ogon: {fileID: 272603042}
   Lives: {fileID: 2070989255}
+  currentAlfa: 0
 --- !u!224 &1597175842 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224010193682990888, guid: cfd2149a6fef6294899e32005644f307,
@@ -2746,6 +2788,28 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 517d39747e9544442b5b50780b6dd0cf, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2045537184 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1382305085378148, guid: 182280c478877b5498044305f85b2fad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1150891514}
+--- !u!95 &2045537185
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045537184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d92647efc2fdbe408962a7ec2e111cb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &2047585574
 Prefab:
   m_ObjectHideFlags: 0

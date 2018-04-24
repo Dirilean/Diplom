@@ -16,6 +16,8 @@ public class UI : MonoBehaviour {
     {
         Pero.color = new Color(1, 1, 1, 0);//изначально прозрачные
         Ogon.color= new Color(1, 1, 1, 0);
+        Lives.fillAmount = Player.lives / 100.0F;
+        Ognesvet.fillAmount =Player.FireColb / Static.LevelUp;
     }
 
     void Update ()
