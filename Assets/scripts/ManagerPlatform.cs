@@ -29,7 +29,7 @@ public class ManagerPlatform : MonoBehaviour
         GenPos = new Vector3((forgen.transform.position.x+Static.StepPlatf),0);
         LastPos = forgen.transform.position.x + Static.StepPlatf;
         RndStep = 1;
-        LastFonPos = -12;
+        LastFonPos = 16.0F;
     }
 
 
@@ -38,9 +38,9 @@ public class ManagerPlatform : MonoBehaviour
         GenPosGr.x = forgen.transform.position.x;
         GenPos.x = forgen.transform.position.x+Static.StepPlatf;
         if ((LastFonPos + 30.0F )<= GenPos.x)//генерация фоновых деревьев
-        {
-            Instantiate(ForestFon, new Vector3(Mathf.Round(GenPos.x), 0), GenQ);
-            LastFonPos = GenPos.x;
+        {  
+            LastFonPos +=30.0F;
+            Instantiate(ForestFon, new Vector3(LastFonPos, 0), GenQ);
         }
 
         if (forgen.busy != true) { GenGround(); }//если в позиции генерации пусто, создай землю

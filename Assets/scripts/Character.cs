@@ -51,6 +51,7 @@ public class Character : Unit
     }
     [SerializeField]
     bool isstay;//проигрываем анимацию простоя?
+    bool isrun;//проигрываем анимацию бега?
 
     delegate void Method();//для передачи методов атаки в корутину
     [SerializeField]
@@ -68,6 +69,7 @@ public class Character : Unit
         FireColb = 50;
         napravlenie = Vector3.right;
         isstay = true;
+        isrun = true;
         attack = false;
     }
 
@@ -84,10 +86,9 @@ public class Character : Unit
         {
             napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
             GetComponent<SpriteRenderer>().flipX = napravlenie.x > 0.0F;
-            State = CharState.walk;
-
+            if ((CheckJump==false)&&(isrun)) State = CharState.walk;
         }
-        else if ((isstay == true))//анимация простоя
+        else if ((isstay)&&(CheckJump==false))//анимация простоя
         {
             //Debug.Log(Time.time+", "+State);
             State = CharState.stay;
@@ -95,7 +96,7 @@ public class Character : Unit
 
         if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
         {
-            State = CharState.stay;
+            State = CharState.jump;
             //прикладываем силу чтобы персонаж подпрыгнул
             rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 72), ForceMode2D.Impulse);
             CheckJump = true;
@@ -108,8 +109,28 @@ public class Character : Unit
 
         if (lives <= 0) { Die(); }
 
-        if ((Input.GetButtonDown("Fire2"))&&(attack==false)) StartCoroutine(ForAnimate(delayShooy, 0.4F, CharState.attack, Shoot));//выстрел
-        if ((Input.GetButtonDown("Fire1")) && (attack ==false)) StartCoroutine(ForAnimate(delayDoDamage, 0.4F, CharState.attack, DoDamage)); //ближний бой
+        if ((Input.GetButtonDown("Fire2")) && (attack == false))
+        {
+            if (Input.GetAxis("Horizontal") != 0)//если нажали атаку во время бега
+            {
+                StartCoroutine(ForAnimate(delayShooy, 0.4F, CharState.run_attack, Shoot));
+            }
+            else
+            {
+                StartCoroutine(ForAnimate(delayShooy, 0.4F, CharState.attack, Shoot));
+            }
+        }
+        if ((Input.GetButtonDown("Fire1")) && (attack == false))
+        {
+            if (Input.GetAxis("Horizontal") != 0)//если нажали атаку во время бега
+            {
+                StartCoroutine(ForAnimate(delayDoDamage, 0.4F, CharState.run_attack, DoDamage));
+            }
+            else
+            {
+                StartCoroutine(ForAnimate(delayDoDamage, 0.4F, CharState.attack, DoDamage));
+            }
+        }
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
 
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
@@ -120,13 +141,17 @@ public class Character : Unit
     IEnumerator ForAnimate(float time, float delay, CharState state,Method metod)// для задержки анимации (время между кликами, через сколько после начала анимации ударить, анимация удара, метод удара)
     {
         isstay = false;//завершаем проигрывать анимацию простоя
+        isrun = false;
+        attack = true;//флаг начала атаки
         State = state;//начинаем проирывать текущую анимацию
-        yield return new WaitForSeconds(delay);
+      //  Debug.Log("start "+Time.time);
+        yield return new WaitForSeconds(delay); 
         metod.Invoke();//вызываем метод атаки
-        attack = true;
         yield return new WaitForSeconds(delay);//пережидаем все время анимации удара
-        attack = false;
+       // Debug.Log("end " + Time.time);
+        attack = false;//флаг завершения атаки
         isstay = true;//заного включаем анимацию простоя 
+        isrun = true;
     }
 
     private void CheckGround()//проверка стоит ли персонаж на земле
@@ -202,8 +227,8 @@ public class Character : Unit
     {
         stay,
         walk,
-        attack,
         jump,
-        shoot     
+        attack,
+        run_attack
     }
 }
