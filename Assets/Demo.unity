@@ -435,6 +435,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &154910066 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1121750308069422, guid: d0daaf0dff099444fb6b3ca0e23c22af,
+    type: 2}
+  m_PrefabInternal: {fileID: 1746259527}
+--- !u!114 &154910067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 154910066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e828968966cdb4947bedbb737e646f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - name: Fire
+    prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
+    count: 1
 --- !u!1001 &186365457
 Prefab:
   m_ObjectHideFlags: 0

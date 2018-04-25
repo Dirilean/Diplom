@@ -15,9 +15,15 @@ public class Fire : MonoBehaviour
 
     private SpriteRenderer sprite;
 
+    IEnumerator ForBullet()
+    {
+        yield return new WaitForSeconds(0.5F);
+        GetComponent<PoolObject>().ReturnToPool();//"удаление" объекта
+    }
+
     private void Start()
     {
-        Destroy(gameObject, 0.5F); //уничтожить объект с задержкой в 0.5сек
+        StartCoroutine(ForBullet());
     }
 
     private void Update() //движение огня
@@ -26,8 +32,7 @@ public class Fire : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.01F, 1 << 13);
         if (colliders.Length>0)//уничтожение пули при касании с платформой
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-            Destroy(gameObject);
+            GetComponent<PoolObject>().ReturnToPool();
         }
     }
 	
@@ -38,7 +43,7 @@ public class Fire : MonoBehaviour
         if (unit&& gameObject != parent)
         {
             unit.lives-=20;//получение урона от пули
-            Destroy(gameObject);//уничтожение около врага, а не родителя
+            GetComponent<PoolObject>().ReturnToPool();
         }
     }
 }

@@ -175,9 +175,10 @@ public class Character : Unit
     {
 
         Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F), transform.position.y + 0.7F);//место создания пули относительно персонажа
-        Fire cloneFire = Instantiate(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
-        cloneFire.Napravlenie = cloneFire.transform.right * (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F);//задаем направление и скорость пули (?если  true : false)
-        cloneFire.Parent = gameObject;//родителем пули является текущий объект
+        Fire bullet = PoolManager.GetObject(FirePrefab.name, position, FirePrefab.transform.rotation).GetComponent<Fire>();
+        //Fire cloneFire = Instantiate(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
+        bullet.Napravlenie = bullet.transform.right * (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F);//задаем направление и скорость пули (?если  true : false)
+        bullet.Parent = gameObject;//родителем пули является текущий объект
         FireColb--;
     }
 
