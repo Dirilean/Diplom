@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Character : Unit
 {
+    #region Data
     [SerializeField]
     public int FireColb = 100;//количество огня в колбе
     [SerializeField]
@@ -32,10 +33,10 @@ public class Character : Unit
     float zaderzhka = 1;//сколько секунд после смерти нужно ждать чтобы воскреснуть
 
     float TimeShoot;//время выстрела
-    float delayShooy=1F;//задержка при выстрелах
-
+    float delayShooy=0.588F;//задержка при выстрелах
     float TimeDoDamage;//время удара в ближнем бою
-    float delayDoDamage= 1F;//задержка при ударах
+
+    float delayDoDamage= 0.588F;//задержка при ударах
     public int damagehit;//урон в ближнем бою
     public float damagehitdistanse;//дальность ближнего боя
     float dalnost=2F;//дальность удара ближнего боя
@@ -56,6 +57,7 @@ public class Character : Unit
     delegate void Method();//для передачи методов атаки в корутину
     [SerializeField]
     bool attack;//атакуем в данный момент?
+    #endregion
 
     private void Start()
     {
@@ -80,20 +82,26 @@ public class Character : Unit
 
     private void Update()
     {
-        
+        if (lives <= 0) { Die(); }
+        #region input left - right
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
         if (Input.GetAxis("Horizontal") != 0)//обычное хождение
         {
             napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
             GetComponent<SpriteRenderer>().flipX = napravlenie.x > 0.0F;
-            if ((CheckJump==false)&&(isrun)) State = CharState.walk;
+            if ((CheckJump == false) && (isrun))
+            {
+                State = CharState.walk;
+            }
+            if (isGrounded) SoundEffectsHelper.Instance.MakeRunSound();
         }
         else if ((isstay)&&(CheckJump==false))//анимация простоя
         {
             //Debug.Log(Time.time+", "+State);
             State = CharState.stay;
         }
-
+        #endregion
+        #region input Jump
         if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
         {
             State = CharState.jump;
@@ -105,53 +113,39 @@ public class Character : Unit
         {
             CheckJump = false;
         }
-
-
-        if (lives <= 0) { Die(); }
-
+        #endregion        
+        #region  input Shoot
         if ((Input.GetButtonDown("Fire2")) && (attack == false))
         {
             if (Input.GetAxis("Horizontal") != 0)//если нажали атаку во время бега
             {
-                StartCoroutine(ForAnimate(delayShooy, 0.4F, CharState.run_attack, Shoot));
+                StartCoroutine(ForAnimate(delayShooy,  CharState.run_attack, Shoot));    
             }
             else
             {
-                StartCoroutine(ForAnimate(delayShooy, 0.4F, CharState.attack, Shoot));
+                StartCoroutine(ForAnimate(delayShooy, CharState.attack, Shoot));
             }
         }
+        #endregion
+        #region input Attack
         if ((Input.GetButtonDown("Fire1")) && (attack == false))
         {
             if (Input.GetAxis("Horizontal") != 0)//если нажали атаку во время бега
             {
-                StartCoroutine(ForAnimate(delayDoDamage, 0.4F, CharState.run_attack, DoDamage));
+                StartCoroutine(ForAnimate(delayDoDamage, CharState.run_attack, DoDamage));
             }
             else
             {
-                StartCoroutine(ForAnimate(delayDoDamage, 0.4F, CharState.attack, DoDamage));
+                StartCoroutine(ForAnimate(delayDoDamage, CharState.attack, DoDamage));
             }
         }
+        #endregion
+        #region input ConvertLives
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
-
+        #endregion
+        //изменение цвета лисицы от хп
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);//меняем цвет лисицы
-    }
-
-
-    IEnumerator ForAnimate(float time, float delay, CharState state,Method metod)// для задержки анимации (время между кликами, через сколько после начала анимации ударить, анимация удара, метод удара)
-    {
-        isstay = false;//завершаем проигрывать анимацию простоя
-        isrun = false;
-        attack = true;//флаг начала атаки
-        State = state;//начинаем проирывать текущую анимацию
-      //  Debug.Log("start "+Time.time);
-        yield return new WaitForSeconds(delay); 
-        metod.Invoke();//вызываем метод атаки
-        yield return new WaitForSeconds(delay);//пережидаем все время анимации удара
-       // Debug.Log("end " + Time.time);
-        attack = false;//флаг завершения атаки
-        isstay = true;//заного включаем анимацию простоя 
-        isrun = true;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);
     }
 
     private void CheckGround()//проверка стоит ли персонаж на земле
@@ -159,6 +153,22 @@ public class Character : Unit
         //круг вокруг нижней линии персонажа. если в него попадают колайдеры то массив заполняется ими
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1F);
         isGrounded = colliders.Length > 1; //один колайдер всегда внутри (кол. персонажа)
+    }
+
+    IEnumerator ForAnimate(float time,  CharState state,Method metod)// для задержки анимации (время между кликами, через сколько после начала анимации ударить, анимация удара, метод удара)
+    {
+        isstay = false;//завершаем проигрывать анимацию простоя
+        isrun = false;
+        attack = true;//флаг начала атаки
+        State = state;//начинаем проирывать текущую анимацию
+                      //  Debug.Log("start "+Time.time);
+        yield return new WaitForSeconds(time * 0.4F); 
+        metod.Invoke();//вызываем метод атаки
+        yield return new WaitForSeconds(time- time * 0.4F);//пережидаем все время анимации удара
+       // Debug.Log("end " + Time.time);
+        attack = false;//флаг завершения атаки
+        isstay = true;//заного включаем анимацию простоя 
+        isrun = true;
     }
 
     private void DoDamage()//урон в ближнем бою
@@ -183,9 +193,9 @@ public class Character : Unit
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
     {
-        if (collision.GetComponent<FireSphere>())//собирание огоньков
+        if (collision.GetComponent<FireSphere>())
         {
             collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
             FireColb = FireColb + 5 ;
