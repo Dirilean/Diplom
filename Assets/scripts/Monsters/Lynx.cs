@@ -14,12 +14,17 @@ public class Lynx : Monster
     float betveen;//расстояние между рысью и игроком в плоскости х
     bool jumping;//прыгнули ли уже
 
-
     private void Start()
     {
+        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+    }
+
+    private void OnEnable()
+    {
+        LastTime = 0;
+        die = false;
         napravlenie = transform.right;//начальное направление вправо
         DistanceSee = 5;
-        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
     }
 
 

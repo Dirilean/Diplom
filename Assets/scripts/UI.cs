@@ -26,12 +26,14 @@ public class UI : MonoBehaviour {
         Ognesvet.fillAmount = Mathf.Lerp(Ognesvet.fillAmount,(Player.FireColb / Static.LevelUp), Time.deltaTime);
 
         //изменение прозрачности при перезарядке конвертации жизней
-        if (Time.time - Player.LastTimeToPlusLives < 0.1F) currentAlfa = 0.3F;//сбрасывание цвета
         if (Time.time < Player.LastTimeToPlusLives + Player.TimeToPlusLives)//если идет перезарядка
         {
-            currentAlfa = Mathf.Lerp(currentAlfa, 1, Time.deltaTime / Player.TimeToPlusLives*3);
-            Ognesvet.color = new Color(Ognesvet.color.r, Ognesvet.color.g, Ognesvet.color.b, currentAlfa);
+            Ognesvet.color = new Color(Ognesvet.color.r, Ognesvet.color.g, Ognesvet.color.b, 0.2F);
         }
-        
+        else //возвращение цвета
+        {
+            Ognesvet.color = new Color(Ognesvet.color.r, Ognesvet.color.g, Ognesvet.color.b, 0.9F);
+        }
+
     }
 }

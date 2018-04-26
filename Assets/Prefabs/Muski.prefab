@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 331550829960019204}
   - component: {fileID: 199507619011137058}
   - component: {fileID: 198933473472337542}
+  - component: {fileID: 114507703342704496}
   m_Layer: 11
   m_Name: Muski
   m_TagString: Mob
@@ -114,6 +115,17 @@ MonoBehaviour:
   TimeToDamage: 0.5
   Once: 0
   MinusFireSphere: 0
+--- !u!114 &114507703342704496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1577905956388002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198933473472337542
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -174,7 +186,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1965826153
+  randomSeed: -258828259
   InitialModule:
     serializedVersion: 3
     enabled: 1

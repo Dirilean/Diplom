@@ -68,22 +68,22 @@ public class ManagerUnits : MonoBehaviour {
 
     void wolf()
     {
-        Monster Wolf = Instantiate(WolfPrefab, new Vector3((RndStep + LastPos), 10), WolfPrefab.transform.rotation);
+        Monster Wolf = PoolManager.GetObject(WolfPrefab.name, new Vector3((RndStep + LastPos), 10), WolfPrefab.transform.rotation).GetComponent<Monster>();
     }
     void bear()
     {
-        Monster Bear = Instantiate(BearPrefab, new Vector3((RndStep + LastPos), 10), BearPrefab.transform.rotation);
+        Monster Bear = PoolManager.GetObject(BearPrefab.name, new Vector3((RndStep + LastPos), 10), BearPrefab.transform.rotation).GetComponent<Monster>();
     }
     void lynx()
     {
-        Lynx Lynx = Instantiate(LynxPrefab, new Vector3((RndStep + LastPos), 10), LynxPrefab.transform.rotation);
+        Lynx Lynx = PoolManager.GetObject(LynxPrefab.name, new Vector3((RndStep + LastPos), 10), LynxPrefab.transform.rotation).GetComponent<Lynx>();
     }
     void ezh()
     {
-        Ezh Ezh = Instantiate(EzhPrefab, new Vector3((RndStep + LastPos), 10), EzhPrefab.transform.rotation);
+        Ezh Ezh = PoolManager.GetObject(EzhPrefab.name, new Vector3((RndStep + LastPos), 10), EzhPrefab.transform.rotation).GetComponent<Ezh>();
     }
     void moski()
     {
-        PassiveEnemy Moski = Instantiate(MuskiPrefab, new Vector3((RndStep + LastPos), 10), MuskiPrefab.transform.rotation);
+        PassiveEnemy Muski = PoolManager.GetObject(MuskiPrefab.name, new Vector3((RndStep + LastPos), 10), MuskiPrefab.transform.rotation).GetComponent<PassiveEnemy>();
     }
 }

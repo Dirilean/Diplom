@@ -32,7 +32,6 @@ public class Monster : Unit
     float deltax;
 
     public float radius;//радиус удара
-    public int layerMask;//слой "жертвы" (игрок)
     public float Dalnost;//дальность(центр окружности) для проверки стен
     protected float LastTime;//Время последнего удара
 
@@ -50,9 +49,9 @@ public class Monster : Unit
         set { animator.SetInteger("State", (int)value); }
     }
 
-    private void Start()
-    {
-        layerMask = 10;
+
+    private void OnEnable()
+    { 
         LastTime = 0;
         napravlenie = Vector3.right;//начальное направление вправо
         die = false;
@@ -61,7 +60,7 @@ public class Monster : Unit
     IEnumerator ForDie()
     {
         yield return new WaitForSeconds(0.3F);
-        Destroy(gameObject);
+        GetComponent<PoolObject>().ReturnToPool();//"удаление объекта"
     }
 
     public void Die()//смерть персонажа
@@ -72,8 +71,9 @@ public class Monster : Unit
             int k = 0;
             while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
             {
-                FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
-                fireSphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
+                // FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
+                FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
+                firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
                 XPos += 0.2F;
                 k++;
             }

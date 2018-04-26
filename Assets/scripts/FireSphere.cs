@@ -8,36 +8,49 @@ public class FireSphere : MonoBehaviour {
 
 
     //transform.Translate(new Vector2(1,0)*Time.deltaTime);
-    public Vector2 target;
+    public Vector2 target;//точка куда сейчас движется огонек (верх-низ)
     float smoothTime;
     float smoothTime1;
-    private float Velocity = 0.0F;
+    private float Velocity;
     bool once;
-    Vector3 Niz;//самая нижняя точка
-    Vector3 Verh;//самая верхняя точка 
-    Vector3 Now;
+    public Vector3 Niz;//самая нижняя точка
+    public Vector3 Verh;//самая верхняя точка 
+    public Vector3 Now;
     System.Random rnd = new System.Random();
     GameObject Player;
-    public bool CheckPlayer=false;
     public float TimeToPlayer;
-
-    bool blizko;//близко игрок?
+    public bool CheckPlayer;
 
     private void Start()
     {
-        Player= GameObject.FindWithTag("Player");
-        smoothTime = rnd.Next(3)+1;
+        Player = GameObject.FindWithTag("Player");
+        smoothTime = rnd.Next(3) + 1;
         smoothTime1 = smoothTime;
         target = new Vector3(0, 1);
-        once = false;
-        Verh = new Vector3(0, 0.15F)+transform.position;
-        Niz = -new Vector3(0, 0.1F)+transform.position;
         TimeToPlayer = 4f;
+        once = false;
+        CheckPlayer = false;//изначально к игроку не летим
+        Velocity = 0.0F;
+    }
+
+    private void OnEnable()
+    {
+        Verh = new Vector3(0, 0.15F) + transform.position;
+        Niz = -new Vector3(0, 0.1F) + transform.position;
+    }
+
+    private void OnDisable()
+    {
+        Velocity = 0.0F;
+        CheckPlayer = false;//изначально к игроку не летим
+        transform.position = Vector3.zero;
+        Niz = Vector3.zero;//сбрасывание положения
+        Verh = Vector3.zero;
+        Now = Vector3.zero;
     }
 
     void Update()
     {
-        
         //игрок близко? начинать движение к игроку?
         if ((Mathf.Abs(Player.transform.position.x - transform.position.x) < 1.5F) && (Mathf.Abs(Player.transform.position.y+0.5F - transform.position.y) < 1.5F))//если игрок ближе чем 1.5F
         {
@@ -73,13 +86,6 @@ public class FireSphere : MonoBehaviour {
             once = true;
         }
     }
-
-    //private void ToPlayer()
-    //{
-    //    float newPositionX = Mathf.SmoothDamp(transform.position.x, Player.transform.position.x, ref Velocity, 3F);
-    //    float newPositionY = Mathf.SmoothDamp(transform.position.y, Player.transform.position.y, ref Velocity, 3F);
-    //    transform.position = new Vector3(transform.position.x, newPositionX, transform.position.z);
-    //}
 }
 
 

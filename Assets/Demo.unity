@@ -361,11 +361,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4988621400382592, guid: 7298ec8657e8969459604f399dc30393, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.17
+      value: 6.89
       objectReference: {fileID: 0}
     - target: {fileID: 4988621400382592, guid: 7298ec8657e8969459604f399dc30393, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.15
+      value: 6.73
       objectReference: {fileID: 0}
     - target: {fileID: 4988621400382592, guid: 7298ec8657e8969459604f399dc30393, type: 2}
       propertyPath: m_LocalPosition.z
@@ -455,6 +455,24 @@ MonoBehaviour:
   - name: Fire
     prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
     count: 1
+  - name: FireSphere
+    prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
+    count: 10
+  - name: Wolf
+    prefab: {fileID: 114250754183206918, guid: 36c1a35d45ec27341a7e619a243a4d55, type: 2}
+    count: 3
+  - name: Bear
+    prefab: {fileID: 114723899426246978, guid: e383b1c14f199004f9b8ad98b707b75c, type: 2}
+    count: 3
+  - name: Ezh
+    prefab: {fileID: 114074329317220156, guid: 3cc6ae71ee597034993b9bada631bd4c, type: 2}
+    count: 3
+  - name: Lynx
+    prefab: {fileID: 114739264009114112, guid: 7298ec8657e8969459604f399dc30393, type: 2}
+    count: 3
+  - name: Muski
+    prefab: {fileID: 114507703342704496, guid: 95bb5ff337e3c534f8928086c0b4ef90, type: 2}
+    count: 3
 --- !u!1001 &186365457
 Prefab:
   m_ObjectHideFlags: 0

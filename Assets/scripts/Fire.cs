@@ -17,11 +17,11 @@ public class Fire : MonoBehaviour
 
     IEnumerator ForBullet()
     {
-        yield return new WaitForSeconds(0.5F);
+        yield return new WaitForSeconds(0.3F);
         GetComponent<PoolObject>().ReturnToPool();//"удаление" объекта
     }
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(ForBullet());
     }

@@ -187,7 +187,7 @@ public class Character : Unit
     {
         if (collision.GetComponent<FireSphere>())//собирание огоньков
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
             FireColb = FireColb + 5 ;
         }
     }
