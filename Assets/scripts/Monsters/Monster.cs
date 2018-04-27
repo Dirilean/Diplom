@@ -73,7 +73,7 @@ public class Monster : MonoBehaviour
             {
                 // FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
                 FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
-                firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
+                firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку        
                 XPos += 0.2F;
                 k++;
             }

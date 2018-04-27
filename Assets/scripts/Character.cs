@@ -8,11 +8,11 @@ public class Character : MonoBehaviour
 {
     #region Data
     [SerializeField]
-    public int FireColb = 100;//количество огня в колбе
+    public int FireColb;//количество огня в колбе
     [SerializeField]
     public int lives;//количество жизней
     [SerializeField]
-    private float speed;
+    public float speed;
     [SerializeField]
     private float TempSpeed;//временная скорость (изменяется)
     [SerializeField]
@@ -35,6 +35,8 @@ public class Character : MonoBehaviour
 
     float timeDie;//время смерти
     float zaderzhka = 1;//сколько секунд после смерти нужно ждать чтобы воскреснуть
+    public Deleter DeleterSmoke;
+
 
     float TimeShoot;//время выстрела
     float delayShooy=0.588F;//задержка при выстрелах
@@ -79,7 +81,7 @@ public class Character : MonoBehaviour
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
         TimeShoot = Time.time;
-        FireColb = 50;
+        FireColb = 0;
         napravlenie = Vector3.right;
         isstay = true;
         isrun = true;
@@ -225,7 +227,7 @@ public class Character : MonoBehaviour
         if (collision.GetComponent<FireSphere>())
         {
             collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
-            FireColb = FireColb + 5 ;
+            FireColb+=3;
         }
     }
 
@@ -254,8 +256,7 @@ public class Character : MonoBehaviour
         timeDie = Time.time;
         if (timeDie + zaderzhka > Time.time)
         {
-            transform.position = new Vector3(0, 5);
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            transform.position = DeleterSmoke.RespPos;
             lives = 100;
             FireColb = 0;
         }
