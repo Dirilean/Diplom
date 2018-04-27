@@ -20,12 +20,14 @@ public class Character : Unit
     [SerializeField]
     private Rigidbody2D rb;
     float ForJump;
+    [HideInInspector]
     public bool isGrounded=false; //проверка, стоит ли на земле
     int MinFireColb=0;//минимальное хп, при котором прекращаются выстрелы
-    [SerializeField]
-    bool CheckJump;
+    bool CheckJump;//находимся ли мы в состоянии прыжка
     Vector3 napravlenie;//куда смотрит игрок
+    [HideInInspector]
     public float TimeToPlusLives;//время перезарядки конвертации жизни
+    [HideInInspector]
     public float LastTimeToPlusLives;//последнее время конвертьации жизней
     
 
@@ -50,13 +52,19 @@ public class Character : Unit
         get { return (CharState)animator.GetInteger("State"); }
         set { animator.SetInteger("State", (int)value); }
     }
-    [SerializeField]
+    
     bool isstay;//проигрываем анимацию простоя?
     bool isrun;//проигрываем анимацию бега?
 
     delegate void Method();//для передачи методов атаки в корутину
     [SerializeField]
     bool attack;//атакуем в данный момент?
+
+    public AudioClip[] RunSound = new AudioClip[7];//звуки шагов
+    float[] times = new float[4] { 0.12F, 0.03F, 0.36F, 0.03F };//тайминг шагов
+    int i, j;
+    bool checkaudio;
+
     #endregion
 
     private void Start()
@@ -73,6 +81,11 @@ public class Character : Unit
         isstay = true;
         isrun = true;
         attack = false;
+        //счетчики для звуков шагов
+        i = 0;
+        j = 0;
+        checkaudio = true;
+        AuSourse.volume = 0.03F;
     }
 
     private void FixedUpdate()
@@ -93,7 +106,7 @@ public class Character : Unit
             {
                 State = CharState.walk;
             }
-            if (isGrounded) SoundEffectsHelper.Instance.MakeRunSound();
+            if (isGrounded) MakeRunSound();
         }
         else if ((isstay)&&(CheckJump==false))//анимация простоя
         {
@@ -192,7 +205,6 @@ public class Character : Unit
         FireColb--;
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
     {
         if (collision.GetComponent<FireSphere>())
@@ -242,4 +254,39 @@ public class Character : Unit
         attack,
         run_attack
     }
+
+    #region Audio
+
+    public AudioSource AuSourse;
+
+    #region run sounds
+
+    public void MakeRunSound()
+    {
+        if (checkaudio)//воспроизведение по очереди
+        {
+            StartCoroutine(AudioWalk(RunSound[i], times[j]));
+            i++;
+            j++;
+            if (i == RunSound.Length) i = 0;
+            if (j == times.Length) j = 0;
+        }
+    }
+
+    IEnumerator AudioWalk(AudioClip sound, float time)// для задержки звука
+    {
+        checkaudio = false;//нельзя воспроизводить другую музыку
+        yield return new WaitForSeconds(time);
+        AuSourse.PlayOneShot(sound);
+        checkaudio = true;
+    }
+    #endregion
+
+
+    #region jump
+
+    #endregion
+
+
+    #endregion
 }
