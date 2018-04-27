@@ -22,6 +22,8 @@ public class Character : Unit
     float ForJump;
     [HideInInspector]
     public bool isGrounded=false; //проверка, стоит ли на земле
+    bool lastIsGrounded=true;//для проверки приземления
+    bool landing=false;
     int MinFireColb=0;//минимальное хп, при котором прекращаются выстрелы
     bool CheckJump;//находимся ли мы в состоянии прыжка
     Vector3 napravlenie;//куда смотрит игрок
@@ -64,6 +66,7 @@ public class Character : Unit
     float[] times = new float[4] { 0.12F, 0.03F, 0.36F, 0.03F };//тайминг шагов
     int i, j;
     bool checkaudio;
+    public AudioClip JumpSound;
 
     #endregion
 
@@ -96,6 +99,7 @@ public class Character : Unit
     private void Update()
     {
         if (lives <= 0) { Die(); }
+
         #region input left - right
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
         if (Input.GetAxis("Horizontal") != 0)//обычное хождение
@@ -114,6 +118,7 @@ public class Character : Unit
             State = CharState.stay;
         }
         #endregion
+
         #region input Jump
         if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
         {
@@ -126,7 +131,15 @@ public class Character : Unit
         {
             CheckJump = false;
         }
+        //звук приземления
+        if (lastIsGrounded != isGrounded)
+        {
+            if (landing) AuSourse.PlayOneShot(JumpSound);
+            landing = !landing;
+        }
+        lastIsGrounded = isGrounded;
         #endregion        
+
         #region  input Shoot
         if ((Input.GetButtonDown("Fire2")) && (attack == false))
         {
@@ -140,6 +153,7 @@ public class Character : Unit
             }
         }
         #endregion
+
         #region input Attack
         if ((Input.GetButtonDown("Fire1")) && (attack == false))
         {
@@ -153,12 +167,14 @@ public class Character : Unit
             }
         }
         #endregion
+
         #region input ConvertLives
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
         #endregion
+
         //изменение цвета лисицы от хп
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);   
     }
 
     private void CheckGround()//проверка стоит ли персонаж на земле
