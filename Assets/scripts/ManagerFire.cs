@@ -60,7 +60,6 @@ public class ManagerFire : MonoBehaviour {
             if ((colliders.Length > 0) && (nocolliders.Length == 0)&&(YPos>0))//проверка на близость других коллайдеров и существование высоты
             {
                 FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
-               // FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation);
             }
             LastPos =forgen.transform.position.x-zaderzka;
 

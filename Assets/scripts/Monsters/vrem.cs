@@ -22,7 +22,7 @@ public class vrem : MonoBehaviour
     private void Update()
     {
         Move();
-        if (lives <= 0) Destroy(gameObject);
+        if (lives <= 0) GetComponent<PoolObject>().ReturnToPool();
     }
 
     private void Move()

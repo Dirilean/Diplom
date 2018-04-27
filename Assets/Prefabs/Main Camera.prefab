@@ -163,7 +163,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e7723b3bd6bdc63489ee9f6de0c25e4f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -301,6 +301,141 @@ MonoBehaviour:
   - name: Muski
     prefab: {fileID: 114507703342704496, guid: 95bb5ff337e3c534f8928086c0b4ef90, type: 2}
     count: 3
+  - name: f0
+    prefab: {fileID: 114874112885788306, guid: bf6708b6d9d4f0b4e86399de97dfe46f, type: 2}
+    count: 2
+  - name: f1
+    prefab: {fileID: 114527110328432360, guid: 0ffb7f15c7498ae4bbfdff0cf76823b6, type: 2}
+    count: 2
+  - name: f2
+    prefab: {fileID: 114523331054207480, guid: 3b2554de7b7531a469771e09ea662de8, type: 2}
+    count: 2
+  - name: f3
+    prefab: {fileID: 114258421087455888, guid: a743237404232884bb0c81d8a314cc25, type: 2}
+    count: 2
+  - name: f4
+    prefab: {fileID: 114284317336604872, guid: 5e146159f3350584fb3f3c31df4a2026, type: 2}
+    count: 2
+  - name: f5
+    prefab: {fileID: 114450377776459924, guid: b3d6ce459bee9b9449c1c22e97cd6125, type: 2}
+    count: 2
+  - name: f6
+    prefab: {fileID: 114433960011581842, guid: 7d5d57076dcdcd141a6b012cdc51e20e, type: 2}
+    count: 2
+  - name: f7
+    prefab: {fileID: 114264979084187258, guid: f0b0588d78931554a9c404d27169a0b4, type: 2}
+    count: 2
+  - name: f8
+    prefab: {fileID: 114670391020963614, guid: 6a26629927c91654e9d9e30b2d0d5520, type: 2}
+    count: 2
+  - name: f9
+    prefab: {fileID: 114029462983348250, guid: 8d17dfc72289a54498b095d5ff0df7e0, type: 2}
+    count: 2
+  - name: f10
+    prefab: {fileID: 114674427629591694, guid: 98ad358163cd162459d40c18b744ff6d, type: 2}
+    count: 2
+  - name: f11
+    prefab: {fileID: 114609122397850198, guid: adf85b4da0b40d249b1fcfbc2b81c986, type: 2}
+    count: 2
+  - name: f12
+    prefab: {fileID: 114306599205262240, guid: 36e13317e15b4cc4392a637680b0229f, type: 2}
+    count: 2
+  - name: f13
+    prefab: {fileID: 114394976221235318, guid: c9270974f41451543a95857060c4e303, type: 2}
+    count: 2
+  - name: f14
+    prefab: {fileID: 114585624063973410, guid: 07e152d8c40a88a48b191d0cc90d5825, type: 2}
+    count: 2
+  - name: f15
+    prefab: {fileID: 114662770226972644, guid: 71eb252cc8318b74a832c34d81b0f5fe, type: 2}
+    count: 2
+  - name: f16
+    prefab: {fileID: 114141463148406652, guid: 511e80d57e5a0c54dab4a6fc5ee32b40, type: 2}
+    count: 2
+  - name: f17
+    prefab: {fileID: 114081850967462070, guid: 785a47843adb59f4ca0af9d13d94c738, type: 2}
+    count: 2
+  - name: f18
+    prefab: {fileID: 114542242341583454, guid: 1b3eafdf9f0f3a34baeff1edb11b5504, type: 2}
+    count: 2
+  - name: f19
+    prefab: {fileID: 114697590490054958, guid: e5ee0f56378e00f449221492df24af48, type: 2}
+    count: 2
+  - name: f20
+    prefab: {fileID: 114672927562312414, guid: b19903e5bf6afbb4e847550265d6ef7b, type: 2}
+    count: 2
+  - name: f21
+    prefab: {fileID: 114063498955930762, guid: cf903be9474789942b8f026d33a69043, type: 2}
+    count: 2
+  - name: f22
+    prefab: {fileID: 114807739059735678, guid: 25bb3e14ebdc1b34b966ec5287885d2c, type: 2}
+    count: 2
+  - name: f23
+    prefab: {fileID: 114583453105720734, guid: baefe01c16d122943adf1ac8cfc8f76a, type: 2}
+    count: 2
+  - name: f24
+    prefab: {fileID: 114237505249370538, guid: 8dca0d98989738347bcf628a61432536, type: 2}
+    count: 2
+  - name: f25
+    prefab: {fileID: 114117927244584096, guid: 8feff3237fe88cf49a57aa0846397581, type: 2}
+    count: 2
+  - name: f26
+    prefab: {fileID: 114872232828688458, guid: 183a7b6d3f6c39e4f8edc1ab353067e6, type: 2}
+    count: 2
+  - name: f27
+    prefab: {fileID: 114840672188363068, guid: e9bb0e90a75173b4fb3d9685d6ee6ca2, type: 2}
+    count: 2
+  - name: f28
+    prefab: {fileID: 114952335260930960, guid: c0d97dddf965e694c98fe83d68eef0ad, type: 2}
+    count: 2
+  - name: f29
+    prefab: {fileID: 114546405021927432, guid: 1cd9176578e457a42a873253844364e8, type: 2}
+    count: 2
+  - name: f30
+    prefab: {fileID: 114801671697380286, guid: 974b87cd0caee97458d974971bebbbb7, type: 2}
+    count: 2
+  - name: f31
+    prefab: {fileID: 114077479560314428, guid: 8e47745df829ffa4fab5ae4fc46db4bb, type: 2}
+    count: 2
+  - name: f32
+    prefab: {fileID: 114869417162565006, guid: 891ac871a15b3eb4aa89486136c98afe, type: 2}
+    count: 2
+  - name: f33
+    prefab: {fileID: 114256907553722632, guid: cf3de9d37bcebe444aa722b207829b5f, type: 2}
+    count: 2
+  - name: f34
+    prefab: {fileID: 114682272164764718, guid: 77e9223d0b3bcd244a503efb5b42a643, type: 2}
+    count: 2
+  - name: f35
+    prefab: {fileID: 114935209194593844, guid: a35e53dbe39473b4797744eb60bc66cb, type: 2}
+    count: 2
+  - name: f36
+    prefab: {fileID: 114398211905158534, guid: bce4283ed89ac904dbc600bd7e6e132c, type: 2}
+    count: 2
+  - name: f37
+    prefab: {fileID: 114684387525044648, guid: 710d482015b71254bbd49c717fedc5d1, type: 2}
+    count: 2
+  - name: f38
+    prefab: {fileID: 114784181584277350, guid: 17193a9b5b9e06d489aee154595c91f6, type: 2}
+    count: 2
+  - name: f39
+    prefab: {fileID: 114003238663642806, guid: b91fa44b7fbe1b043bb56ddec9647015, type: 2}
+    count: 2
+  - name: f40
+    prefab: {fileID: 114804990233914474, guid: 0aff9aa64bff2994e9023c18a4fa3961, type: 2}
+    count: 2
+  - name: f41
+    prefab: {fileID: 114834575814674176, guid: f13f260158d286a4bae8b6a50295bdb8, type: 2}
+    count: 2
+  - name: "\u043B\u0435\u0441 \u0444\u043E\u043D"
+    prefab: {fileID: 114011504316116952, guid: 517d39747e9544442b5b50780b6dd0cf, type: 2}
+    count: 50
+  - name: xz
+    prefab: {fileID: 114412678513771442, guid: cdab765252b53f74c85960940973377e, type: 2}
+    count: 50
+  - name: Smoke
+    prefab: {fileID: 114285242594442998, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+    count: 1
 --- !u!114 &114922559996956532
 MonoBehaviour:
   m_ObjectHideFlags: 1

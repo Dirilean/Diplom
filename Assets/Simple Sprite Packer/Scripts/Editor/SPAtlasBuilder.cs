@@ -214,11 +214,11 @@ namespace SimpleSpritePackerEditor
 				// Clear the actions list
 				this.m_Instance.ClearActions();
 				
-				// Destroy the textures from the temporary textures array
+				// Destroya the textures from the temporary textures array
 				for (int ib = 0; ib < textures.Length; ib++)
 					UnityEngine.Object.DestroyImmediate(textures[ib]);
 				
-				// Destroy the temporary texture
+				// Destroya the temporary texture
 				UnityEngine.Object.DestroyImmediate(tempTexture);
 				
 				// Convert the temporary sprite info into array

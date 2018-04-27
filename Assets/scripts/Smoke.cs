@@ -5,8 +5,14 @@ using UnityEngine;
 public class Smoke : MonoBehaviour {
 
 
-    private void Start()
+    IEnumerator ForDeactivate()
     {
-        Destroy(gameObject, 4F); //уничтожить объект с задержкой в 0.5сек
+        yield return new WaitForSeconds(4F);
+        GetComponent<PoolObject>().ReturnToPool();//"удаление" объекта
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(ForDeactivate());
     }
 }

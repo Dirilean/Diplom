@@ -40,7 +40,7 @@ public class ManagerPlatform : MonoBehaviour
         if ((LastFonPos + 30.0F )<= GenPos.x)//генерация фоновых деревьев
         {  
             LastFonPos +=30.0F;
-            Instantiate(ForestFon, new Vector3(LastFonPos, 0), GenQ);
+            GameObject forestFon = PoolManager.GetObject(ForestFon.name, new Vector3(LastFonPos, 0), GenQ);
         }
 
         if (forgen.busy != true) { GenGround(); }//если в позиции генерации пусто, создай землю
@@ -70,7 +70,7 @@ public class ManagerPlatform : MonoBehaviour
 
     void GenGround()//генерирование земли
     {
-        Instantiate(gr, new Vector3(Mathf.Round(GenPosGr.x), GenPosGr.y - 3.0F), GenQ);
+        GameObject ground = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(GenPosGr.x), GenPosGr.y - 3.0F), GenQ);
     }
 
     public int GetRandom(params int[] values)//для выбора рандомного числа из предложеных (используется в методах создания платформ)
@@ -86,9 +86,9 @@ public class ManagerPlatform : MonoBehaviour
         RndVid = rnd.Next(2);
         switch (RndVid)//выбираем внешний вид текущей платформы платформы
         {
-            case 0: Instantiate(a1, new Vector3(GenPos.x, a1.transform.position.y), GenQ); break;
-            case 1: Instantiate(a2, new Vector3(GenPos.x, a2.transform.position.y), GenQ); break;
-            case 2: Instantiate(a3, new Vector3(GenPos.x, a3.transform.position.y), GenQ); break;
+            case 0: GameObject ForestPlatform = PoolManager.GetObject(a1.name, new Vector3(GenPos.x, a1.transform.position.y), GenQ); break;
+            case 1: GameObject ForestPlatform2 = PoolManager.GetObject(a2.name, new Vector3(GenPos.x, a2.transform.position.y), GenQ); break;
+            case 2: GameObject ForestPlatform3 = PoolManager.GetObject(a3.name, new Vector3(GenPos.x, a3.transform.position.y), GenQ); break;
         }
         LastPos = GenPos.x;
     }

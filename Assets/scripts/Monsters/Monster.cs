@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 
-public class Monster : Unit
+public class Monster : MonoBehaviour
 
 {
     [SerializeField]
@@ -25,7 +25,6 @@ public class Monster : Unit
     public Rigidbody2D rb;
     [SerializeField]
     ParticleSystem Smoke;
-    ParticleSystem smoke;
     public bool die;//запустили уже скрипт умирания? (используется для корутины)
     public bool isplayer;//мы столкнулись с игроком?
     Character Player;
@@ -67,8 +66,9 @@ public class Monster : Unit
     {
             die = true;
             XPos = gameObject.transform.position.x;
-            smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
-            int k = 0;
+        //smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
+        GameObject smoke = PoolManager.GetObject(Smoke.name, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);
+        int k = 0;
             while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
             {
                 // FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);

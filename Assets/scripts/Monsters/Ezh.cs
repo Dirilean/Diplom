@@ -28,7 +28,6 @@ public class Ezh : MonoBehaviour {
     System.Random rnd = new System.Random();
     [SerializeField]
     ParticleSystem Smoke;
-    ParticleSystem smoke;
     bool die;//запустили уже скрипт умирания?
 
     private void FixedUpdate()
@@ -69,19 +68,21 @@ public class Ezh : MonoBehaviour {
     IEnumerator Example()
     {
         yield return new WaitForSeconds(0.3F);
-        Destroy(gameObject);
+        GetComponent<PoolObject>().ReturnToPool();
     }
 
     public void Die()//смерть персонажа
     {
         die = true;
         XPos = gameObject.transform.position.x;
-        smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
+       // smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
+        GameObject smoke = PoolManager.GetObject(Smoke.name, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);
         int k = 0;
         while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
         {
             YPos = (float)(rnd.NextDouble()) / 3 + 0.3F;//от 0,3 до 0,6 для начальной разной высоты
-            FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
+            FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
+            //FireSphere FireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y + YPos), FireSpherePrefab.transform.rotation);
             XPos += 0.5F;
             k++;
         }

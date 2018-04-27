@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Debug.Log("прыг") обращение к консоли
 
-public class Character : Unit
+public class Character : MonoBehaviour
 {
     #region Data
     [SerializeField]
@@ -215,7 +215,6 @@ public class Character : Unit
 
         Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F), transform.position.y + 0.7F);//место создания пули относительно персонажа
         Fire bullet = PoolManager.GetObject(FirePrefab.name, position, FirePrefab.transform.rotation).GetComponent<Fire>();
-        //Fire cloneFire = Instantiate(FirePrefab, position, FirePrefab.transform.rotation);//создание экземпляра огня(пули)
         bullet.Napravlenie = bullet.transform.right * (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F);//задаем направление и скорость пули (?если  true : false)
         bullet.Parent = gameObject;//родителем пули является текущий объект
         FireColb--;
@@ -299,9 +298,6 @@ public class Character : Unit
     #endregion
 
 
-    #region jump
-
-    #endregion
 
 
     #endregion

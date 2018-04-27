@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4176397817021710}
   - component: {fileID: 61618633212256686}
+  - component: {fileID: 114450377776459924}
   - component: {fileID: 212565090440882010}
   m_Layer: 13
   m_Name: f5
@@ -66,6 +67,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.002396, y: 1.9858642}
   m_EdgeRadius: 0
+--- !u!114 &114450377776459924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827062381808608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212565090440882010
 SpriteRenderer:
   m_ObjectHideFlags: 1
