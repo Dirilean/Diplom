@@ -16,7 +16,8 @@ public class Ezh : MonoBehaviour {
     public int DefaultLives;//изначальные жизни
     [HideInInspector]
     public int lives;// текущие жизни
-    [SerializeField]
+    public float DefaultSpeed;//изначальная скорость
+    [HideInInspector]
     public float speed;//скорость передвижения
     [SerializeField]
     public int PlusFireColb;//сколько упадет огня с монстров
@@ -34,6 +35,7 @@ public class Ezh : MonoBehaviour {
     private void OnEnable()
     {
         lives = DefaultLives;
+        speed = DefaultSpeed;
     }
 
     private void FixedUpdate()

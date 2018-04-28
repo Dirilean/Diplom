@@ -138,6 +138,7 @@ MonoBehaviour:
   TimeToDamage: 1
   DefaultLives: 60
   lives: 50
+  DefaultSpeed: 1
   speed: 1
   PlusFireColb: 10
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
