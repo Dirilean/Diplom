@@ -6,8 +6,10 @@ public class Deleter : MonoBehaviour {
 
     public Vector3 RespPos;//позиция воскрешения
     Rigidbody2D rb;
-    float speed=0.3F;
+    float speed=0.1F;
     public Character Player;
+    [SerializeField]
+    float distance;
 
     private void Start()
     {
@@ -18,13 +20,17 @@ public class Deleter : MonoBehaviour {
     {
         transform.position += Vector3.right*Time.deltaTime;
         rb.velocity = new Vector2(speed, rb.velocity.y);
-
+        distance = Player.transform.position.x - transform.position.x;
         //10F - расстояние свободного хода
-        if (Player.transform.position.x-transform.position.x>50F)//если расстояние между игроком и удаляющим объектом больше 100
+        if (distance > 50F)//если расстояние между игроком и удаляющим объектом больше 100
         {
-            speed = Player.speed + 2F;
+            speed = Player.speed;
         }
-        if (Player.transform.position.x - transform.position.x <40F)
+        if (distance < 10F)
+        {
+            speed = 0.1F;
+        }
+        else if (distance < 40F)
         {
             speed = 0.3F;
         }

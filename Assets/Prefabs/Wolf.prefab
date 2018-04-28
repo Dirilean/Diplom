@@ -147,7 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   TimeToDamage: 1
-  lives: 40
+  DefaultLives: 40
+  lives: 0
   speed: 2
   PlusFireColb: 5
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
@@ -159,7 +160,6 @@ MonoBehaviour:
   die: 0
   isplayer: 0
   radius: 0.5
-  layerMask: 10
   Dalnost: 1
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: 1

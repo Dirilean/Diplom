@@ -11,8 +11,9 @@ public class Monster : MonoBehaviour
     public int Damage;//количество наносимого урона
     [SerializeField]
     public float TimeToDamage;//время за которое наносятся один удар (указывается в префабе)
-    [SerializeField]
-    public int lives;//жизни
+    public int DefaultLives;//изначальные жизни
+    [HideInInspector]
+    public int lives;// текущие жизни
     [SerializeField]
     public float speed;//скорость передвижения
     [SerializeField]
@@ -50,7 +51,8 @@ public class Monster : MonoBehaviour
 
 
     private void OnEnable()
-    { 
+    {
+        lives = DefaultLives;
         LastTime = 0;
         napravlenie = Vector3.right;//начальное направление вправо
         die = false;
@@ -64,19 +66,25 @@ public class Monster : MonoBehaviour
 
     public void Die()//смерть персонажа
     {
-            die = true;
-            XPos = gameObject.transform.position.x;
+        die = true;
+        XPos = gameObject.transform.position.x;
         //smoke = Instantiate(Smoke, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);//создание дымки после смерти
-        GameObject smoke = PoolManager.GetObject(Smoke.name, new Vector3(XPos, transform.position.y + 0.5F), gameObject.transform.rotation);
+        GameObject smoke = PoolManager.GetObject(Smoke.name, new Vector3(XPos, transform.position.y + 0.5F), transform.rotation);
         int k = 0;
-            while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
-            {
-                // FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
-                FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, gameObject.transform.position.y + 0.5F), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
-                firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку        
-                XPos += 0.2F;
-                k++;
-            }
+
+        while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
+        {    
+            // FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
+            FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, transform.position.y + 0.5F), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
+            firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
+            //firesphere.GetComponent<SpriteRenderer>().color = Color.red;
+            firesphere.Now = new Vector2(XPos, transform.position.y + 0.5F);
+            firesphere.Verh = new Vector2(XPos, transform.position.y + 0.7F);
+            firesphere.Niz = new Vector2(XPos, transform.position.y + 0.4F);
+            XPos += 0.2F;
+            k++;
+           // Debug.Log("OnDie " + firesphere.CheckPlayer);
+        }
         speed = 0;
         StartCoroutine(ForDie());
     }
@@ -90,7 +98,7 @@ public class Monster : MonoBehaviour
     private void Update()
     {
         //проверяем на живучесть
-        if ((lives <= 0)&&(die == false))
+        if ((lives < 1)&&(die == false))
              { Die(); }
         //вызываем ближний бой
         

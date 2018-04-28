@@ -16,6 +16,8 @@ public class ManagerFire : MonoBehaviour {
     float LastPos;
     float YPos;
     float XPos;
+    float minY=0F;//самая низкая
+    float maxY=6F;//самая высокая точка генерации на этом уровне
     int zaderzka=6;
 
     // Use this for initialization
@@ -57,9 +59,12 @@ public class ManagerFire : MonoBehaviour {
             Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(XPos, YPos), 0.2F);//чтобы на месте создания не было коллайдеров
             //Debug.Log("положение " + XPos + ", " + YPos + " col:" + colliders.Length+ " nocol:" + nocolliders.Length);
 
-            if ((colliders.Length > 0) && (nocolliders.Length == 0)&&(YPos>0))//проверка на близость других коллайдеров и существование высоты
+            if ((colliders.Length > 0) && (nocolliders.Length == 0) && (YPos > minY) && (YPos < maxY))//проверка на близость других коллайдеров и существование высоты
             {
                 FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
+                firesphere.Now = new Vector2(XPos, YPos);
+                firesphere.Verh = new Vector2(XPos, YPos+0.15F);
+                firesphere.Niz =  new Vector2(XPos, YPos-0.1F);
             }
             LastPos =forgen.transform.position.x-zaderzka;
 

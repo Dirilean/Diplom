@@ -76,14 +76,14 @@ public class ManagerUnits : MonoBehaviour {
     }
     void lynx()
     {
-        Lynx Lynx = PoolManager.GetObject(LynxPrefab.name, new Vector3((RndStep + LastPos), 10), LynxPrefab.transform.rotation).GetComponent<Lynx>();
+        Lynx Lynx = PoolManager.GetObject(LynxPrefab.name, new Vector3((RndStep + LastPos),10), LynxPrefab.transform.rotation).GetComponent<Lynx>();
     }
     void ezh()
     {
-        Ezh Ezh = PoolManager.GetObject(EzhPrefab.name, new Vector3((RndStep + LastPos), 10), EzhPrefab.transform.rotation).GetComponent<Ezh>();
+        Ezh Ezh = PoolManager.GetObject(EzhPrefab.name, new Vector3((RndStep + LastPos), 8), EzhPrefab.transform.rotation).GetComponent<Ezh>();
     }
     void moski()
     {
-        PassiveEnemy Muski = PoolManager.GetObject(MuskiPrefab.name, new Vector3((RndStep + LastPos), 10), MuskiPrefab.transform.rotation).GetComponent<PassiveEnemy>();
+        PassiveEnemy Muski = PoolManager.GetObject(MuskiPrefab.name, new Vector3((RndStep + LastPos), 8), MuskiPrefab.transform.rotation).GetComponent<PassiveEnemy>();
     }
 }

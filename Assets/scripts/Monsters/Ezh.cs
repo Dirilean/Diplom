@@ -13,8 +13,9 @@ public class Ezh : MonoBehaviour {
 
     [SerializeField]
     public int Damage;//количество наносимого урона
-    [SerializeField]
-    public int lives;//жизни
+    public int DefaultLives;//изначальные жизни
+    [HideInInspector]
+    public int lives;// текущие жизни
     [SerializeField]
     public float speed;//скорость передвижения
     [SerializeField]
@@ -29,6 +30,11 @@ public class Ezh : MonoBehaviour {
     [SerializeField]
     ParticleSystem Smoke;
     bool die;//запустили уже скрипт умирания?
+
+    private void OnEnable()
+    {
+        lives = DefaultLives;
+    }
 
     private void FixedUpdate()
     {

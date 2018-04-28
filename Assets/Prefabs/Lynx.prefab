@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   TimeToDamage: 1
+  DefaultLives: 40
   lives: 40
   speed: 1
   PlusFireColb: 7

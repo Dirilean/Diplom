@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 40
   TimeToDamage: 1
+  DefaultLives: 60
   lives: 50
   speed: 1
   PlusFireColb: 10
@@ -148,7 +149,6 @@ MonoBehaviour:
   die: 0
   isplayer: 0
   radius: 1
-  layerMask: 10
   Dalnost: 1.05
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: -1

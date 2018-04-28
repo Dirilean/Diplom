@@ -21,6 +21,7 @@ public class Lynx : Monster
 
     private void OnEnable()
     {
+        lives = DefaultLives;
         LastTime = 0;
         die = false;
         napravlenie = transform.right;//начальное направление вправо
