@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     public float TimeToPlusLives;//время перезарядки конвертации жизни
     [HideInInspector]
     public float LastTimeToPlusLives;//последнее время конвертьации жизней
+    public GameObject AttackWave;//объект волны атаки
     
 
     float timeDie;//время смерти
@@ -81,7 +82,7 @@ public class Character : MonoBehaviour
         TimeToPlusLives = 5;
         LastTimeToPlusLives = 0;
         TimeShoot = Time.time;
-        FireColb = 0;
+        FireColb = 50;
         napravlenie = Vector3.right;
         isstay = true;
         isrun = true;
@@ -204,6 +205,7 @@ public class Character : MonoBehaviour
 
     private void DoDamage()//урон в ближнем бою
     {
+        //AttackWave.GetComponent<Animator>().x = napravlenie.x > 0.0F;
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.5F), Vector2.right * napravlenie.x, dalnost, 1 << 11);
         if (hit == true)
         {

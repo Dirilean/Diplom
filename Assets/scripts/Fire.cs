@@ -8,7 +8,7 @@ public class Fire : MonoBehaviour
     public GameObject Parent { set { parent = value; } }
     
     public GameObject fire;
-    private float speed=100.0F;
+    private float speed=6.0F;
     private Vector3 napravlenie; //направление пули
 
     public Vector3 Napravlenie { set { napravlenie = value; } } //берем из вне
@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
 
     IEnumerator ForBullet()
     {
-        yield return new WaitForSeconds(0.3F);
+        yield return new WaitForSeconds(2.0F);
         GetComponent<PoolObject>().ReturnToPool();//"удаление" объекта
     }
 
