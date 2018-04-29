@@ -47,6 +47,7 @@ public class Character : MonoBehaviour
     public Fire FirePrefab;
     public Fire AttackWavePrefab;
     public Deleter DeleterSmoke;
+    Fire prefab; //префаб текущей атаки
     #endregion
 
     #region Flags
@@ -192,10 +193,12 @@ public class Character : MonoBehaviour
         isGrounded = colliders.Length > 1; //один колайдер всегда внутри (кол. персонажа)
     }
 
-    private void Attack(Fire prefab)
+    private void Attack()//вызывается из аниматора
     {
-        Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F), transform.position.y + 0.7F);//место создания пули относительно персонажа
-        Fire fire = PoolManager.GetObject(prefab.name, position, prefab.transform.rotation).GetComponent<Fire>();
+        
+        prefab = AttackWavePrefab;
+        Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F), transform.position.y+0.65F);//место создания пули относительно персонажа
+        Fire fire = PoolManager.GetObject(prefab.name,position, prefab.transform.rotation).GetComponent<Fire>();
         fire.napravlenie = fire.transform.right * (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F);//задаем направление и скорость пули (?если  true : false)
         fire.CurrentSpeed+=Mathf.Abs(rb.velocity.x);
         FireColb -= fire.minusFire;
@@ -206,7 +209,7 @@ public class Character : MonoBehaviour
         if (collision.GetComponent<FireSphere>())
         {
             collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
-            FireColb+=3;
+            FireColb++;
         }
     }
 

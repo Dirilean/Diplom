@@ -25,17 +25,17 @@ public class Fire : MonoBehaviour
 
     IEnumerator ForBullet()
     {
-        if (animate)
-        {
-            transform.localScale = Vector3.zero;//маленький
-            CurrenAlfa= new Color(255,255,255,0);//прозрачный
-        }
         yield return new WaitForSeconds(lifetime);
         GetComponent<PoolObject>().ReturnToPool();//"удаление" объекта
     }
 
     private void OnEnable()
     {
+        if (animate)
+        {
+            transform.localScale = Vector3.zero;//маленький
+            CurrenAlfa = new Color(255, 255, 255, 0);//прозрачный
+        }
         StartCoroutine(ForBullet());
         CurrentSpeed = speed;
     }
@@ -45,7 +45,7 @@ public class Fire : MonoBehaviour
         if (animate)//постепенное увеличивание и увеличение прозрачности
         {
             CurrenAlfa.a = Mathf.Lerp(CurrenAlfa.a,255F,Time.deltaTime);
-            transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 1F, Time.deltaTime), Mathf.Lerp(transform.localScale.y, 1F, Time.deltaTime*2));
+            transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 1F, Time.deltaTime), Mathf.Lerp(transform.localScale.y, 1F, Time.deltaTime*4));
         }
         transform.position = Vector3.MoveTowards(transform.position, transform.position + napravlenie, CurrentSpeed* Time.deltaTime);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.01F, 1 << 13);
@@ -59,7 +59,7 @@ public class Fire : MonoBehaviour
     {
         Monster unit = collider.GetComponent<Monster>();
 
-        if (unit&& gameObject != parent)
+        if (unit)
         {
             unit.lives-=damage;//получение урона от пули
             GetComponent<PoolObject>().ReturnToPool();
