@@ -12,7 +12,7 @@ public class Lynx : Monster
 
     public bool isGrounded;
     float betveen;//расстояние между рысью и игроком в плоскости х
-    bool jumping;//прыгнули ли уже
+   // private bool jumping;//прыгнули ли уже
 
     private void Start()
     {

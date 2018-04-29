@@ -326,19 +326,14 @@ MonoBehaviour:
   FireColb: 0
   lives: 100
   speed: 0
-  TempSpeed: 0
+  TimeToPlusLives: 5
+  LastTimeToPlusLives: 0
   FirePrefab: {fileID: 114499267637046000, guid: 96b19e52d4804a047877ee8fea57062b,
     type: 2}
-  rb: {fileID: 50538717199604314}
-  isGrounded: 0
-  TimeToPlusLives: 0
-  LastTimeToPlusLives: 0
-  AttackWave: {fileID: 0}
+  AttackWavePrefab: {fileID: 114993579787751452, guid: a9d537dd03dc6904abe4295814186cb4,
+    type: 2}
   DeleterSmoke: {fileID: 0}
-  damagehit: 20
-  damagehitdistanse: 2
-  animator: {fileID: 95062460867045494}
-  attack: 0
+  isGrounded: 0
   RunSound:
   - {fileID: 8300000, guid: 4e2e0db60411c9d4fbb56ce2f968bab1, type: 3}
   - {fileID: 8300000, guid: 79019d4a2f0256f469f9edb19ef825fd, type: 3}
