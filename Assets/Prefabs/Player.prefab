@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1081175211779456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.49, y: 3.97, z: 0}
+  m_LocalPosition: {x: -2.262, y: 3.997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4706833890836404}
@@ -328,12 +328,14 @@ MonoBehaviour:
   speed: 0
   TimeToPlusLives: 5
   LastTimeToPlusLives: 0
+  AttackType: 0
   FirePrefab: {fileID: 114499267637046000, guid: 96b19e52d4804a047877ee8fea57062b,
     type: 2}
   AttackWavePrefab: {fileID: 114993579787751452, guid: a9d537dd03dc6904abe4295814186cb4,
     type: 2}
   DeleterSmoke: {fileID: 0}
   isGrounded: 0
+  AuSourse: {fileID: 82398255589741666}
   RunSound:
   - {fileID: 8300000, guid: 4e2e0db60411c9d4fbb56ce2f968bab1, type: 3}
   - {fileID: 8300000, guid: 79019d4a2f0256f469f9edb19ef825fd, type: 3}
@@ -343,7 +345,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bb83459aa37ea734e990245316718ac0, type: 3}
   - {fileID: 8300000, guid: 147d8f3d5e6dd584e855f183753ac8f7, type: 3}
   JumpSound: {fileID: 8300000, guid: 5667d4f437454d5429d2e6ba69532f49, type: 3}
-  AuSourse: {fileID: 82398255589741666}
 --- !u!212 &212613967154384904
 SpriteRenderer:
   m_ObjectHideFlags: 1

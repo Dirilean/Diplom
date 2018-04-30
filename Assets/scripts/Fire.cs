@@ -33,7 +33,7 @@ public class Fire : MonoBehaviour
     {
         if (animate)
         {
-            transform.localScale = Vector3.zero;//маленький
+            transform.localScale = new Vector3(0.2F, 0.2F, 0.2F);//маленький
             CurrenAlfa = new Color(255, 255, 255, 0);//прозрачный
         }
         StartCoroutine(ForBullet());
@@ -44,8 +44,8 @@ public class Fire : MonoBehaviour
     {
         if (animate)//постепенное увеличивание и увеличение прозрачности
         {
-            CurrenAlfa.a = Mathf.Lerp(CurrenAlfa.a,255F,Time.deltaTime);
-            transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 1F, Time.deltaTime), Mathf.Lerp(transform.localScale.y, 1F, Time.deltaTime*4));
+            CurrenAlfa.a = Mathf.Lerp(CurrenAlfa.a, 255F, Time.deltaTime);
+            transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 2F, Time.deltaTime), Mathf.Lerp(transform.localScale.y, 1F, Time.deltaTime * 4));
         }
         transform.position = Vector3.MoveTowards(transform.position, transform.position + napravlenie, CurrentSpeed* Time.deltaTime);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.01F, 1 << 13);
