@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1157685014983984
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,17 +57,17 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4103815855347396}
-  - component: {fileID: 114588555379680564}
   - component: {fileID: 114398226411560540}
   - component: {fileID: 114184593208058278}
   - component: {fileID: 114254053811987664}
+  - component: {fileID: 114048823708366170}
   m_Layer: 0
   m_Name: ManagerSky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1197424980672016
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +305,46 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197424980672016}
   m_Enabled: 1
+--- !u!114 &114048823708366170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157685014983984}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d780ba1a30b2fd429d2d1693c632964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sky:
+  - {fileID: 1149763664448778, guid: 5d44464f7b3574e42ba4e5b34c4f2a86, type: 2}
+  - {fileID: 1830665214241364, guid: bd0155fceaf972245b6ac1ce4e404642, type: 2}
+  - {fileID: 1252271546465308, guid: 69155f24f44cb064881ccf10923c8886, type: 2}
+  - {fileID: 1539745639306696, guid: 72e85fee6d9e5d44aad94131a5f1e0ad, type: 2}
+  - {fileID: 1067800559325532, guid: 6cfc7a40a11947249a94f70e851ac54a, type: 2}
+  - {fileID: 1621413835665972, guid: 1ec4090667418c843b5f1763da2aee11, type: 2}
+  - {fileID: 1120765502287294, guid: c417f80a76aadb14eb442a05446f9a33, type: 2}
+  - {fileID: 1129010667827392, guid: b046436b31bfd8c408270e7014c6b74a, type: 2}
+  - {fileID: 1766768766973566, guid: da570a1c51b2d7246a8802a9f3a01d05, type: 2}
+  - {fileID: 1766110157373736, guid: e8d3256cf097c0740be5c9e3f26b1043, type: 2}
+  - {fileID: 1823244511304618, guid: d01bf2066b568d549afc11377a05b865, type: 2}
+  - {fileID: 1198063401067294, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
+  lenghts:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  gr: {fileID: 1556216505849076, guid: 32dacb2324d09804886b88f638d47367, type: 2}
+  forgen: {fileID: 0}
+  maxstep: 10
 --- !u!114 &114184593208058278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +416,9 @@ MonoBehaviour:
   gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
   forgen: {fileID: 0}
   ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
+  once: 1
+  maincamera: {fileID: 114289397912394798}
+  EndPlatform: {fileID: 1003280150520362}
 --- !u!114 &114254053811987664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,7 +430,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e828968966cdb4947bedbb737e646f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - name: sky0
+    prefab: {fileID: 114872267567630102, guid: 5d44464f7b3574e42ba4e5b34c4f2a86, type: 2}
+    count: 3
+  - name: sky1
+    prefab: {fileID: 114812766643419858, guid: bd0155fceaf972245b6ac1ce4e404642, type: 2}
+    count: 3
+  - name: sky2
+    prefab: {fileID: 114070622154560732, guid: 69155f24f44cb064881ccf10923c8886, type: 2}
+    count: 3
+  - name: sky3
+    prefab: {fileID: 114357935723047258, guid: 72e85fee6d9e5d44aad94131a5f1e0ad, type: 2}
+    count: 3
+  - name: sky4
+    prefab: {fileID: 114390557883855426, guid: 6cfc7a40a11947249a94f70e851ac54a, type: 2}
+    count: 3
+  - name: sky5
+    prefab: {fileID: 114639164804914322, guid: 1ec4090667418c843b5f1763da2aee11, type: 2}
+    count: 3
+  - name: sky6
+    prefab: {fileID: 114781183640720902, guid: c417f80a76aadb14eb442a05446f9a33, type: 2}
+    count: 3
+  - name: sky7
+    prefab: {fileID: 114752053294249930, guid: b046436b31bfd8c408270e7014c6b74a, type: 2}
+    count: 3
+  - name: sky8
+    prefab: {fileID: 114634452340456956, guid: da570a1c51b2d7246a8802a9f3a01d05, type: 2}
+    count: 3
+  - name: sky9
+    prefab: {fileID: 114467459140285140, guid: e8d3256cf097c0740be5c9e3f26b1043, type: 2}
+    count: 3
+  - name: sky10
+    prefab: {fileID: 114904972851947270, guid: d01bf2066b568d549afc11377a05b865, type: 2}
+    count: 3
+  - name: sky11
+    prefab: {fileID: 114613397724555982, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
+    count: 3
+  - name: 
+    prefab: {fileID: 0}
+    count: 0
+  - name: 
+    prefab: {fileID: 0}
+    count: 0
 --- !u!114 &114289397912394798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,7 +491,7 @@ MonoBehaviour:
   ManagerForest: {fileID: 1003280150520362}
   ManagerSky: {fileID: 1157685014983984}
   ManagerSpace: {fileID: 1014558022025052}
-  to2lvl: 10
+  to2lvl: 1
   to3lvl: 500
   toWin: 1000
   Level: 0
@@ -625,63 +710,6 @@ MonoBehaviour:
   - name: AttackWave
     prefab: {fileID: 114603130144821758, guid: a9d537dd03dc6904abe4295814186cb4, type: 2}
     count: 1
---- !u!114 &114588555379680564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1157685014983984}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02acd134decd4c40a99464e811353fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  f:
-  - {fileID: 1427031573115246, guid: bf6708b6d9d4f0b4e86399de97dfe46f, type: 2}
-  - {fileID: 1542125028708766, guid: 0ffb7f15c7498ae4bbfdff0cf76823b6, type: 2}
-  - {fileID: 1808935298252400, guid: 3b2554de7b7531a469771e09ea662de8, type: 2}
-  - {fileID: 1048932735659038, guid: a743237404232884bb0c81d8a314cc25, type: 2}
-  - {fileID: 1740586766414876, guid: 5e146159f3350584fb3f3c31df4a2026, type: 2}
-  - {fileID: 1827062381808608, guid: b3d6ce459bee9b9449c1c22e97cd6125, type: 2}
-  - {fileID: 1540582679443210, guid: 7d5d57076dcdcd141a6b012cdc51e20e, type: 2}
-  - {fileID: 1456107326144032, guid: f0b0588d78931554a9c404d27169a0b4, type: 2}
-  - {fileID: 1466016147738160, guid: 6a26629927c91654e9d9e30b2d0d5520, type: 2}
-  - {fileID: 1265657546715912, guid: 8d17dfc72289a54498b095d5ff0df7e0, type: 2}
-  - {fileID: 1341423249917370, guid: 98ad358163cd162459d40c18b744ff6d, type: 2}
-  - {fileID: 1894732118794576, guid: adf85b4da0b40d249b1fcfbc2b81c986, type: 2}
-  - {fileID: 1346849069638734, guid: 36e13317e15b4cc4392a637680b0229f, type: 2}
-  - {fileID: 1573720487601844, guid: c9270974f41451543a95857060c4e303, type: 2}
-  - {fileID: 1600526607369072, guid: 07e152d8c40a88a48b191d0cc90d5825, type: 2}
-  - {fileID: 1634098482096050, guid: 71eb252cc8318b74a832c34d81b0f5fe, type: 2}
-  - {fileID: 1191808949388024, guid: 511e80d57e5a0c54dab4a6fc5ee32b40, type: 2}
-  - {fileID: 1708208863429212, guid: 785a47843adb59f4ca0af9d13d94c738, type: 2}
-  - {fileID: 1569036210560602, guid: 1b3eafdf9f0f3a34baeff1edb11b5504, type: 2}
-  - {fileID: 1430901780109370, guid: e5ee0f56378e00f449221492df24af48, type: 2}
-  - {fileID: 1787342694765382, guid: b19903e5bf6afbb4e847550265d6ef7b, type: 2}
-  - {fileID: 1451799490662096, guid: cf903be9474789942b8f026d33a69043, type: 2}
-  - {fileID: 1615666821421966, guid: 25bb3e14ebdc1b34b966ec5287885d2c, type: 2}
-  - {fileID: 1874289228649466, guid: baefe01c16d122943adf1ac8cfc8f76a, type: 2}
-  - {fileID: 1689294336833908, guid: 8dca0d98989738347bcf628a61432536, type: 2}
-  - {fileID: 1175288988174072, guid: 8feff3237fe88cf49a57aa0846397581, type: 2}
-  - {fileID: 1382252910147988, guid: 183a7b6d3f6c39e4f8edc1ab353067e6, type: 2}
-  - {fileID: 1229615633424534, guid: e9bb0e90a75173b4fb3d9685d6ee6ca2, type: 2}
-  - {fileID: 1950120457964868, guid: c0d97dddf965e694c98fe83d68eef0ad, type: 2}
-  - {fileID: 1367390153201144, guid: 1cd9176578e457a42a873253844364e8, type: 2}
-  - {fileID: 1217295244505620, guid: 974b87cd0caee97458d974971bebbbb7, type: 2}
-  - {fileID: 1658981961939514, guid: 8e47745df829ffa4fab5ae4fc46db4bb, type: 2}
-  - {fileID: 1777327175279420, guid: 891ac871a15b3eb4aa89486136c98afe, type: 2}
-  - {fileID: 1898249826051428, guid: cf3de9d37bcebe444aa722b207829b5f, type: 2}
-  - {fileID: 1222162102040214, guid: 77e9223d0b3bcd244a503efb5b42a643, type: 2}
-  - {fileID: 1916046143682448, guid: a35e53dbe39473b4797744eb60bc66cb, type: 2}
-  - {fileID: 1679712380543258, guid: bce4283ed89ac904dbc600bd7e6e132c, type: 2}
-  - {fileID: 1558745250503390, guid: 710d482015b71254bbd49c717fedc5d1, type: 2}
-  - {fileID: 1585999519050214, guid: 17193a9b5b9e06d489aee154595c91f6, type: 2}
-  - {fileID: 1062258908336256, guid: b91fa44b7fbe1b043bb56ddec9647015, type: 2}
-  - {fileID: 1033810615360128, guid: 0aff9aa64bff2994e9023c18a4fa3961, type: 2}
-  - {fileID: 1689081834629010, guid: f13f260158d286a4bae8b6a50295bdb8, type: 2}
-  gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
-  forgen: {fileID: 0}
-  ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
 --- !u!114 &114589350251242152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -779,6 +807,9 @@ MonoBehaviour:
   gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
   forgen: {fileID: 0}
   ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
+  once: 1
+  maincamera: {fileID: 0}
+  EndPlatform: {fileID: 0}
 --- !u!114 &114952190233755476
 MonoBehaviour:
   m_ObjectHideFlags: 1

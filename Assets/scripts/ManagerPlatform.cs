@@ -6,7 +6,7 @@ public class ManagerPlatform : MonoBehaviour
 {
     public GameObject[] f = new GameObject[41]; //все платформы  в лесу
     public GameObject gr;//земля
-    Vector3 GenPos;//текущая позиция генерации
+    public Vector3 GenPos;//текущая позиция генерации
     Vector3 GenPosGr;//текущая позиция генерации земли
     Vector3 PlatGenPos;//следующая выбранная позиция генерации
     Quaternion GenQ = new Quaternion(0, 0, 0, 0);//текущий разворот
@@ -22,6 +22,7 @@ public class ManagerPlatform : MonoBehaviour
     int RndStep;//рандомный шаг для создания следущей платформы, ОБЯЗАТЕЛЬНО КРАТНО 2
     int RndPak;//из какого пака платформ выбирать
     int RndVid;//какую платформу из пака выбрать
+    public bool once = true;
 
     void Start()
     {
@@ -34,44 +35,49 @@ public class ManagerPlatform : MonoBehaviour
 
 
     void Update()//генерация !главный метод, вызывающий остальные!
-    {
-        GenPosGr.x = forgen.transform.position.x;
-        GenPos.x = forgen.transform.position.x+Static.StepPlatf;
-        if ((LastFonPos + 30.0F )<= GenPos.x)//генерация фоновых деревьев
-        {  
-            LastFonPos +=30.0F;
-            GameObject forestFon = PoolManager.GetObject(ForestFon.name, new Vector3(LastFonPos, 0), GenQ);
-        }
+    { 
+            GenPosGr.x = forgen.transform.position.x;
+            GenPos.x = forgen.transform.position.x + Static.StepPlatf;
 
-        if (forgen.busy != true) { GenGround(); }//если в позиции генерации пусто, создай землю
-        //Debug.Log("1=" + ((int)GenPos.x % 2) + ", 2=" + ((int)LastPos + RndStep) + " genpos=" + (int)GenPos.x);
-        if (((int)GenPos.x % 2 == 0)&&(((int)LastPos + RndStep == (int)GenPos.x)))//каждую четную позицию генерации вызывай это
-        {
-           // Debug.Log("платформа в GenPos=" + (int)GenPos.x + ", время="+Time.time);
-            switch (method)
+            #region ground
+            if (forgen.busy != true)
             {
-                case 0: F0(); break;
-                case 3:  F3(); break;
-                case 6: F6(); break;
-                case 9:  F9(); break;
-                case 12:  F12(); break;
-                case 15: F15(); break;
-                case 18:  F18(); break;
-                case 21:  F21(); break;
-                case 24:  F24(); break;
-                case 27:  F27(); break;
-                case 30:  F30(); break;
-                case 33: F33(); break;
-                case 36:  F36(); break;
-                case 39:  F39(); break;
+                GameObject ground = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(GenPosGr.x), GenPosGr.y - 3.0F), GenQ);
+            }//если в позиции генерации пусто, создай землю
+            #endregion
+
+            #region fon
+            if ((LastFonPos + 30.0F) <= GenPos.x)//генерация фоновых деревьев
+            {
+                LastFonPos += 30.0F;
+                GameObject forestFon = PoolManager.GetObject(ForestFon.name, new Vector3(LastFonPos, 0), GenQ);
             }
-        }
+            #endregion
+
+            #region Platforms
+            if (((int)GenPos.x % 2 == 0) && (((int)LastPos + RndStep == (int)GenPos.x)))//каждую четную позицию генерации вызывай это
+            {
+                switch (method)
+                {
+                    case 0: F0(); break;
+                    case 3: F3(); break;
+                    case 6: F6(); break;
+                    case 9: F9(); break;
+                    case 12: F12(); break;
+                    case 15: F15(); break;
+                    case 18: F18(); break;
+                    case 21: F21(); break;
+                    case 24: F24(); break;
+                    case 27: F27(); break;
+                    case 30: F30(); break;
+                    case 33: F33(); break;
+                    case 36: F36(); break;
+                    case 39: F39(); break;
+                }
+            }
+            #endregion
     }
 
-    void GenGround()//генерирование земли
-    {
-        GameObject ground = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(GenPosGr.x), GenPosGr.y - 3.0F), GenQ);
-    }
 
     public int GetRandom(params int[] values)//для выбора рандомного числа из предложеных (используется в методах создания платформ)
     {
@@ -79,7 +85,6 @@ public class ManagerPlatform : MonoBehaviour
         { return values[rnd.Next(values.Length)]; }
         else { return 4; }
     }
-
 
     void GenPlat(GameObject a1, GameObject a2, GameObject a3)//универсальный метод рандомного создания платформ из подобных
     {
@@ -93,8 +98,7 @@ public class ManagerPlatform : MonoBehaviour
         LastPos = GenPos.x;
     }
 
-    //__________описание платформ_________
-
+    #region platforms descriptions
     void F0()
     {
         GenPlat(f[0], f[1], f[2]);//Генерирование рандомной платформы из пака
@@ -408,4 +412,5 @@ public class ManagerPlatform : MonoBehaviour
         }
         RndStep = RndStep + 8;
     }
+    #endregion
 }
