@@ -27,7 +27,11 @@ public class CameraController : MonoBehaviour
     public int Level;
     #endregion
     public GameObject EndPlatformForest;
+    Vector3 target;//центр для камеры
 
+    bool upCamera2lvl;
+    bool upCamera3lvl;
+    float Y;//для офсета на уровни
 
     void Start()
     {
@@ -37,33 +41,40 @@ public class CameraController : MonoBehaviour
         Level = 1;
     }
 
-    //public void FindPlayer(bool playerFaceLeft)
-    //{
-    //    lastX = Mathf.RoundToInt(player.transform.position.x);
-    //    if (playerFaceLeft)
-    //    {
-    //        transform.position = new Vector3(player.transform.position.x - offset.x,offset.y, transform.position.z);
-    //    }
-    //    else
-    //    {
-    //        transform.position = new Vector3(player.transform.position.x + offset.x, offset.y, transform.position.z);
-    //    }
-    //}
-
     void Update()
     {
-        if (player)
+        int currentX = Mathf.RoundToInt(player.transform.position.x);
+        lastX = Mathf.RoundToInt(player.transform.position.x);
+        switch (player.PlayertLevel)//зависит от уровня иргрока
         {
-            int currentX = Mathf.RoundToInt(player.transform.position.x);
-            lastX = Mathf.RoundToInt(player.transform.position.x);
-
-            Vector3 target = new Vector3(player.transform.position.x + offset.x, player.transform.position.y+offset.y, transform.position.z);
-
-            Vector3 currentPosition = Vector3.Lerp(transform.position, target, damping * Time.deltaTime);
-            transform.position = currentPosition;
+            case 1: Y = offset.y; break;
+            case 2:
+                    {
+                        if (upCamera2lvl==false)//чтоб камера поднялась и больше не опускалась
+                        {
+                            if (player.transform.position.y > 12.4F) Y=offset.y + 11F;
+                            else if (player.transform.position.y < offset.y) { Y=offset.y; }
+                            else Y= player.transform.position.y;
+                        }
+                    }
+                    break;
+            case 3:
+                {
+                    if (upCamera3lvl == false)//чтоб камера поднялась и больше не опускалась
+                    {
+                        if (player.transform.position.y > 21F) Y = offset.y + 21F;
+                        else if (player.transform.position.y < offset.y) { Y = offset.y+11;}
+                        else Y = player.transform.position.y;
+                    }
+                }
+                break;
         }
+        target = new Vector3(player.transform.position.x + offset.x, Y, transform.position.z);
+        Vector3 currentPosition = Vector3.Lerp(transform.position, target, damping * Time.deltaTime);
+        transform.position = currentPosition;
 
-        switch (Level)//для перехода на сл уровень
+
+        switch (Level)//для создания объектов перехода на сл уровень
         {
             case 1:
                 if ((player.FireColb > to2lvl)&&(Level==1))//с 1 на 2

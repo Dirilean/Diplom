@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     public float TimeToPlusLives;
     [Tooltip("Сколько секунд после смерти нужно ждать чтобы воскреснуть")]
     float zaderzhka = 1;
+    public int PlayertLevel;
     #endregion
 
     #region For checked time
@@ -71,9 +72,16 @@ public class Character : MonoBehaviour
     public AudioClip JumpSound;
     #endregion
 
+    #region Level settings
+    public Character NextPlayerPrefab;
+    bool perehodto2lvl;
+  //  public Character LastPlayer;
+    public int PrefabLevel;//уровень персонажа для этого префаба
+    #endregion
 
     private void Start()
     {
+        PlayertLevel = 1;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CheckJump = false;
@@ -86,6 +94,10 @@ public class Character : MonoBehaviour
         i = 0;
         AuSourse.volume = 0.03F;
         LastTimeToPlusLives = -5;
+        perehodto2lvl = false;
+        // Destroy(LastPlayer); 
+        //LastPlayer.gameObject.SetActive(false);
+       
     }
 
     private void FixedUpdate()
@@ -97,6 +109,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+
         #region input left - right
 
         if (Input.GetAxis("Horizontal") != 0)//обычное хождение
@@ -119,8 +132,12 @@ public class Character : MonoBehaviour
         #region input Jump
         if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
         {
-            rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 72), ForceMode2D.Impulse);
+            if (transform.position.y < 5F)//если не на самой верхней платформе
+                rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 70F), ForceMode2D.Impulse);
+            else
+                rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 65F), ForceMode2D.Impulse);
             CheckJump = true;
+            
         }
         if (((Input.GetButton("Jump")) == false) && isGrounded)//если отпустили клавишу прыжка
         {
@@ -187,6 +204,31 @@ public class Character : MonoBehaviour
             collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
             FireColb++;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)//если платформа конца уровня
+    {
+       if ((collision.collider.GetComponent<EndLevel>())&&(PrefabLevel == 1))
+        {
+            if (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1)
+            {
+                PlayertLevel = 2;
+            }
+            else if (collision.collider.GetComponent<EndLevel>().CurrentLevel == 2)
+            {
+                PlayertLevel = 3;
+            }
+
+            if ((transform.position.y > 12.5F)&& (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1) &&(perehodto2lvl==false))
+            {
+                Debug.Log("превращееееееееееение 2");
+                perehodto2lvl = true;
+                Character Player2 = Instantiate(NextPlayerPrefab, transform.position, new Quaternion(0, 0, 0, 0));
+               // Player2.LastPlayer = gameObject.GetComponent<Character>();
+                gameObject.SetActive(false);
+            }
+        }
+        //дописать для сл уровней
     }
 
     private void ConvertToLives()//конвертирование огня в жизнь
