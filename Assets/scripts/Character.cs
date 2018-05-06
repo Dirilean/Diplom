@@ -17,6 +17,9 @@ public class Character : MonoBehaviour
     [Tooltip("Сколько секунд после смерти нужно ждать чтобы воскреснуть")]
     float zaderzhka = 1;
     public int PlayertLevel;
+    public int FlyResourse;//ресурс полета
+    public float repeat_time; /* Время в секундах для полетов */
+    private float curr_time;
     #endregion
 
     #region For checked time
@@ -95,9 +98,9 @@ public class Character : MonoBehaviour
         AuSourse.volume = 0.03F;
         LastTimeToPlusLives = -5;
         perehodto2lvl = false;
-        // Destroy(LastPlayer); 
-        //LastPlayer.gameObject.SetActive(false);
-       
+        FlyResourse = 0;
+        curr_time = repeat_time;
+        //  if (PrefabLevel == 2) {StartCoroutine(ForFly()); }
     }
 
     private void FixedUpdate()
@@ -130,14 +133,14 @@ public class Character : MonoBehaviour
         #endregion
 
         #region input Jump
-        if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
+        if (isGrounded && Input.GetButton("Jump") && (CheckJump == false) && (PrefabLevel == 1))//прыжок 
         {
             if (transform.position.y < 5F)//если не на самой верхней платформе
                 rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 70F), ForceMode2D.Impulse);
             else
                 rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 65F), ForceMode2D.Impulse);
             CheckJump = true;
-            
+
         }
         if (((Input.GetButton("Jump")) == false) && isGrounded)//если отпустили клавишу прыжка
         {
@@ -173,9 +176,40 @@ public class Character : MonoBehaviour
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
         #endregion
 
+        #region Fly
+        curr_time -= Time.deltaTime; /* Вычитаем из 10 время кадра (оно в миллисекундах) */
+        if (curr_time <= 0) /* Время вышло пишем */
+        {
+            curr_time = repeat_time; /* запускает опять таймер,чтобы повторялось бесконечно */
+            if (isGrounded && FlyResourse <=98)
+            {
+                FlyResourse += 5;
+            }
+            else if (FlyResourse > 0 && !isGrounded)
+            {
+                FlyResourse -= 1;
+            }
+        }
+
+        if (Input.GetAxis("Vertical")!=0 && (PrefabLevel ==2)&&(FlyResourse>0))
+        {
+            //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+            if (transform.position.y > 6F) { rb.gravityScale = -0.1F; }
+            else if (transform.position.y > 5F) { rb.gravityScale = -0.2F; }
+            else if (transform.position.y > 5F){ rb.gravityScale = -0.3F; }
+            else { rb.gravityScale = -0.4F; }
+        }
+        else
+        {
+            rb.gravityScale = 0.3F;
+        }
+        #endregion
+
         //изменение цвета лисицы от хп
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);   
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);
+
+
     }
 
     private void CheckGround()//проверка стоит ли персонаж на земле

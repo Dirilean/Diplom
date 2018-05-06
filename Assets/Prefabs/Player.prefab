@@ -346,8 +346,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bb83459aa37ea734e990245316718ac0, type: 3}
   - {fileID: 8300000, guid: 147d8f3d5e6dd584e855f183753ac8f7, type: 3}
   JumpSound: {fileID: 8300000, guid: 5667d4f437454d5429d2e6ba69532f49, type: 3}
-  NextPlayerPrefab: {fileID: 0}
-  LastPlayer: {fileID: 0}
+  NextPlayerPrefab: {fileID: 114367505891547402, guid: 619fdaf93554d194ab51d2c3e33911a8,
+    type: 2}
+  PrefabLevel: 1
 --- !u!212 &212613967154384904
 SpriteRenderer:
   m_ObjectHideFlags: 1

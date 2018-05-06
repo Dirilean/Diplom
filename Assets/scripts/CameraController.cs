@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
         ManagerSky.SetActive(false);
         ManagerSpace.SetActive(false);
         Level = 1;
+        player = GameObject.FindWithTag("Player").GetComponent<Character>();
     }
 
     void Update()
