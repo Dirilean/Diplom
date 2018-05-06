@@ -67,7 +67,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1197424980672016
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  gr: {fileID: 1556216505849076, guid: 32dacb2324d09804886b88f638d47367, type: 2}
+  gr: {fileID: 1141352045887546, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
   forgen: {fileID: 0}
   maxstep: 10
 --- !u!114 &114184593208058278
@@ -414,11 +414,10 @@ MonoBehaviour:
   - {fileID: 1033810615360128, guid: 0aff9aa64bff2994e9023c18a4fa3961, type: 2}
   - {fileID: 1689081834629010, guid: f13f260158d286a4bae8b6a50295bdb8, type: 2}
   gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
+  GenPos: {x: 0, y: 0, z: 0}
   forgen: {fileID: 0}
   ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
   once: 1
-  maincamera: {fileID: 114289397912394798}
-  EndPlatform: {fileID: 1003280150520362}
 --- !u!114 &114254053811987664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,12 +466,9 @@ MonoBehaviour:
   - name: sky11
     prefab: {fileID: 114613397724555982, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
     count: 3
-  - name: 
-    prefab: {fileID: 0}
-    count: 0
-  - name: 
-    prefab: {fileID: 0}
-    count: 0
+  - name: DeathArea
+    prefab: {fileID: 114228718172651858, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
+    count: 10
 --- !u!114 &114289397912394798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -495,6 +491,8 @@ MonoBehaviour:
   to3lvl: 500
   toWin: 1000
   Level: 0
+  EndPlatformForest: {fileID: 1900179446234464, guid: e0f841ec110b27d418c0a0e30932e702,
+    type: 2}
 --- !u!114 &114398226411560540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -805,11 +803,10 @@ MonoBehaviour:
   - {fileID: 1033810615360128, guid: 0aff9aa64bff2994e9023c18a4fa3961, type: 2}
   - {fileID: 1689081834629010, guid: f13f260158d286a4bae8b6a50295bdb8, type: 2}
   gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
+  GenPos: {x: 0, y: 0, z: 0}
   forgen: {fileID: 0}
   ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
   once: 1
-  maincamera: {fileID: 0}
-  EndPlatform: {fileID: 0}
 --- !u!114 &114952190233755476
 MonoBehaviour:
   m_ObjectHideFlags: 1

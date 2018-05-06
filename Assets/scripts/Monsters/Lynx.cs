@@ -16,7 +16,8 @@ public class Lynx : Monster
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+            Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+
     }
 
     private void OnEnable()

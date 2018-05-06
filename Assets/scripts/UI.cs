@@ -15,7 +15,6 @@ public class UI : MonoBehaviour {
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
         Pero.color = new Color(1, 1, 1, 0);//изначально прозрачные
         Ogon.color= new Color(1, 1, 1, 0);
         Lives.fillAmount = Player.lives / 100.0F;
@@ -25,6 +24,11 @@ public class UI : MonoBehaviour {
 
     void Update ()
     {
+        if ((Player == null)||(Player.enabled==false))
+        {
+            Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+        }
+
         Lives.fillAmount = Mathf.Lerp(Lives.fillAmount, (Player.lives / 100.0F),Time.deltaTime*5);
         Ognesvet.fillAmount = Mathf.Lerp(Ognesvet.fillAmount,(Player.FireColb / Static.LevelUp), Time.deltaTime);
         text.text = Player.FireColb.ToString();

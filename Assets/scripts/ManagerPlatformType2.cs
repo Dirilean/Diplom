@@ -45,8 +45,7 @@ public class ManagerPlatformType2 : MonoBehaviour {
 
         if (forgen.busy ==false)//вызывается примерно каждые 2 шага
         {
-            GameObject DieArea = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(forgen.transform.position.x), 10), GenQ);//нижняя граница
-            GameObject DieArea2 = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(forgen.transform.position.x), 20), GenQ);//верхняя граница
+            GameObject DieArea = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(forgen.transform.position.x), 9), GenQ);//нижняя граница
 
             GenPlat(y1);
             GenPlat(y2);

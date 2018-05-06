@@ -78,7 +78,7 @@ public class Character : MonoBehaviour
     #region Level settings
     public Character NextPlayerPrefab;
     bool perehodto2lvl;
-  //  public Character LastPlayer;
+    public Character LastPlayer;
     public int PrefabLevel;//уровень персонажа для этого префаба
     #endregion
 
@@ -100,7 +100,7 @@ public class Character : MonoBehaviour
         perehodto2lvl = false;
         FlyResourse = 0;
         curr_time = repeat_time;
-        //  if (PrefabLevel == 2) {StartCoroutine(ForFly()); }
+       // Destroy(LastPlayer);
     }
 
     private void FixedUpdate()
@@ -133,26 +133,29 @@ public class Character : MonoBehaviour
         #endregion
 
         #region input Jump
-        if (isGrounded && Input.GetButton("Jump") && (CheckJump == false) && (PrefabLevel == 1))//прыжок 
+        if (PrefabLevel == 1)
         {
-            if (transform.position.y < 5F)//если не на самой верхней платформе
-                rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 70F), ForceMode2D.Impulse);
-            else
-                rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 65F), ForceMode2D.Impulse);
-            CheckJump = true;
+            if (isGrounded && Input.GetButton("Jump") && (CheckJump == false))//прыжок 
+            {
+                if (transform.position.y < 5F)//если не на самой верхней платформе
+                    rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 70F), ForceMode2D.Impulse);
+                else
+                    rb.AddForce(new Vector3(10F * Input.GetAxis("Horizontal"), 65F), ForceMode2D.Impulse);
+                CheckJump = true;
 
+            }
+            if (((Input.GetButton("Jump")) == false) && isGrounded)//если отпустили клавишу прыжка
+            {
+                CheckJump = false;
+            }
+            //звук приземления
+            if (lastIsGrounded != isGrounded)
+            {
+                if (landing) AuSourse.PlayOneShot(JumpSound);
+                landing = !landing;
+            }
+            lastIsGrounded = isGrounded;
         }
-        if (((Input.GetButton("Jump")) == false) && isGrounded)//если отпустили клавишу прыжка
-        {
-            CheckJump = false;
-        }
-        //звук приземления
-        if (lastIsGrounded != isGrounded)
-        {
-            if (landing) AuSourse.PlayOneShot(JumpSound);
-            landing = !landing;
-        }
-        lastIsGrounded = isGrounded;
         #endregion
 
         #region  Attack
@@ -177,38 +180,40 @@ public class Character : MonoBehaviour
         #endregion
 
         #region Fly
-        curr_time -= Time.deltaTime; /* Вычитаем из 10 время кадра (оно в миллисекундах) */
-        if (curr_time <= 0) /* Время вышло пишем */
+        if (PrefabLevel == 2)
         {
-            curr_time = repeat_time; /* запускает опять таймер,чтобы повторялось бесконечно */
-            if (isGrounded && FlyResourse <=98)
+            curr_time -= Time.deltaTime; /* Вычитаем из 10 время кадра (оно в миллисекундах) */
+            if (curr_time <= 0) /* Время вышло пишем */
             {
-                FlyResourse += 5;
+                curr_time = repeat_time; /* запускает опять таймер,чтобы повторялось бесконечно */
+                if (isGrounded && FlyResourse <= 98)
+                {
+                    FlyResourse += 5;
+                }
+                else if (FlyResourse > 0 && !isGrounded)
+                {
+                    FlyResourse -= 1;
+                }
             }
-            else if (FlyResourse > 0 && !isGrounded)
-            {
-                FlyResourse -= 1;
-            }
-        }
 
-        if (Input.GetAxis("Vertical")!=0 && (PrefabLevel ==2)&&(FlyResourse>0))
-        {
-            //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
-            if (transform.position.y > 6F) { rb.gravityScale = -0.1F; }
-            else if (transform.position.y > 5F) { rb.gravityScale = -0.2F; }
-            else if (transform.position.y > 5F){ rb.gravityScale = -0.3F; }
-            else { rb.gravityScale = -0.4F; }
-        }
-        else
-        {
-            rb.gravityScale = 0.3F;
+            if (Input.GetAxis("Vertical") != 0 && (FlyResourse > 0))
+            {
+                //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+                if (transform.position.y > 6F) { rb.gravityScale = -0.1F; }
+                else if (transform.position.y > 5F) { rb.gravityScale = -0.2F; }
+                else if (transform.position.y > 5F) { rb.gravityScale = -0.3F; }
+                else { rb.gravityScale = -0.4F; }
+            }
+            else
+            {
+                rb.gravityScale = 0.3F;
+            }
         }
         #endregion
 
         //изменение цвета лисицы от хп
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);
-
 
     }
 
@@ -258,7 +263,7 @@ public class Character : MonoBehaviour
                 Debug.Log("превращееееееееееение 2");
                 perehodto2lvl = true;
                 Character Player2 = Instantiate(NextPlayerPrefab, transform.position, new Quaternion(0, 0, 0, 0));
-               // Player2.LastPlayer = gameObject.GetComponent<Character>();
+             //   Player2.LastPlayer = gameObject.GetComponent<Character>();
                 gameObject.SetActive(false);
             }
         }

@@ -44,6 +44,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (player.enabled == false)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<Character>();
+        }
+
         int currentX = Mathf.RoundToInt(player.transform.position.x);
         lastX = Mathf.RoundToInt(player.transform.position.x);
         switch (player.PlayertLevel)//зависит от уровня иргрока

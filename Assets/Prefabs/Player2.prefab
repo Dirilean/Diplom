@@ -315,6 +315,8 @@ MonoBehaviour:
   speed: 0
   TimeToPlusLives: 5
   PlayertLevel: 0
+  FlyResourse: 0
+  repeat_time: 0.1
   LastTimeToPlusLives: 0
   AttackType: 0
   FirePrefab: {fileID: 114499267637046000, guid: 96b19e52d4804a047877ee8fea57062b,
@@ -348,7 +350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   busy: 0
-  Player: {fileID: 114367505891547402}
 --- !u!212 &212979555913609048
 SpriteRenderer:
   m_ObjectHideFlags: 1
