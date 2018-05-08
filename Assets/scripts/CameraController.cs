@@ -39,41 +39,52 @@ public class CameraController : MonoBehaviour
         ManagerSky.SetActive(false);
         ManagerSpace.SetActive(false);
         Level = 1;
-        player = GameObject.FindWithTag("Player").GetComponent<Character>();
+        player = GameObject.Find("Player").GetComponent<Character>();
     }
 
     void Update()
     {
-        if (player.enabled == false)
+        if (player.isActiveAndEnabled == false)
         {
-            player = GameObject.FindWithTag("Player").GetComponent<Character>();
+            player = GameObject.Find("Player2(Clone)").GetComponent<Character>();
         }
-
         int currentX = Mathf.RoundToInt(player.transform.position.x);
         lastX = Mathf.RoundToInt(player.transform.position.x);
-        switch (player.PlayertLevel)//зависит от уровня иргрока
+        if (player.PlayertLevel != player.PrefabLevel)//значит переходим на уровень выше
         {
-            case 1: Y = offset.y; break;
-            case 2:
+            switch (player.PlayertLevel)//зависит от уровня иргрока
+            {
+                case 1: Y = offset.y; break;
+                case 2:
                     {
-                        if (upCamera2lvl==false)//чтоб камера поднялась и больше не опускалась
+                        if (upCamera2lvl == false)//чтоб камера поднялась и больше не опускалась
                         {
-                            if (player.transform.position.y > 12.4F) Y=offset.y + 11F;
-                            else if (player.transform.position.y < offset.y) { Y=offset.y; }
-                            else Y= player.transform.position.y;
+                            if (player.transform.position.y > 12.4F) Y = offset.y + 11F;
+                            else if (player.transform.position.y < offset.y) { Y = offset.y; }
+                            else Y = player.transform.position.y;
                         }
                     }
                     break;
-            case 3:
-                {
-                    if (upCamera3lvl == false)//чтоб камера поднялась и больше не опускалась
+                case 3:
                     {
-                        if (player.transform.position.y > 21F) Y = offset.y + 21F;
-                        else if (player.transform.position.y < offset.y) { Y = offset.y+11;}
-                        else Y = player.transform.position.y;
+                        if (upCamera3lvl == false)//чтоб камера поднялась и больше не опускалась
+                        {
+                            if (player.transform.position.y > 21F) Y = offset.y + 21F;
+                            else if (player.transform.position.y < offset.y) { Y = offset.y + 11; }
+                            else Y = player.transform.position.y;
+                        }
                     }
-                }
-                break;
+                    break;
+            }
+        }
+        else//не переходим на уровень выше
+        {
+            switch (player.PrefabLevel)
+            {
+                case 1: Y = offset.y; break;
+                case 2: Y = offset.y + 11; break;
+                case 3: Y = offset.y + 21; break;
+            }
         }
         target = new Vector3(player.transform.position.x + offset.x, Y, transform.position.z);
         Vector3 currentPosition = Vector3.Lerp(transform.position, target, damping * Time.deltaTime);
@@ -91,6 +102,7 @@ public class CameraController : MonoBehaviour
                     GameObject endPlatformForest = Instantiate(EndPlatformForest, r, new Quaternion(0,0,0,0));//строим  конечные объекты уровня
                     Debug.Log(endPlatformForest.transform.position);
                     ManagerForest.SetActive(false);//выключаем этот менеджер
+                    ManagerSky.SetActive(true);
                 }
                 break;
             case 2: if ((player.FireColb > to3lvl)&& (Level == 2)) { Debug.Log("++"); Level = 3; ManagerSpace.SetActive(true); } break;//со 2 на 3

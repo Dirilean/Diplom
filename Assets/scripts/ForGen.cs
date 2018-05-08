@@ -11,16 +11,17 @@ public class ForGen : MonoBehaviour {
 
     private void Start()
     {
-
         transform.position = new Vector3(Static.ForgenPosition, 0);
+        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
     }
 
     private void Update()//перемещение
     {
-        if ((Player == null)|| (Player.enabled == false))
+        if (Player.enabled == false)
         {
             Player = GameObject.FindWithTag("Player").GetComponent<Character>();
         }
+
         if (Player.PrefabLevel==1) transform.position =new Vector3(Player.transform.position.x+Static.ForgenPosition, 0);
         else if (Player.PrefabLevel==2) transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 10F);
     }

@@ -311,7 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   busy: 0
-  Player: {fileID: 114651073852454648}
 --- !u!114 &114651073852454648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,7 +326,9 @@ MonoBehaviour:
   lives: 100
   speed: 0
   TimeToPlusLives: 5
-  PlayertLevel: 0
+  PlayertLevel: 1
+  FlyResourse: 0
+  repeat_time: 0
   LastTimeToPlusLives: 0
   AttackType: 0
   FirePrefab: {fileID: 114499267637046000, guid: 96b19e52d4804a047877ee8fea57062b,
@@ -348,6 +349,7 @@ MonoBehaviour:
   JumpSound: {fileID: 8300000, guid: 5667d4f437454d5429d2e6ba69532f49, type: 3}
   NextPlayerPrefab: {fileID: 114367505891547402, guid: 619fdaf93554d194ab51d2c3e33911a8,
     type: 2}
+  LastPlayer: {fileID: 0}
   PrefabLevel: 1
 --- !u!212 &212613967154384904
 SpriteRenderer:

@@ -84,7 +84,6 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        PlayertLevel = 1;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CheckJump = false;
@@ -260,10 +259,9 @@ public class Character : MonoBehaviour
 
             if ((transform.position.y > 12.5F)&& (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1) &&(perehodto2lvl==false))
             {
-                Debug.Log("превращееееееееееение 2");
+                Debug.Log("превращееееееееееение на 2ой ур");
                 perehodto2lvl = true;
                 Character Player2 = Instantiate(NextPlayerPrefab, transform.position, new Quaternion(0, 0, 0, 0));
-             //   Player2.LastPlayer = gameObject.GetComponent<Character>();
                 gameObject.SetActive(false);
             }
         }
