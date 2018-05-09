@@ -15,6 +15,9 @@ public class fon : MonoBehaviour {
         transform.localScale = new Vector3(scale, 1, 0);
         transform.localPosition =new Vector3(0,-MyCamera.pixelHeight/100+1);
     }
-	
 
+    private void Update()
+    {
+        transform.position = new Vector3(MyCamera.transform.position.x, -2F);
+    }
 }

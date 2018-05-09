@@ -65,7 +65,7 @@ public class ManagerPlatformType2 : MonoBehaviour {
             i = Random.Range(0, sky.Length);//выбираем любую платформу
             GameObject ForestPlatform = PoolManager.GetObject(sky[i].name, new Vector3(GenPos.x, Random.Range(-1,2)+y), GenQ);//ставим ее
             x = Random.Range(2, maxstep-4) + lenghts[i];//задаем через скольлко нужно будет сделать следующую платформу на этом уровне высоты
-            Debug.Log("posX "+GenPos.x+" lengh="+lenghts[i]+" next random ="+x);
+           // Debug.Log("posX "+GenPos.x+" lengh="+lenghts[i]+" next random ="+x);
         }
     }
 
