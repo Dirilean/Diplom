@@ -7,24 +7,33 @@ public class Deleter : MonoBehaviour {
     public Vector3 RespPos;//позиция воскрешения
     Rigidbody2D rb;
     float speed=0.01F;
-    public Character Player;
+    Character player;
     [SerializeField]
     float distance;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player").GetComponent<Character>();
     }
 
     private void Update()
     {
+
+        if (player.isActiveAndEnabled == false)
+        {
+            if (player.name == "Player") player = GameObject.Find("Player2(Clone)").GetComponent<Character>();
+            else if (player.name == "Player2(Clone)") player = GameObject.Find("Player3(Clone)").GetComponent<Character>();
+        }
+
+
         transform.position += Vector3.right * Time.deltaTime;
         rb.velocity = new Vector2(speed, rb.velocity.y);
-        distance = Player.transform.position.x - transform.position.x;
+        distance = player.transform.position.x - transform.position.x;
         //10F - расстояние свободного хода
         if (distance > 50F)//если расстояние между игроком и удаляющим объектом больше 100
         {
-            speed = Player.speed;
+            speed = player.speed;
         }
         if (distance < 10F)
         {
@@ -47,7 +56,7 @@ public class Deleter : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.GetComponent<Character>())//если не игрок
+        if (!collision.GetComponent<Character>()&&!collision.GetComponent<EndLevel>())//если не игрок и не конечная платформа
         {
             if (collision.GetComponent<PoolObject>())
             {

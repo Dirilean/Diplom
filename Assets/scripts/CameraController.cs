@@ -46,8 +46,10 @@ public class CameraController : MonoBehaviour
     {
         if (player.isActiveAndEnabled == false)
         {
-            player = GameObject.Find("Player2(Clone)").GetComponent<Character>();
+            if (player.name=="Player") player = GameObject.Find("Player2(Clone)").GetComponent<Character>();
+            else if (player.name == "Player2(Clone)") player = GameObject.Find("Player3(Clone)").GetComponent<Character>();
         }
+
         int currentX = Mathf.RoundToInt(player.transform.position.x);
         lastX = Mathf.RoundToInt(player.transform.position.x);
         if (player.PlayertLevel != player.PrefabLevel)//значит переходим на уровень выше
@@ -79,6 +81,17 @@ public class CameraController : MonoBehaviour
         }
         else//не переходим на уровень выше
         {
+            if ((ManagerSky.activeInHierarchy == false) && (player.PrefabLevel == 2))
+            {
+                Destroy(GameObject.Find("Pool"));
+                ManagerSky.SetActive(true);
+            }
+            else if ((ManagerSpace.activeInHierarchy == false) && (player.PrefabLevel == 3))
+            {
+                Destroy(GameObject.Find("Pool"));
+                ManagerSpace.SetActive(true);
+            }
+
             switch (player.PrefabLevel)
             {
                 case 1: Y = offset.y; break;
@@ -91,7 +104,7 @@ public class CameraController : MonoBehaviour
         transform.position = currentPosition;
 
 
-        switch (Level)//для создания объектов перехода на сл уровень
+        switch (Level)//для создания объектов перехода на сл уровень ()
         {
             case 1:
                 if ((player.FireColb > to2lvl)&&(Level==1))//с 1 на 2
@@ -102,7 +115,6 @@ public class CameraController : MonoBehaviour
                     GameObject endPlatformForest = Instantiate(EndPlatformForest, r, new Quaternion(0,0,0,0));//строим  конечные объекты уровня
                     Debug.Log(endPlatformForest.transform.position);
                     ManagerForest.SetActive(false);//выключаем этот менеджер
-                    ManagerSky.SetActive(true);
                 }
                 break;
             case 2: if ((player.FireColb > to3lvl)&& (Level == 2)) { Debug.Log("++"); Level = 3; ManagerSpace.SetActive(true); } break;//со 2 на 3

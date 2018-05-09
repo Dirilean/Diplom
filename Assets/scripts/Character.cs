@@ -55,6 +55,8 @@ public class Character : MonoBehaviour
     public Fire AttackWavePrefab;
     public Deleter DeleterSmoke;
     Fire prefab; //префаб текущей атаки
+    [SerializeField]
+    GameObject Ligting;
     #endregion
 
     #region Flags
@@ -78,7 +80,6 @@ public class Character : MonoBehaviour
     #region Level settings
     public Character NextPlayerPrefab;
     bool perehodto2lvl;
-    public Character LastPlayer;
     public int PrefabLevel;//уровень персонажа для этого префаба
     #endregion
 
@@ -88,9 +89,7 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         CheckJump = false;
         lives = 100;
-        speed = 3.5F;
         LastTimeToPlusLives = 0;
-        FireColb = 0;
         napravlenie = Vector3.right;
         //счетчики для звуков шагов
         i = 0;
@@ -99,6 +98,7 @@ public class Character : MonoBehaviour
         perehodto2lvl = false;
         FlyResourse = 0;
         curr_time = repeat_time;
+       // if (PrefabLevel == 2) Destroy(gameObject.transform.Find("Player"));
        // Destroy(LastPlayer);
     }
 
@@ -157,8 +157,40 @@ public class Character : MonoBehaviour
         }
         #endregion
 
+        #region Fly
+        if (PrefabLevel == 2)
+        {
+            curr_time -= Time.deltaTime; /* Вычитаем из 10 время кадра (оно в миллисекундах) */
+            if (curr_time <= 0) /* Время вышло пишем */
+            {
+                curr_time = repeat_time; /* запускает опять таймер,чтобы повторялось бесконечно */
+                if (isGrounded && FlyResourse <= 98)
+                {
+                    FlyResourse += 5;
+                }
+                else if (FlyResourse > 0 && !isGrounded)
+                {
+                    FlyResourse -= 1;
+                }
+            }
+
+            if (Input.GetButton("Jump") && (FlyResourse > 0))
+            {
+                //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+                if (transform.position.y > 6F) { rb.gravityScale = -0.1F; }
+                else if (transform.position.y > 5F) { rb.gravityScale = -0.2F; }
+                else if (transform.position.y > 5F) { rb.gravityScale = -0.3F; }
+                else { rb.gravityScale = -0.4F; }
+            }
+            else
+            {
+                rb.gravityScale = 0.3F;
+            }
+        }
+        #endregion
+
         #region  Attack
-        if (Input.GetButtonDown("Fire2"))//shooting
+        if (Input.GetButtonDown("Fire2")&&FireColb>0)//shooting
         {
             AttackType = 2;
             animator.SetBool("attack", true);
@@ -178,37 +210,7 @@ public class Character : MonoBehaviour
         if (Input.GetButtonDown("Lives")&&(lives<100)) ConvertToLives();//поменять огонь на жизни
         #endregion
 
-        #region Fly
-        if (PrefabLevel == 2)
-        {
-            curr_time -= Time.deltaTime; /* Вычитаем из 10 время кадра (оно в миллисекундах) */
-            if (curr_time <= 0) /* Время вышло пишем */
-            {
-                curr_time = repeat_time; /* запускает опять таймер,чтобы повторялось бесконечно */
-                if (isGrounded && FlyResourse <= 98)
-                {
-                    FlyResourse += 5;
-                }
-                else if (FlyResourse > 0 && !isGrounded)
-                {
-                    FlyResourse -= 1;
-                }
-            }
 
-            if (Input.GetAxis("Vertical") != 0 && (FlyResourse > 0))
-            {
-                //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
-                if (transform.position.y > 6F) { rb.gravityScale = -0.1F; }
-                else if (transform.position.y > 5F) { rb.gravityScale = -0.2F; }
-                else if (transform.position.y > 5F) { rb.gravityScale = -0.3F; }
-                else { rb.gravityScale = -0.4F; }
-            }
-            else
-            {
-                rb.gravityScale = 0.3F;
-            }
-        }
-        #endregion
 
         //изменение цвета лисицы от хп
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
@@ -259,10 +261,13 @@ public class Character : MonoBehaviour
 
             if ((transform.position.y > 12.5F)&& (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1) &&(perehodto2lvl==false))
             {
+                Instantiate(Ligting,transform.position+0.5F*Vector3.up, new Quaternion(0, 0, 0, 0));
                 Debug.Log("превращееееееееееение на 2ой ур");
                 perehodto2lvl = true;
                 Character Player2 = Instantiate(NextPlayerPrefab, transform.position, new Quaternion(0, 0, 0, 0));
+                Player2.FireColb = FireColb;
                 gameObject.SetActive(false);
+                
             }
         }
         //дописать для сл уровней

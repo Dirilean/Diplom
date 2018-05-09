@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireColb: 0
   lives: 100
-  speed: 0
+  speed: 3.5
   TimeToPlusLives: 5
   PlayertLevel: 2
   FlyResourse: 0
@@ -325,6 +325,7 @@ MonoBehaviour:
     type: 2}
   DeleterSmoke: {fileID: 114284598271599640, guid: 5d95cff2a8f6dd44c9578821a3b3baa1,
     type: 2}
+  Ligting: {fileID: 1868531026016624, guid: 5425c3ebf9e85ad49aa03ccdb9310518, type: 2}
   isGrounded: 0
   AuSourse: {fileID: 82181242602451022}
   RunSound:
@@ -337,7 +338,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 147d8f3d5e6dd584e855f183753ac8f7, type: 3}
   JumpSound: {fileID: 8300000, guid: 5667d4f437454d5429d2e6ba69532f49, type: 3}
   NextPlayerPrefab: {fileID: 0}
-  LastPlayer: {fileID: 0}
   PrefabLevel: 2
 --- !u!114 &114464273666282458
 MonoBehaviour:
@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   busy: 0
+  Player: {fileID: 114367505891547402}
 --- !u!212 &212979555913609048
 SpriteRenderer:
   m_ObjectHideFlags: 1

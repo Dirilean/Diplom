@@ -16,20 +16,24 @@ public class ManagerPlatformType2 : MonoBehaviour {
     //GameObject Fon;
 
     //________________
-    float y1;
-    float y2;
-    float y3;
-    float y4;
-    public float maxstep;//максимальный шаг между платформами
+    float x1;//расстояние между платформами
+    float x2;
+    float x1last;//расстояние между платформами предыдущее
+    float x2last;
+    float y1=13F;//высота платформ
+    float y2=17F;
+    public float maxstep=10;//максимальный шаг между платформами
     int i;
 
 
 
     void Start()
     {
-        maxstep = 10;
         GenPos = new Vector3((forgen.transform.position.x + Static.StepPlatf), 0);
         LastFonPos = 16.0F;
+        GameObject player = GameObject.Find("Player2(Clone)");
+      //  forgen = player.transform.parent.gameObject.transform.Find("Generator").GetComponent<ForGen>();
+        forgen = player.transform.Find("Generator").GetComponent<ForGen>();
     }
 
 
@@ -45,24 +49,24 @@ public class ManagerPlatformType2 : MonoBehaviour {
 
         if (forgen.busy ==false)//вызывается примерно каждые 2 шага
         {
+          //  Debug.Log(forgen.GetInstanceID()+" + "+forgen.transform.position);
             GameObject DieArea = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(forgen.transform.position.x), 9), GenQ);//нижняя граница
 
-            GenPlat(y1);
-            GenPlat(y2);
-            GenPlat(y3);
-            GenPlat(y4);
+            GenPlat(ref x1, ref y1,ref x1last);
+            GenPlat(ref x2,ref y2,ref x2last);
         }
     }
 
-    void GenPlat(float y)
+    void GenPlat(ref float x,ref float y,ref float xlast)
     {
-        if (y <= 0)//уровень высоты
+        if (GenPos.x >=xlast+x)
         {
+            xlast = GenPos.x;
             i = Random.Range(0, sky.Length);//выбираем любую платформу
-            GameObject ForestPlatform = PoolManager.GetObject(sky[i].name, new Vector3(GenPos.x, 12F), GenQ);//ставим ее
-            y = Random.Range(0, maxstep + 1) + lenghts[i] + 2F;//задаем через скольлко нужно будет сделать следующую платформу на этом уровне высоты
+            GameObject ForestPlatform = PoolManager.GetObject(sky[i].name, new Vector3(GenPos.x, Random.Range(-1,2)+y), GenQ);//ставим ее
+            x = Random.Range(2, maxstep-4) + lenghts[i];//задаем через скольлко нужно будет сделать следующую платформу на этом уровне высоты
+            Debug.Log("posX "+GenPos.x+" lengh="+lenghts[i]+" next random ="+x);
         }
-        else { y -= 2; }
     }
 
 }

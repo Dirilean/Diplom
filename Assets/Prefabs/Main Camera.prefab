@@ -67,7 +67,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1197424980672016
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157685014983984}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d780ba1a30b2fd429d2d1693c632964, type: 3}
   m_Name: 
@@ -330,20 +330,20 @@ MonoBehaviour:
   - {fileID: 1823244511304618, guid: d01bf2066b568d549afc11377a05b865, type: 2}
   - {fileID: 1198063401067294, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
   lenghts:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  gr: {fileID: 1141352045887546, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
-  forgen: {fileID: 0}
+  - 6
+  - 6
+  - 6
+  - 8
+  - 8
+  - 8
+  - 9
+  - 9
+  - 9
+  - 4
+  - 4
+  - 4
+  gr: {fileID: 1787173929363658, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
+  forgen: {fileID: 114464273666282458, guid: 619fdaf93554d194ab51d2c3e33911a8, type: 2}
   maxstep: 10
 --- !u!114 &114184593208058278
 MonoBehaviour:
@@ -467,7 +467,16 @@ MonoBehaviour:
     prefab: {fileID: 114613397724555982, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
     count: 3
   - name: DeathArea
-    prefab: {fileID: 114228718172651858, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
+    prefab: {fileID: 114537226525179156, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
+    count: 10
+  - name: Fire
+    prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
+    count: 1
+  - name: AttackWave
+    prefab: {fileID: 114603130144821758, guid: a9d537dd03dc6904abe4295814186cb4, type: 2}
+    count: 1
+  - name: FireSphere
+    prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
     count: 10
 --- !u!114 &114289397912394798
 MonoBehaviour:

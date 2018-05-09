@@ -152,42 +152,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114289397912394798, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114048823708366170, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: forgen
-      value: 
-      objectReference: {fileID: 1575311541}
-    - target: {fileID: 114589350251242152, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: forgen
-      value: 
-      objectReference: {fileID: 1575311541}
-    - target: {fileID: 114952190233755476, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: forgen
-      value: 
-      objectReference: {fileID: 1575311541}
-    - target: {fileID: 114922559996956532, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: forgen
-      value: 
-      objectReference: {fileID: 1575311541}
-    - target: {fileID: 114398226411560540, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: forgen
-      value: 
-      objectReference: {fileID: 1575311541}
-    - target: {fileID: 114184593208058278, guid: 585de285dbcba494bad12a21d8e7a0a8,
-        type: 2}
-      propertyPath: forgen
-      value: 
-      objectReference: {fileID: 1575311541}
-    - target: {fileID: 114680035184760446, guid: 585de285dbcba494bad12a21d8e7a0a8,
+    - target: {fileID: 114219598403357108, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
       propertyPath: forgen
       value: 
@@ -197,14 +162,40 @@ Prefab:
       propertyPath: forgen
       value: 
       objectReference: {fileID: 1575311541}
-    - target: {fileID: 114219598403357108, guid: 585de285dbcba494bad12a21d8e7a0a8,
+    - target: {fileID: 114680035184760446, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
       propertyPath: forgen
       value: 
       objectReference: {fileID: 1575311541}
-    - target: {fileID: 1157685014983984, guid: 585de285dbcba494bad12a21d8e7a0a8, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 114184593208058278, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: forgen
+      value: 
+      objectReference: {fileID: 1575311541}
+    - target: {fileID: 114398226411560540, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: forgen
+      value: 
+      objectReference: {fileID: 1575311541}
+    - target: {fileID: 114922559996956532, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: forgen
+      value: 
+      objectReference: {fileID: 1575311541}
+    - target: {fileID: 114952190233755476, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: forgen
+      value: 
+      objectReference: {fileID: 1575311541}
+    - target: {fileID: 114589350251242152, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: forgen
+      value: 
+      objectReference: {fileID: 1575311541}
+    - target: {fileID: 114972085345579126, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585de285dbcba494bad12a21d8e7a0a8, type: 2}
@@ -308,7 +299,7 @@ Transform:
   - {fileID: 1245920790}
   - {fileID: 1621161076}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &186365457
 Prefab:
@@ -1581,7 +1572,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4052726563016192, guid: e0f841ec110b27d418c0a0e30932e702, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1900179446234464, guid: e0f841ec110b27d418c0a0e30932e702, type: 2}
       propertyPath: m_IsActive
@@ -2682,11 +2673,6 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1808690438}
-    - target: {fileID: 114284598271599640, guid: 5d95cff2a8f6dd44c9578821a3b3baa1,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d95cff2a8f6dd44c9578821a3b3baa1, type: 2}
   m_IsPrefabParent: 0
