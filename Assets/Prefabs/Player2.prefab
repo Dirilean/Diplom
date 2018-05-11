@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50730323665072594}
   - component: {fileID: 114367505891547402}
   - component: {fileID: 82181242602451022}
-  - component: {fileID: 95029583287078998}
+  - component: {fileID: 95612671533060312}
   m_Layer: 10
   m_Name: Player2
   m_TagString: Player
@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455892767287154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.262, y: 3.997, z: 0}
+  m_LocalPosition: {x: -5.41, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4406962329448520}
@@ -246,7 +246,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95029583287078998
+--- !u!95 &95612671533060312
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -255,7 +255,7 @@ Animator:
   m_GameObject: {fileID: 1455892767287154}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3d92647efc2fdbe408962a7ec2e111cb, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd875fbb4c7330444999ec2b3ff26209, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -272,9 +272,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.9448276, b: 0.5, a: 1}
-  m_Intensity: 12.19
-  m_Range: 7.2413874
+  m_Color: {r: 1, g: 0.968357, b: 0.71323526, a: 1}
+  m_Intensity: 10
+  m_Range: 7.17
   m_SpotAngle: 68.6
   m_CookieSize: 10
   m_Shadows:
@@ -284,7 +284,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.096
     m_NormalBias: 0.4
-    m_NearPlane: 0.07241387
+    m_NearPlane: 0.0748
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -386,8 +386,8 @@ SpriteRenderer:
   m_SortingLayerID: 1522085469
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a033691b8fed7e24e9ca4966de4f512e, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ca3a939229116af4d969ab08ae3b598d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
