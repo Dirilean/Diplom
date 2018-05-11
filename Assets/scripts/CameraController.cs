@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -33,6 +34,31 @@ public class CameraController : MonoBehaviour
     bool upCamera3lvl;
     float Y;//для офсета на уровни
 
+    #region SubMenu Methods
+    public GameObject SubMenu;
+
+    //Метод для нажатия на кнопку resume
+    public void SetMenuOff()
+    {
+        //Выключаем меню
+        SubMenu.SetActive(false);
+        //Запускаем игру дальше
+        Time.timeScale = 1;
+    }
+
+    public void SetMeinMenu()
+    {
+        SceneManager.LoadScene("Demo");
+    }
+
+    //Метод для нажатия на кнопку exit
+    public void CloseGame()
+    {
+        //Выключаем игру
+        Application.Quit();
+    }
+    #endregion
+
     void Start()
     {
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);
@@ -44,12 +70,25 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        #region Play SubMenu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //включаем меню
+            SubMenu.SetActive(true);
+            //останавливаем все, что зависит от времени
+            Time.timeScale = 0;
+        }
+        #endregion
+
+        #region Set Player
         if (player.isActiveAndEnabled == false)
         {
             if (player.name=="Player") player = GameObject.Find("Player2(Clone)").GetComponent<Character>();
             else if (player.name == "Player2(Clone)") player = GameObject.Find("Player3(Clone)").GetComponent<Character>();
         }
+        #endregion
 
+        #region Camera go
         int currentX = Mathf.RoundToInt(player.transform.position.x);
         lastX = Mathf.RoundToInt(player.transform.position.x);
         if (player.PlayertLevel != player.PrefabLevel)//значит переходим на уровень выше
@@ -120,7 +159,8 @@ public class CameraController : MonoBehaviour
             case 2: if ((player.FireColb > to3lvl)&& (Level == 2)) { Debug.Log("++"); Level = 3; ManagerSpace.SetActive(true); } break;//со 2 на 3
             case 3: if ((player.FireColb > toWin)&& (Level == 3)) { Debug.Log("+++"); Level = 4; Debug.Log("WIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN"); } break;//выигрыш
         }
-        
+        #endregion
+
     }
 
 
