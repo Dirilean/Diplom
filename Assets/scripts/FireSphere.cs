@@ -31,6 +31,7 @@ public class FireSphere : MonoBehaviour {
         once = false;
         CheckPlayer = false;//изначально к игроку не летим
         Velocity = 0.0F;
+        
     }
 
     private void OnEnable()
@@ -38,6 +39,7 @@ public class FireSphere : MonoBehaviour {
         Verh = new Vector3(0, 0.15F) + transform.position;
         Niz = -new Vector3(0, 0.1F) + transform.position;
         CheckPlayer = false;//изначально к игроку не летим
+        Now = Verh;
         //Debug.Log("OnEnable "+CheckPlayer);
     }
 
@@ -46,9 +48,6 @@ public class FireSphere : MonoBehaviour {
         Velocity = 0.0F;
         transform.position = Vector3.zero;
         CheckPlayer = false;
-        Now = Vector3.zero;
-        Verh= Vector3.zero;
-        Niz = Vector3.zero;
        // Debug.Log("OnDisnable " + CheckPlayer);
     }
 

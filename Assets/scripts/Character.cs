@@ -221,8 +221,8 @@ public class Character : MonoBehaviour
     private void CheckGround()//проверка стоит ли персонаж на земле
     {
         //круг вокруг нижней линии персонажа. если в него попадают колайдеры то массив заполняется ими
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1F);
-        isGrounded = colliders.Length > 1; //один колайдер всегда внутри (кол. персонажа)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1F,1<<13);
+        isGrounded = colliders.Length > 0; //один колайдер всегда внутри (кол. персонажа)
     }
 
     private void Attack()//вызывается из аниматора

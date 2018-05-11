@@ -56,7 +56,7 @@ public class Deleter : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.GetComponent<Character>()&&!collision.GetComponent<EndLevel>())//если не игрок и не конечная платформа
+        if (!collision.GetComponent<Character>())//&&!collision.GetComponent<EndLevel>())//если не игрок и не конечная платформа
         {
             if (collision.GetComponent<PoolObject>())
             {
