@@ -50,6 +50,10 @@ public class Monster : MonoBehaviour
         set { animator.SetInteger("State", (int)value); }
     }
 
+    private void Start()
+    {
+        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+    }
 
     private void OnEnable()
     {
