@@ -29,7 +29,7 @@ public class Monster : MonoBehaviour
     ParticleSystem Smoke;
     public bool die;//запустили уже скрипт умирания? (используется для корутины)
     public bool isplayer;//мы столкнулись с игроком?
-    Character Player;
+    public Character Player;
     float deltax;
 
     public float radius;//радиус удара

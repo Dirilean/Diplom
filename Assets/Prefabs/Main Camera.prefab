@@ -331,7 +331,6 @@ MonoBehaviour:
   gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
   GenPos: {x: 0, y: 0, z: 0}
   forgen: {fileID: 0}
-  ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
   once: 1
 --- !u!114 &114113080748825424
 MonoBehaviour:
@@ -346,7 +345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
-  forgen: {fileID: 0}
   lvl: 1
   minY: 0
   maxY: 6
@@ -407,7 +405,6 @@ MonoBehaviour:
   gr: {fileID: 1465083644907660, guid: cdab765252b53f74c85960940973377e, type: 2}
   GenPos: {x: 0, y: 0, z: 0}
   forgen: {fileID: 0}
-  ForestFon: {fileID: 1900138906095574, guid: 72ae3faa17e36a748980e99f92b2d794, type: 2}
   once: 1
 --- !u!114 &114328283710401862
 MonoBehaviour:
@@ -568,9 +565,6 @@ MonoBehaviour:
   - name: f41
     prefab: {fileID: 114834575814674176, guid: f13f260158d286a4bae8b6a50295bdb8, type: 2}
     count: 2
-  - name: "\u043B\u0435\u0441 \u0444\u043E\u043D"
-    prefab: {fileID: 114011504316116952, guid: 517d39747e9544442b5b50780b6dd0cf, type: 2}
-    count: 50
   - name: xz
     prefab: {fileID: 114412678513771442, guid: cdab765252b53f74c85960940973377e, type: 2}
     count: 50
@@ -605,7 +599,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
-  forgen: {fileID: 0}
   lvl: 2
   minY: 12
   maxY: 18
@@ -755,6 +748,7 @@ MonoBehaviour:
   Level: 0
   EndPlatformForest: {fileID: 1900179446234464, guid: e0f841ec110b27d418c0a0e30932e702,
     type: 2}
+  SubMenu: {fileID: 0}
 --- !u!114 &114895876656381114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -790,7 +784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
-  forgen: {fileID: 0}
   lvl: 0
   minY: 0
   maxY: 6
