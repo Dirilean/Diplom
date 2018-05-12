@@ -27,7 +27,7 @@ public class FireSphere : MonoBehaviour {
         smoothTime = rnd.Next(3) + 1;
         smoothTime1 = smoothTime;
         target = new Vector3(0, 1);
-        TimeToPlayer = 4f;
+        TimeToPlayer = 8f;
         once = false;
         CheckPlayer = false;//изначально к игроку не летим
         Velocity = 0.0F;

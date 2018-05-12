@@ -17,6 +17,7 @@ public class Parallax : MonoBehaviour
     public GameObject fon2;
     float currentPos1;
     float currentPos2;
+    public float deactivateY;
 
     //выполнится один раз при запуске скрипта
     void Start()
@@ -29,6 +30,7 @@ public class Parallax : MonoBehaviour
     //выполняется каждый кадр
     void Update()
     {
+        if (camera.transform.position.y > deactivateY) gameObject.SetActive(false);
 
         offset = camera.transform.position - lastPos;
 

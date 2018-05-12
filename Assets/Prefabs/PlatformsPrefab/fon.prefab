@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4745085406357172}
-  - component: {fileID: 114662787502192994}
+  - component: {fileID: 114728137269139294}
   m_Layer: 0
   m_Name: fon
   m_TagString: Untagged
@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039469236705060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.337765, y: 5.6967444, z: -0.3780702}
+  m_LocalPosition: {x: 26.84, y: 3.5, z: -0.3780702}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4492871572857314}
@@ -100,7 +100,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114662787502192994
+--- !u!114 &114728137269139294
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -112,10 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  speed: -5
+  speed: 0
   lenghtSprite: 30.01
   fon1: {fileID: 1400615060658010}
   fon2: {fileID: 1851767444648336}
+  deactivateY: 14
 --- !u!212 &212042382224208774
 SpriteRenderer:
   m_ObjectHideFlags: 1
