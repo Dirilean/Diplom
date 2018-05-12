@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 198632160643262884}
   - component: {fileID: 114603130144821758}
   - component: {fileID: 199323272556542736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3581,8 +3581,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1677871417
-  m_SortingLayer: 5
+  m_SortingLayerID: 1522085469
+  m_SortingLayer: 6
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c28bc8c185d3d0c43b18a1460d92e5cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

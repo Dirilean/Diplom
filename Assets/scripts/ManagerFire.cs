@@ -30,26 +30,24 @@ public class ManagerFire : MonoBehaviour {
         LastPos = 20;
         RndCol = 3;
         YPos = 0.5F;
-        GameObject player = GameObject.Find("Player2(Clone)");
+        GameObject player = GameObject.Find("Player");
         forgen = player.transform.Find("Generator").GetComponent<ForGen>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (forgen==null)
-        //{
-        //    if (GameObject.Find("Player").activeInHierarchy == true)
-        //    {
-        //        forgen = GameObject.Find("Player").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
-        //        Debug.Log(forgen.GetInstanceID());
-        //    }
-        //    else //if (GameObject.Find("Player2(Clone)").activeInHierarchy==true)
-        //    {
-        //        forgen = GameObject.Find("Player2(Clone)").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
-        //        Debug.Log(forgen.GetInstanceID());
-        //    }
-        //}
+        if (forgen == null)
+        {
+            if (GameObject.Find("Player").activeInHierarchy == true)
+            {
+                forgen = GameObject.Find("Player").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
+            }
+            else //if (GameObject.Find("Player2(Clone)").activeInHierarchy==true)
+            {
+                forgen = GameObject.Find("Player2(Clone)").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
+            }
+        }
 
         switch (lvl)
         {
@@ -85,9 +83,9 @@ public class ManagerFire : MonoBehaviour {
                         if ((colliders.Length > 0) && (nocolliders.Length == 0) && (YPos > minY) && (YPos < maxY))//проверка на близость других коллайдеров и существование высоты
                         {
                             FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
-                            firesphere.Now = new Vector2(XPos, YPos);
-                            firesphere.Verh = new Vector2(XPos, YPos + 0.15F);
-                            firesphere.Niz = new Vector2(XPos, YPos - 0.1F);
+                            //firesphere.Now = new Vector2(XPos, YPos);
+                            //firesphere.Verh = new Vector2(XPos, YPos + 0.15F);
+                            //firesphere.Niz = new Vector2(XPos, YPos - 0.1F);
                         }
                         LastPos = forgen.transform.position.x - zaderzka;
 
@@ -126,9 +124,9 @@ public class ManagerFire : MonoBehaviour {
                         {
                             Debug.Log("создаем огонь в точке "+XPos+", "+YPos);
                             FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
-                            firesphere.Now = new Vector2(XPos, YPos);
-                            firesphere.Verh = new Vector2(XPos, YPos + 0.15F);
-                            firesphere.Niz = new Vector2(XPos, YPos - 0.1F);
+                            //firesphere.Now = new Vector2(XPos, YPos);
+                            //firesphere.Verh = new Vector2(XPos, YPos + 0.15F);
+                            //firesphere.Niz = new Vector2(XPos, YPos - 0.1F);
                         }
                         LastPos = forgen.transform.position.x - zaderzka;
                     }

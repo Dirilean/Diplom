@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
 
     public void SetMeinMenu()
     {
-        SceneManager.LoadScene("Demo");
+        SceneManager.LoadScene("Menu");
     }
 
     //Метод для нажатия на кнопку exit

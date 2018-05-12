@@ -246,9 +246,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)//если платформа конца уровня
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-       if ((collision.collider.GetComponent<EndLevel>())&&(PrefabLevel == 1))
+
+        if ((collision.collider.GetComponent<EndLevel>())&&(PrefabLevel == 1))//если платформа конца уровня
         {
             if (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1)
             {

@@ -57,11 +57,11 @@ public class Fire : MonoBehaviour
 	
     private void OnTriggerEnter2D(Collider2D collider)//уничтожение пули в момент попадания в юнит
     {
-        Monster unit = collider.GetComponent<Monster>();
-
-        if (unit)
+        Monster monster = collider.GetComponent<Monster>();
+        Debug.Log(monster.name);
+        if (monster)
         {
-            unit.lives-=damage;//получение урона от пули
+            monster.lives-=damage;//получение урона от пули
             GetComponent<PoolObject>().ReturnToPool();
         }
     }

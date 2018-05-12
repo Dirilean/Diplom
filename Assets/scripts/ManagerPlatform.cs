@@ -13,9 +13,6 @@ public class ManagerPlatform : MonoBehaviour
     [SerializeField]
     ForGen forgen;
     float LastPos;//Координата последней платформы
-    float LastFonPos;//координата последнего фонового рисунка
-    [SerializeField]
-    GameObject ForestFon;
     byte method;//номер метода платформы, совпадает с номером метода
 
     System.Random rnd = new System.Random();
@@ -30,7 +27,6 @@ public class ManagerPlatform : MonoBehaviour
         GenPos = new Vector3((forgen.transform.position.x+Static.StepPlatf),0);
         LastPos = forgen.transform.position.x + Static.StepPlatf;
         RndStep = 1;
-        LastFonPos = 16.0F;
     }
 
 
@@ -46,13 +42,6 @@ public class ManagerPlatform : MonoBehaviour
             }//если в позиции генерации пусто, создай землю
             #endregion
 
-            #region fon
-            if ((LastFonPos + 30.0F) <= GenPos.x)//генерация фоновых деревьев
-            {
-                LastFonPos += 30.0F;
-                GameObject forestFon = PoolManager.GetObject(ForestFon.name, new Vector3(LastFonPos, 0), GenQ);
-            }
-            #endregion
 
             #region Platforms
             if (((int)GenPos.x % 2 == 0) && (((int)LastPos + RndStep == (int)GenPos.x)))//каждую четную позицию генерации вызывай это
