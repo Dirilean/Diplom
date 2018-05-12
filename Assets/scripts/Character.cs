@@ -296,6 +296,7 @@ public class Character : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.black;
         lives = 0;
+        Debug.Log("Вы умерли!!!!!!!!!!!!!!!!!");
         timeDie = Time.time;
         if (timeDie + zaderzhka > Time.time)
         {

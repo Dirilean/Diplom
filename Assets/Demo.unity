@@ -842,7 +842,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1157153072097780, guid: cfd2149a6fef6294899e32005644f307, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfd2149a6fef6294899e32005644f307, type: 2}
@@ -1541,7 +1541,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1586209228
+  randomSeed: 177640179
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6861,7 +6861,7 @@ Prefab:
       objectReference: {fileID: 1808690438}
     - target: {fileID: 1347444600529868, guid: 5d95cff2a8f6dd44c9578821a3b3baa1, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d95cff2a8f6dd44c9578821a3b3baa1, type: 2}

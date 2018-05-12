@@ -118,7 +118,7 @@ public class ManagerFire : MonoBehaviour {
 
                         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(XPos, YPos), 0.4F);
 
-                        Debug.Log("высота: " + YPos + " в массиве объектов: " + nocolliders.Length);
+                        //Debug.Log("высота: " + YPos + " в массиве объектов: " + nocolliders.Length);
 
                         if ((nocolliders.Length == 0) && (YPos > minY) && (YPos < maxY))//проверка на близость других коллайдеров и существование высоты
                         {

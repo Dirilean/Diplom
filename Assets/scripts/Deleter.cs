@@ -19,6 +19,7 @@ public class Deleter : MonoBehaviour {
 
     private void Update()
     {
+        RespPos = new Vector3(transform.position.x + 20F, player.transform.position.y + 3.5F);
 
         if (player.isActiveAndEnabled == false)
         {
@@ -49,8 +50,8 @@ public class Deleter : MonoBehaviour {
     {
       if(collision.GetComponent<Character>())
         {
-            collision.GetComponent<Character>().lives = 0;
-            RespPos = new Vector3(transform.position.x +20F, 4.5F);
+            collision.GetComponent<Character>().lives -=50;
+            collision.transform.position = RespPos;
         }
     }
 
