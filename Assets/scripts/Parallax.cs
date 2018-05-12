@@ -24,7 +24,10 @@ public class Parallax : MonoBehaviour
     {
         lastPos = camera.transform.position;
         currentPos1 = transform.position.x;
-        currentPos2 = transform.position.x + lenghtSprite;
+        if (fon2 != null)
+        {
+            currentPos2 = transform.position.x + lenghtSprite;
+        }
     }
 
     //выполняется каждый кадр
@@ -37,28 +40,50 @@ public class Parallax : MonoBehaviour
         lastPos = camera.transform.position;
 
         fon1.transform.Translate(offset.x * speed * Time.deltaTime,0,0);
-        fon2.transform.Translate(offset.x * speed * Time.deltaTime, 0, 0);
 
-        //вперед
-        if (camera.transform.position.x >= fon1.transform.position.x+lenghtSprite*1.5F)
+        if (fon2 != null)
         {
-            fon1.transform.position = new Vector3(fon2.transform.position.x+lenghtSprite, fon1.transform.position.y, fon1.transform.position.z);
+            #region two mod
+            fon2.transform.Translate(offset.x * speed * Time.deltaTime, 0, 0);
+
+            //вперед
+            if (camera.transform.position.x >= fon1.transform.position.x + lenghtSprite * 1.5F)
+            {
+                fon1.transform.position = new Vector3(fon2.transform.position.x + lenghtSprite, fon1.transform.position.y, fon1.transform.position.z);
+            }
+
+            if (camera.transform.position.x >= fon2.transform.position.x + lenghtSprite * 1.5F)
+            {
+                fon2.transform.position = new Vector3(fon1.transform.position.x + lenghtSprite, fon2.transform.position.y, fon2.transform.position.z);
+            }
+
+            //назад
+            if (camera.transform.position.x <= fon1.transform.position.x - lenghtSprite * 1.5F)
+            {
+                fon1.transform.position = new Vector3(fon2.transform.position.x - lenghtSprite, fon1.transform.position.y, fon1.transform.position.z);
+            }
+
+            if (camera.transform.position.x <= fon2.transform.position.x - lenghtSprite * 1.5F)
+            {
+                fon2.transform.position = new Vector3(fon1.transform.position.x - lenghtSprite, fon2.transform.position.y, fon2.transform.position.z);
+            }
+            #endregion
+        }
+        else
+        {
+            #region one mod
+            //вперед
+            if (camera.transform.position.x >= fon1.transform.position.x + lenghtSprite * 1.5F)
+            {
+                fon1.transform.position = new Vector3(fon1.transform.position.x + lenghtSprite*2, fon1.transform.position.y, fon1.transform.position.z);
+            }
+            //назад
+            if (camera.transform.position.x <= fon1.transform.position.x - lenghtSprite * 1.5F)
+            {
+                fon1.transform.position = new Vector3(fon1.transform.position.x - lenghtSprite*2, fon1.transform.position.y, fon1.transform.position.z);
+            }
+            #endregion
         }
 
-        if (camera.transform.position.x >= fon2.transform.position.x + lenghtSprite * 1.5F)
-        {
-            fon2.transform.position = new Vector3(fon1.transform.position.x + lenghtSprite, fon2.transform.position.y, fon2.transform.position.z);
-        }
-
-        //назад
-        if (camera.transform.position.x <= fon1.transform.position.x - lenghtSprite * 1.5F)
-        {
-            fon1.transform.position = new Vector3(fon2.transform.position.x - lenghtSprite, fon1.transform.position.y, fon1.transform.position.z);
-        }
-
-        if (camera.transform.position.x <= fon2.transform.position.x - lenghtSprite * 1.5F)
-        {
-            fon2.transform.position = new Vector3(fon1.transform.position.x - lenghtSprite, fon2.transform.position.y, fon2.transform.position.z);
-        }
     }
 }

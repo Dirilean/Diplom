@@ -39,7 +39,7 @@ public class ManagerFire : MonoBehaviour {
     {
         if (forgen == null)
         {
-            if (GameObject.Find("Player").activeInHierarchy == true)
+            if (GameObject.Find("Player"))
             {
                 forgen = GameObject.Find("Player").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
             }
@@ -98,7 +98,7 @@ public class ManagerFire : MonoBehaviour {
                     {
                         if (RndCol < 1)
                         {
-                            Debug.Log("rndcol<1 =" + RndCol+" x="+ (forgen.transform.position.x - zaderzka));
+                            //Debug.Log("rndcol<1 =" + RndCol+" x="+ (forgen.transform.position.x - zaderzka));
                             RndY = rnd.Next(7);//7 вида высоты
                             switch (RndY)//выбор высоты генерации
                             {
@@ -122,7 +122,6 @@ public class ManagerFire : MonoBehaviour {
 
                         if ((nocolliders.Length == 0) && (YPos > minY) && (YPos < maxY))//проверка на близость других коллайдеров и существование высоты
                         {
-                            Debug.Log("создаем огонь в точке "+XPos+", "+YPos);
                             FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
                             //firesphere.Now = new Vector2(XPos, YPos);
                             //firesphere.Verh = new Vector2(XPos, YPos + 0.15F);

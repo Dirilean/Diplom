@@ -18,6 +18,6 @@ public class fon : MonoBehaviour {
 
     private void Update()
     {
-        transform.position = new Vector3(MyCamera.transform.position.x, -2F);
+        transform.position = new Vector3(Mathf.Lerp(transform.position.x,MyCamera.transform.position.x, 500F * Time.deltaTime), -2F);
     }
 }
