@@ -8,6 +8,7 @@ public class Lynx : Monster
 
 
     float DistanceSee;//видимость
+    Character TargetPlayer;
 
     public bool isGrounded;
     float betveen;//расстояние между рысью и игроком в плоскости х
@@ -15,7 +16,7 @@ public class Lynx : Monster
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+        TargetPlayer = GameObject.FindWithTag("Player").GetComponent<Character>();
     }
 
     private void OnEnable()
@@ -32,7 +33,7 @@ public class Lynx : Monster
     private void FixedUpdate()
     {
         Move();
-        betveen = Mathf.Abs(Player.transform.position.x - transform.position.x);
+        betveen = Mathf.Abs(TargetPlayer.transform.position.x - transform.position.x);
         CheckGround();    
     }
 
@@ -45,20 +46,20 @@ public class Lynx : Monster
         Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.6F + transform.right * napravlenie.x * 0.8F, 0.1F);
 
         //условие поворота и прыжок
-        if (((betveen < DistanceSee)&&(Mathf.Abs(Player.transform.position.y - transform.position.y)<DistanceSee)))//если видит лису
+        if (((betveen < DistanceSee)&&(Mathf.Abs(TargetPlayer.transform.position.y - transform.position.y)<DistanceSee)))//если видит лису
         {
 
             //смена направления
             //если над или под игроком на платформах разной высоты
-            if ((betveen > 2f)&&((Mathf.Abs(Player.transform.position.y - transform.position.y) < 1F)&&(Player.isGrounded==true)))
+            if ((betveen > 2f)&&((Mathf.Abs(TargetPlayer.transform.position.y - transform.position.y) < 1F)&&(TargetPlayer.isGrounded==true)))
             {
-                napravlenie = ((Player.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);//поворот к игроку
+                napravlenie = ((TargetPlayer.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);//поворот к игроку
             }
 
             //прыжок
-            if ((Player.transform.position.y - transform.position.y > 1F) && ((Player.transform.position.y - transform.position.y < 3F))//смотрим по У
+            if ((TargetPlayer.transform.position.y - transform.position.y > 1F) && ((TargetPlayer.transform.position.y - transform.position.y < 3F))//смотрим по У
             && (betveen < 3F) && (betveen > 2F)//смотрим по Х
-            && (Player.isGrounded == true) && (isGrounded == true))//для прыжка
+            && (TargetPlayer.isGrounded == true) && (isGrounded == true))//для прыжка
             {
                 //прикладываем силу вверх, чтобы персонаж подпрыгнул
                 rb.AddForce(new Vector3(10F * napravlenie.x, 20), ForceMode2D.Impulse);

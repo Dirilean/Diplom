@@ -29,7 +29,7 @@ public class Monster : MonoBehaviour
     ParticleSystem Smoke;
     public bool die;//запустили уже скрипт умирания? (используется для корутины)
     public bool isplayer;//мы столкнулись с игроком?
-    public Character Player;
+    Character TargetPlayer;
     float deltax;
 
     public float radius;//радиус удара
@@ -52,7 +52,7 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player").GetComponent<Character>();
+        TargetPlayer = GameObject.FindWithTag("Player").GetComponent<Character>();
     }
 
     private void OnEnable()
@@ -80,16 +80,10 @@ public class Monster : MonoBehaviour
 
         while (k < PlusFireColb)//генерирование огоньков в зависимости от указанаого в префабе значения
         {    
-            // FireSphere fireSphere = Instantiate(FireSpherePrefab, new Vector2(XPos, gameObject.transform.position.y+0.5F), FireSpherePrefab.transform.rotation);
             FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, transform.position.y + 0.5F), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
-            //firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
-            //firesphere.GetComponent<SpriteRenderer>().color = Color.red;
-            //firesphere.Now = new Vector2(XPos, transform.position.y + 0.5F);
-            //firesphere.Verh = new Vector2(XPos, transform.position.y + 0.7F);
-            //firesphere.Niz = new Vector2(XPos, transform.position.y + 0.4F);
+            firesphere.CheckPlayer = true;//чтобы как только огоньки упадут с моба, сразу летели к игроку
             XPos += 0.2F;
             k++;
-           // Debug.Log("OnDie " + firesphere.CheckPlayer);
         }
         speed = 0;
         StartCoroutine(ForDie());
@@ -114,7 +108,7 @@ public class Monster : MonoBehaviour
             State = CharState.attack;
             if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
             {
-                Player.lives -= Damage;
+                TargetPlayer.lives -= Damage;
                 LastTime = Time.time;
             }
         }
@@ -122,8 +116,8 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player = collision.gameObject.GetComponent<Character>();
-        if (Player != null) { deltax = ((Player.transform.position.x - gameObject.transform.position.x) * napravlenie.x); }
+        TargetPlayer = collision.gameObject.GetComponent<Character>();
+        if (TargetPlayer != null) { deltax = ((TargetPlayer.transform.position.x - gameObject.transform.position.x) * napravlenie.x); }
         if ((collision.gameObject.name == "Player")&&(deltax>0))//если игрок находится спереди моба и при этом коснулся триггера
         {
             isplayer = true;

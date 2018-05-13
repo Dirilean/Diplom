@@ -34,8 +34,15 @@ public class CameraController : MonoBehaviour
     bool upCamera3lvl;
     float Y;//для офсета на уровни
 
-    #region SubMenu Methods
+    #region Menu Methods
     public GameObject SubMenu;
+    public GameObject LoseMenu;
+
+    public void SetLoseMenu()
+    {
+        LoseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
 
     //Метод для нажатия на кнопку resume
     public void SetMenuOff()
@@ -59,6 +66,7 @@ public class CameraController : MonoBehaviour
     }
     #endregion
 
+
     void Start()
     {
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);
@@ -78,6 +86,10 @@ public class CameraController : MonoBehaviour
             //останавливаем все, что зависит от времени
             Time.timeScale = 0;
         }
+        #endregion
+
+        #region Play LoseMenu
+        if (player.lives <= 0) SetLoseMenu();
         #endregion
 
         #region Set Player
