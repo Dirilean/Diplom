@@ -211,7 +211,6 @@ public class Character : MonoBehaviour
         #endregion
 
 
-
         //изменение цвета лисицы от хп
         deltaColor = Mathf.Lerp(deltaColor, (lives / 100.0F), Time.deltaTime * 2);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(deltaColor, deltaColor, deltaColor);
@@ -237,15 +236,8 @@ public class Character : MonoBehaviour
         FireColb -= fire.minusFire;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
-    {
-        if (collision.GetComponent<FireSphere>())
-        {
-            collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
-            FireColb++;
-        }
-    }
 
+    #region Check End Level
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -273,7 +265,20 @@ public class Character : MonoBehaviour
         }
         //дописать для сл уровней
     }
+    #endregion
 
+    #region TakeFire
+    private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
+    {
+        if (collision.GetComponent<FireSphere>())
+        {
+            collision.gameObject.GetComponent<PoolObject>().ReturnToPool();
+            FireColb++;
+        }
+    }
+    #endregion
+
+    #region ConvertLives
     private void ConvertToLives()//конвертирование огня в жизнь
     {
         if ((FireColb >= 40)&&(Time.time>LastTimeToPlusLives+TimeToPlusLives))//в колбе достаточно огня и прошло время перезарядки
@@ -291,7 +296,9 @@ public class Character : MonoBehaviour
             LastTimeToPlusLives = Time.time;
         }
     }
+    #endregion
 
+    #region Die
     void Die()//смерть персонажа
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.black;
@@ -305,6 +312,7 @@ public class Character : MonoBehaviour
             FireColb = 0;
         }
     }
+    #endregion
 
     #region Audio
 

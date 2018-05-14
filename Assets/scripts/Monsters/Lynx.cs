@@ -8,16 +8,10 @@ public class Lynx : Monster
 
 
     float DistanceSee;//видимость
-    Character TargetPlayer;
-
     public bool isGrounded;
-    float betveen;//расстояние между рысью и игроком в плоскости х
+    public float betveen;//расстояние между рысью и игроком в плоскости х
    // private bool jumping;//прыгнули ли уже
 
-    private void Start()
-    {
-        TargetPlayer = GameObject.FindWithTag("Player").GetComponent<Character>();
-    }
 
     private void OnEnable()
     {
@@ -30,36 +24,43 @@ public class Lynx : Monster
     }
 
 
-    private void FixedUpdate()
+     private void FixedUpdate()
     {
         Move();
-        betveen = Mathf.Abs(TargetPlayer.transform.position.x - transform.position.x);
-        CheckGround();    
+        CheckGround();
     }
 
 
     public override void Move()
     {
         //стенки
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right * napravlenie.x * 0.5F, 0.01F);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right * napravlenie.x * 0.5F, 0.01F,1 << 13);
         //пустота
-        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.6F + transform.right * napravlenie.x * 0.8F, 0.1F);
-
+        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(transform.position + transform.up * -0.6F + transform.right * napravlenie.x * 0.8F, 0.1F, 1 << 13);
         //условие поворота и прыжок
-        if (((betveen < DistanceSee)&&(Mathf.Abs(TargetPlayer.transform.position.y - transform.position.y)<DistanceSee)))//если видит лису
-        {
 
+        if (Player!=null)//если видит лису
+        {
             //смена направления
+            betveen = Player.transform.position.x-transform.position.x;
             //если над или под игроком на платформах разной высоты
-            if ((betveen > 2f)&&((Mathf.Abs(TargetPlayer.transform.position.y - transform.position.y) < 1F)&&(TargetPlayer.isGrounded==true)))
+            if ((Mathf.Abs(Player.transform.position.y - transform.position.y) < 1F)&&(Player.isGrounded==true))
             {
-                napravlenie = ((TargetPlayer.transform.position.x - transform.position.x > 0) ? Vector3.right : -Vector3.right);//поворот к игроку
+                if (betveen < 0F)//поворот к игроку
+                {
+                    napravlenie = -Vector3.right;
+                }
+                else
+                {
+                    napravlenie = Vector3.right;
+                }
             }
 
             //прыжок
-            if ((TargetPlayer.transform.position.y - transform.position.y > 1F) && ((TargetPlayer.transform.position.y - transform.position.y < 3F))//смотрим по У
+            betveen = Mathf.Abs(betveen);
+            if ((Player.transform.position.y - transform.position.y > 1F) && ((Player.transform.position.y - transform.position.y < 3F))//смотрим по У
             && (betveen < 3F) && (betveen > 2F)//смотрим по Х
-            && (TargetPlayer.isGrounded == true) && (isGrounded == true))//для прыжка
+            && (Player.isGrounded == true) && (isGrounded == true))//для прыжка
             {
                 //прикладываем силу вверх, чтобы персонаж подпрыгнул
                 rb.AddForce(new Vector3(10F * napravlenie.x, 20), ForceMode2D.Impulse);
@@ -67,7 +68,7 @@ public class Lynx : Monster
         }
         else //если не видит лису
         {
-            if (((colliders.Length > 0)&&colliders.Any(x => x.CompareTag("Platform")) && colliders.All(x => !x.GetComponent<Character>()) || (nocolliders.Length < 1)) && napravlenie != Vector3.zero)//перевернуть при условии появления в области платформ или пустоты
+            if (((colliders.Length > 0) || (nocolliders.Length < 1)) && napravlenie != Vector3.zero)//перевернуть при условии появления в области платформ или пустоты
             {
                 napravlenie *= -1;
             }
@@ -79,7 +80,7 @@ public class Lynx : Monster
 
 
         //условие движения
-        if (!isplayer)//идет если не врежется в персонажа
+        if (!playerNear)//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
             GetComponent<SpriteRenderer>().flipX = napravlenie.x < 0.0F;//поворот

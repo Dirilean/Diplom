@@ -28,9 +28,10 @@ public class Monster : MonoBehaviour
     [SerializeField]
     ParticleSystem Smoke;
     public bool die;//запустили уже скрипт умирания? (используется для корутины)
-    public bool isplayer;//мы столкнулись с игроком?
-    Character TargetPlayer;
-    float deltax;
+    public bool playerNear;//мы столкнулись с игроком?
+    public Character Player;
+    public float deltax;
+    public float deltay;
 
     public float radius;//радиус удара
     public float Dalnost;//дальность(центр окружности) для проверки стен
@@ -50,10 +51,10 @@ public class Monster : MonoBehaviour
         set { animator.SetInteger("State", (int)value); }
     }
 
-    private void Start()
-    {
-        TargetPlayer = GameObject.FindWithTag("Player").GetComponent<Character>();
-    }
+    //private void Start()
+    //{
+    //    TargetPlayer = GameObject.FindWithTag("Player").GetComponent<Character>();
+    //}
 
     private void OnEnable()
     {
@@ -62,6 +63,7 @@ public class Monster : MonoBehaviour
         LastTime = 0;
         napravlenie = Vector3.right;//начальное направление вправо
         die = false;
+        LastTime = 0;
     }
 
     IEnumerator ForDie()
@@ -101,46 +103,50 @@ public class Monster : MonoBehaviour
         if ((lives < 1)&&(die == false))
              { Die(); }
         //вызываем ближний бой
-        
-        if (isplayer)//если столкнулись с игроком спереди то наносим урон
-        {
-            
+
+        #region Damage
+        if (playerNear)//если столкнулись с игроком спереди то наносим урон
+        { 
             State = CharState.attack;
             if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
             {
-                TargetPlayer.lives -= Damage;
+                Player.lives -= Damage;
                 LastTime = Time.time;
             }
         }
+        #endregion
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    #region CheckPlayer
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        TargetPlayer = collision.gameObject.GetComponent<Character>();
-        if (TargetPlayer != null) { deltax = ((TargetPlayer.transform.position.x - gameObject.transform.position.x) * napravlenie.x); }
-        if ((collision.gameObject.name == "Player")&&(deltax>0))//если игрок находится спереди моба и при этом коснулся триггера
+        if (collision.gameObject.GetComponent<Character>())
         {
-            isplayer = true;
-            LastTime = Time.time;  
+            Player = collision.gameObject.GetComponent<Character>();
+            deltax = ((Player.transform.position.x - gameObject.transform.position.x) * napravlenie.x);
+            deltay = Player.transform.position.y - transform.position.y;
+            if ((deltax > 0) && (deltax <1F) && (deltay >= -0.5) && (deltay <= 0.5F))//если игрок находится спереди моба и при этом коснулся триггера, на расстоянии ближе чем 1,5по х, и ниже чем 1F относительно моба
+            {
+                playerNear = true;
+            }
+            else
+            {
+                playerNear = false;
+            }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            isplayer = false;
-        }
-    }
+    #endregion
+
     public virtual void Move()
     {
         point = new Vector2(transform.position.x + (Dalnost * napravlenie.x), transform.position.y + 0.5F);//текущая позция проверки стен
         //стенки
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, 0.02F);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, 0.02F, 1 << 13);
         //пустота
-        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(point.x, point.y - 0.3F), 0.2F);
+        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(point.x, point.y - 0.3F), 0.2F, 1 << 13);
         //условие поворота
-        if ((colliders.Length > 0 && colliders.Any(x => x.CompareTag("Platform"))) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области стен
-        if (!isplayer)//идет если не врежется в персонажа
+        if ((colliders.Length > 0) || (nocolliders.Length < 1)) napravlenie *= -1.0F;//перевернуть при условии появления в области стен
+        if (!playerNear)//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);
             GetComponent<SpriteRenderer>().flipX = napravlenie.x * SpriteSeeRight < 0.0F;//поворот}
