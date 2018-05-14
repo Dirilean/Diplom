@@ -26,7 +26,6 @@ public class Lynx : Monster
 
      private void FixedUpdate()
     {
-        Move();
         CheckGround();
     }
 

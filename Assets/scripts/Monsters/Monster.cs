@@ -9,8 +9,6 @@ public class Monster : MonoBehaviour
 {
     [SerializeField]
     public int Damage;//количество наносимого урона
-    [SerializeField]
-    public float TimeToDamage;//время за которое наносятся один удар (указывается в префабе)
     public int DefaultLives;//изначальные жизни
     [HideInInspector]
     public int lives;// текущие жизни
@@ -51,11 +49,6 @@ public class Monster : MonoBehaviour
         set { animator.SetInteger("State", (int)value); }
     }
 
-    //private void Start()
-    //{
-    //    TargetPlayer = GameObject.FindWithTag("Player").GetComponent<Character>();
-    //}
-
     private void OnEnable()
     {
         lives = DefaultLives;
@@ -91,30 +84,25 @@ public class Monster : MonoBehaviour
         StartCoroutine(ForDie());
     }
 
-    private void FixedUpdate()
-    {
-        //двигаемся
-        Move();
-    }
-
     private void Update()
     {
-        //проверяем на живучесть
-        if ((lives < 1)&&(die == false))
-             { Die(); }
-        //вызываем ближний бой
+        Move();
 
-        #region Damage
+        //проверяем на живучесть
+        if ((lives < 1) && (die == false))
+        {
+            Die();
+        }
+
         if (playerNear)//если столкнулись с игроком спереди то наносим урон
         { 
-            State = CharState.attack;
-            if (Time.time >= TimeToDamage + LastTime)//Удар в ближнем бою - задержка(из-за анимации до самого удара)
-            {
-                Player.lives -= Damage;
-                LastTime = Time.time;
-            }
+            State = CharState.attack;//запускаем анимацию удара (она же и вызовет метод самого удара)
         }
-        #endregion
+    }
+
+    public void Attack()//метод атаки
+    {
+        if (Player!=null) Player.lives -= Damage;
     }
 
     #region CheckPlayer
@@ -137,6 +125,7 @@ public class Monster : MonoBehaviour
     }
     #endregion
 
+    #region Move
     public virtual void Move()
     {
         point = new Vector2(transform.position.x + (Dalnost * napravlenie.x), transform.position.y + 0.5F);//текущая позция проверки стен
@@ -153,6 +142,7 @@ public class Monster : MonoBehaviour
             State = CharState.walk;
         }
     }
+    #endregion
 
     public enum CharState
     {

@@ -258,7 +258,7 @@ public class Character : MonoBehaviour
                 Debug.Log("превращееееееееееение на 2ой ур");
                 perehodto2lvl = true;
                 Character Player2 = Instantiate(NextPlayerPrefab, transform.position, new Quaternion(0, 0, 0, 0));
-                Player2.FireColb = FireColb;
+                Player2.FireColb = 0;
                 gameObject.SetActive(false);
                 
             }

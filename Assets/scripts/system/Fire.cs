@@ -54,13 +54,23 @@ public class Fire : MonoBehaviour
             GetComponent<PoolObject>().ReturnToPool();
         }
     }
-	
-    private void OnTriggerEnter2D(Collider2D collider)//уничтожение пули в момент попадания в юнит
+
+    //private void OnTriggerEnter2D(Collider2D collider)//уничтожение пули в момент попадания в юнит
+    //{
+    //    Monster monster = collider.GetComponent<Monster>();
+    //    if (monster)
+    //    {
+    //        monster.lives-=damage;//получение урона от пули
+    //        GetComponent<PoolObject>().ReturnToPool();
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Monster monster = collider.GetComponent<Monster>();
+        Monster monster = collision.collider.GetComponent<Monster>();
         if (monster)
         {
-            monster.lives-=damage;//получение урона от пули
+            monster.lives -= damage;//получение урона от пули
             GetComponent<PoolObject>().ReturnToPool();
         }
     }
