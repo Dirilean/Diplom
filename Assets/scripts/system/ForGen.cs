@@ -8,6 +8,7 @@ public class ForGen : MonoBehaviour {
     public bool busy;
     public Character Player;
     byte chet;//считает количество коллайдеров в триггере
+    float x;
 
     private void Start()
     {
@@ -16,28 +17,36 @@ public class ForGen : MonoBehaviour {
 
     private void Update()//перемещение
     {
-       
-
-        if (Player.PrefabLevel==1) transform.position =new Vector3(Player.transform.position.x+Static.ForgenPosition, 0);
-        else if (Player.PrefabLevel==2) transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 10F);
+        x = Mathf.Lerp(transform.position.x, Player.transform.position.x + Static.ForgenPosition, Time.deltaTime * 50F);
+        switch (Player.PrefabLevel)
+        {
+            case 1: { transform.position = new Vector3(x, 0); break; }
+            case 2: { transform.position = new Vector3(x, 10F); break; }
+        }
     }
 
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        chet++;
-        if (chet > 0)
+        if (collider.tag == "Ground")
         {
-            busy = true;
+            chet++;
+            if (chet > 0)
+            {
+                busy = true;
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        chet--;
-        if (chet == 0)
+        if (collider.tag == "Ground")
         {
-            busy = false;
+            chet--;
+            if (chet == 0)
+            {
+                busy = false;
+            }
         }
     }
 }

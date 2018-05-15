@@ -21,6 +21,7 @@ public class DieArea : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Character unit = collision.collider.GetComponent<Character>();
-        unit.lives = 0;
+        unit.lives -=50;
+        unit.transform.position = new Vector3(unit.transform.position.x,25F);
     }
 }

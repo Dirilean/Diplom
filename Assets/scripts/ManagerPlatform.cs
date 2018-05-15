@@ -20,6 +20,8 @@ public class ManagerPlatform : MonoBehaviour
     int RndPak;//из какого пака платформ выбирать
     int RndVid;//какую платформу из пака выбрать
     public bool once = true;
+    float lastGroundPos;
+   public  float GroundLenght=4F;
 
     void Start()
     {
@@ -27,20 +29,22 @@ public class ManagerPlatform : MonoBehaviour
         GenPos = new Vector3((forgen.transform.position.x+Static.StepPlatf),0);
         LastPos = forgen.transform.position.x + Static.StepPlatf;
         RndStep = 1;
+        lastGroundPos = Mathf.Round(GenPosGr.x);
     }
 
 
     void Update()//генерация !главный метод, вызывающий остальные!
-    { 
-            GenPosGr.x = forgen.transform.position.x;
-            GenPos.x = forgen.transform.position.x + Static.StepPlatf;
+    {
+        GenPosGr.x = forgen.transform.position.x;
+        GenPos.x = forgen.transform.position.x + Static.StepPlatf;
 
-            #region ground
-            if (forgen.busy != true)
-            {
-                GameObject ground = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(GenPosGr.x), GenPosGr.y - 3.0F), GenQ);
-            }//если в позиции генерации пусто, создай землю
-            #endregion
+        #region ground
+        if (lastGroundPos+GroundLenght>=forgen.transform.position.x)
+        {
+            lastGroundPos += GroundLenght;
+            GameObject ground = PoolManager.GetObject(gr.name,new Vector3(lastGroundPos, GenPosGr.y - 3.0F), GenQ);
+        }
+        #endregion
 
 
             #region Platforms
