@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ManagerPlatformType2 : MonoBehaviour {
 
-    public GameObject[] sky = new GameObject[12]; //все платформы
-    public float[] lenghts = new float[12]; //длины платформ
+    public GameObject[] sky = new GameObject[13]; //все платформы
+    public float[] lenghts = new float[13]; //длины платформ
     public GameObject gr;//смертельная область
     Vector3 GenPos;//текущая позиция генерации
     Quaternion GenQ = new Quaternion(0, 0, 0, 0);//текущий разворот

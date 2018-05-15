@@ -648,6 +648,7 @@ MonoBehaviour:
   - {fileID: 1766110157373736, guid: e8d3256cf097c0740be5c9e3f26b1043, type: 2}
   - {fileID: 1823244511304618, guid: d01bf2066b568d549afc11377a05b865, type: 2}
   - {fileID: 1198063401067294, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
+  - {fileID: 0}
   lenghts:
   - 6
   - 6
@@ -724,6 +725,9 @@ MonoBehaviour:
   - name: FireSphere
     prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
     count: 10
+  - name: black
+    prefab: {fileID: 114294622296218292, guid: 6e9413d5f494efa48997bd4c14f2b4f4, type: 2}
+    count: 10
 --- !u!114 &114860328137523642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -742,13 +746,14 @@ MonoBehaviour:
   ManagerForest: {fileID: 1900108854855658}
   ManagerSky: {fileID: 1931145592275040}
   ManagerSpace: {fileID: 1268707608500470}
-  to2lvl: 1
-  to3lvl: 500
+  to2lvl: 20
+  to3lvl: 1000
   toWin: 1000
   Level: 0
   EndPlatformForest: {fileID: 1900179446234464, guid: e0f841ec110b27d418c0a0e30932e702,
     type: 2}
   SubMenu: {fileID: 0}
+  LoseMenu: {fileID: 0}
 --- !u!114 &114895876656381114
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -30,8 +30,6 @@ public class ManagerFire : MonoBehaviour {
         LastPos = 20;
         RndCol = 3;
         YPos = 0.5F;
-        GameObject player = GameObject.Find("Player");
-        forgen = player.transform.Find("Generator").GetComponent<ForGen>();
     }
 
     // Update is called once per frame
