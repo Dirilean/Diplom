@@ -17,7 +17,6 @@ public class Lynx : Monster
     {
         lives = DefaultLives;
         speed = DefaultSpeed;
-        LastTime = 0;
         die = false;
         napravlenie = transform.right;//начальное направление вправо
         DistanceSee = 5;

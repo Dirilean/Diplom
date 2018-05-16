@@ -19,22 +19,22 @@ public class Monster : MonoBehaviour
     public int PlusFireColb;//сколько упадет огня с монстров
     [SerializeField]
     FireSphere FireSpherePrefab;
+    [HideInInspector]
     public Vector2 point;//центр окружнгости для определения стен и игрока
-    public Animator animator;
-    [SerializeField]
+    Animator animator;
+    [HideInInspector]
     public Rigidbody2D rb;
     [SerializeField]
     ParticleSystem Smoke;
+    [HideInInspector]
     public bool die;//запустили уже скрипт умирания? (используется для корутины)
+    [HideInInspector]
     public bool playerNear;//мы столкнулись с игроком?
+    [HideInInspector]
     public Character Player;
-    public float deltax;
+    public float deltax;//записывается текущее расстояние до персонажа
     public float deltay;
-
-    public float radius;//радиус удара
     public float Dalnost;//дальность(центр окружности) для проверки стен
-    protected float LastTime;//Время последнего удара
-
 
     public Vector3 napravlenie;
     [SerializeField]
@@ -42,6 +42,12 @@ public class Monster : MonoBehaviour
 
     protected float XPos;
     System.Random rnd = new System.Random();
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public CharState State//передаем состояние анимации в аниматор
     {
@@ -53,10 +59,8 @@ public class Monster : MonoBehaviour
     {
         lives = DefaultLives;
         speed = DefaultSpeed;
-        LastTime = 0;
         napravlenie = Vector3.right;//начальное направление вправо
         die = false;
-        LastTime = 0;
     }
 
     IEnumerator ForDie()
@@ -95,7 +99,8 @@ public class Monster : MonoBehaviour
         }
 
         if (playerNear)//если столкнулись с игроком спереди то наносим урон
-        { 
+        {
+            
             State = CharState.attack;//запускаем анимацию удара (она же и вызовет метод самого удара)
         }
     }
@@ -113,7 +118,7 @@ public class Monster : MonoBehaviour
             Player = collision.gameObject.GetComponent<Character>();
             deltax = ((Player.transform.position.x - gameObject.transform.position.x) * napravlenie.x);
             deltay = Player.transform.position.y - transform.position.y;
-            if ((deltax > 0) && (deltax <1F) && (deltay >= -0.5) && (deltay <= 0.5F))//если игрок находится спереди моба и при этом коснулся триггера, на расстоянии ближе чем 1,5по х, и ниже чем 1F относительно моба
+            if ((deltax > 0) && (deltax <1F) && (deltay >= -1) && (deltay <= 1F))//если игрок находится спереди моба и при этом коснулся триггера, на расстоянии ближе чем 1,5по х, и ниже чем 1F относительно моба
             {
                 playerNear = true;
             }

@@ -729,7 +729,16 @@ MonoBehaviour:
     count: 10
   - name: black
     prefab: {fileID: 114294622296218292, guid: 6e9413d5f494efa48997bd4c14f2b4f4, type: 2}
-    count: 10
+    count: 3
+  - name: Sokol
+    prefab: {fileID: 114186588965734950, guid: 10c848c90ec62c94292dbfc95a43259b, type: 2}
+    count: 3
+  - name: Voron
+    prefab: {fileID: 114122830512618408, guid: 80f6e1c3ef6e58c498c2ccfe83500088, type: 2}
+    count: 3
+  - name: Strizh
+    prefab: {fileID: 114086343221482914, guid: e80d0d7e4e9ddd54b9cea244c976a778, type: 2}
+    count: 3
 --- !u!114 &114860328137523642
 MonoBehaviour:
   m_ObjectHideFlags: 1

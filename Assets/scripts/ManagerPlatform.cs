@@ -29,7 +29,7 @@ public class ManagerPlatform : MonoBehaviour
         GenPos = new Vector3((forgen.transform.position.x+Static.StepPlatf),0);
         LastPos = forgen.transform.position.x + Static.StepPlatf;
         RndStep = 1;
-        lastGroundPos = Mathf.Round(GenPosGr.x);
+        lastGroundPos = GenPosGr.x;
     }
 
 
@@ -39,10 +39,11 @@ public class ManagerPlatform : MonoBehaviour
         GenPos.x = forgen.transform.position.x + Static.StepPlatf;
 
         #region ground
-        if (lastGroundPos+GroundLenght>=forgen.transform.position.x)
+        if (lastGroundPos+GroundLenght<forgen.transform.position.x)
         {
             lastGroundPos += GroundLenght;
             GameObject ground = PoolManager.GetObject(gr.name,new Vector3(lastGroundPos, GenPosGr.y - 3.0F), GenQ);
+            
         }
         #endregion
 

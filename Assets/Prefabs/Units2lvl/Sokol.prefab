@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 95875110319077778}
   - component: {fileID: 58665396716425818}
   - component: {fileID: 58943291258242106}
+  - component: {fileID: 114186588965734950}
+  - component: {fileID: 114285735628890680}
   m_Layer: 11
   m_Name: Sokol
   m_TagString: Mob
@@ -38,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1475336608583534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49, y: 12.54, z: 0.4409968}
+  m_LocalPosition: {x: 0.68, y: 6.92, z: 0.4409968}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +57,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -63,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!58 &58665396716425818
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -88,7 +90,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -111,6 +113,47 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114186588965734950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1475336608583534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114285735628890680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1475336608583534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d687eca80bd294449478007e134691b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 5
+  DefaultLives: 50
+  lives: 0
+  DefaultSpeed: 2
+  speed: 0
+  PlusFireColb: 5
+  FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
+    type: 2}
+  point: {x: 0, y: 0}
+  rb: {fileID: 0}
+  Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+  die: 0
+  playerNear: 0
+  Player: {fileID: 0}
+  deltax: 0
+  deltay: 0
+  Dalnost: 1
+  napravlenie: {x: 0, y: 0, z: 0}
+  SpriteSeeRight: -1
 --- !u!212 &212375298094586372
 SpriteRenderer:
   m_ObjectHideFlags: 1

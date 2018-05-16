@@ -8,7 +8,6 @@ public class ForGen : MonoBehaviour {
     public bool busy;
     public Character Player;
     byte chet;//считает количество коллайдеров в триггере
-    float x;
 
     private void Start()
     {
@@ -17,11 +16,10 @@ public class ForGen : MonoBehaviour {
 
     private void Update()//перемещение
     {
-        x = Mathf.Lerp(transform.position.x, Player.transform.position.x + Static.ForgenPosition, Time.deltaTime * 50F);
         switch (Player.PrefabLevel)
         {
-            case 1: { transform.position = new Vector3(x, 0); break; }
-            case 2: { transform.position = new Vector3(x, 10F); break; }
+            case 1: { transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 0); break; }
+            case 2: { transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 10F); break; }
         }
     }
 

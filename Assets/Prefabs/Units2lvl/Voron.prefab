@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 58544313065443750}
   - component: {fileID: 58096008698891842}
   - component: {fileID: 50690081510913846}
+  - component: {fileID: 114122830512618408}
+  - component: {fileID: 114319434499217824}
   m_Layer: 11
   m_Name: Voron
   m_TagString: Mob
@@ -38,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172469880215848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.89, y: 13.88, z: 0.3207987}
+  m_LocalPosition: {x: 0.08, y: 2.69, z: 0.3207987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +57,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -63,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!58 &58096008698891842
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -111,6 +113,47 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114122830512618408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172469880215848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114319434499217824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172469880215848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d687eca80bd294449478007e134691b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 5
+  DefaultLives: 50
+  lives: 0
+  DefaultSpeed: 1
+  speed: 0
+  PlusFireColb: 5
+  FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
+    type: 2}
+  point: {x: 0, y: 0}
+  rb: {fileID: 0}
+  Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+  die: 0
+  playerNear: 0
+  Player: {fileID: 0}
+  deltax: 0
+  deltay: 0
+  Dalnost: 1
+  napravlenie: {x: 0, y: 0, z: 0}
+  SpriteSeeRight: -1
 --- !u!212 &212682231792127454
 SpriteRenderer:
   m_ObjectHideFlags: 1
