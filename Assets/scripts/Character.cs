@@ -281,17 +281,18 @@ public class Character : MonoBehaviour
     #region ConvertLives
     private void ConvertToLives()//конвертирование огня в жизнь
     {
-        if ((FireColb >= 40)&&(Time.time>LastTimeToPlusLives+TimeToPlusLives))//в колбе достаточно огня и прошло время перезарядки
+        if (Time.time>LastTimeToPlusLives+TimeToPlusLives)//в колбе достаточно огня и прошло время перезарядки
         {
-            if (lives <= 80)
+            if (FireColb <= 40)
+            {
+                lives += FireColb;//добавляем жизней
+                FireColb =0;
+                
+            }
+            else
             {
                 FireColb -= 40;
-                lives = lives + 20;//добавляем жизней
-            }
-            else//если хп больше 80
-            {
-                FireColb = FireColb - (100 - lives) * 2;
-                lives = 100;
+                lives +=20;
             }
             LastTimeToPlusLives = Time.time;
         }

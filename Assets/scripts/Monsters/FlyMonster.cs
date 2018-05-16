@@ -24,7 +24,7 @@ public class FlyMonster : Monster
         //стенки
         Collider2D[] colliders = Physics2D.OverlapCircleAll(point, 1F, 1 << 13);
         //условие поворота
-        if ((colliders.Length >1)||(distance<=Mathf.Abs(transform.position.x-StartPosX))) napravlenie *= -1.0F;//перевернуть при условии появления в области стен
+        if ((colliders.Length >0)||(distance<=Mathf.Abs(transform.position.x-StartPosX))) napravlenie *= -1.0F;//перевернуть при условии появления в области стен
         if (!playerNear)//идет если не врежется в персонажа
         {
             rb.velocity = new Vector2(speed * napravlenie.x, rb.velocity.y);

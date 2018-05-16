@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class DieArea : MonoBehaviour {
 
-    int Damage=1;//количество наносимого урона
-    float TimeToDamage=0.5F;//время за которое наносятся один удар
-    bool attack;
+    //int Damage=1;//количество наносимого урона
+    //float TimeToDamage=0.5F;//время за которое наносятся один удар
+    //bool attack;
 
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        Character unit = collider.GetComponent<Character>();
-        if (unit && attack==false)//нанесение урона
-        {
-            StartCoroutine(ForDamage(unit));
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collider)
+    //{
+    //    Character unit = collider.GetComponent<Character>();
+    //    if (unit && attack==false)//нанесение урона
+    //    {
+    //        StartCoroutine(ForDamage(unit));
+    //    }
+    //}
 
-    IEnumerator ForDamage(Character unit)
-    {
-        attack = true;
-        yield return new WaitForSeconds(TimeToDamage);
-        unit.lives = unit.lives - Damage;
-        attack = false;
+    //IEnumerator ForDamage(Character unit)
+    //{
+    //    attack = true;
+    //    yield return new WaitForSeconds(TimeToDamage);
+    //    unit.lives = unit.lives - Damage;
+    //    attack = false;
 
-    }
+    //}
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    Character unit = collision.collider.GetComponent<Character>();
