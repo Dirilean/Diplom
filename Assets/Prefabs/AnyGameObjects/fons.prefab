@@ -477,7 +477,7 @@ MonoBehaviour:
   lenghtSprite: 120
   fon1: {fileID: 1364534047105572}
   fon2: {fileID: 0}
-  deactivateY: 24
+  deactivateY: 100
 --- !u!114 &114065568061507056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -490,11 +490,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  speed: 70
+  speed: 100
   lenghtSprite: 100
   fon1: {fileID: 1224683817852970}
   fon2: {fileID: 0}
-  deactivateY: 24
+  deactivateY: 100
 --- !u!114 &114259580192407666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -511,7 +511,7 @@ MonoBehaviour:
   lenghtSprite: 70
   fon1: {fileID: 1999057183001708}
   fon2: {fileID: 1384784600290192}
-  deactivateY: 24
+  deactivateY: 100
 --- !u!114 &114377792860282876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,11 +524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  speed: 5
-  lenghtSprite: 30
+  speed: 20
+  lenghtSprite: 50
   fon1: {fileID: 1531025392887498}
   fon2: {fileID: 1112607270367102}
-  deactivateY: 14
+  deactivateY: 100
 --- !u!114 &114783216707594220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,11 +541,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  speed: 1
+  speed: 10
   lenghtSprite: 30
   fon1: {fileID: 1336923498547948}
   fon2: {fileID: 1291589928130270}
-  deactivateY: 14
+  deactivateY: 100
 --- !u!114 &114952463945629190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -558,11 +558,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  speed: 10
+  speed: 30
   lenghtSprite: 30
   fon1: {fileID: 1704558298539398}
   fon2: {fileID: 1685055940817620}
-  deactivateY: 14
+  deactivateY: 100
 --- !u!212 &212447293393473640
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -665,7 +665,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d889541d7ef8991478f266b3b46113ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -841,7 +841,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d889541d7ef8991478f266b3b46113ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -929,7 +929,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d889541d7ef8991478f266b3b46113ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -973,7 +973,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d889541d7ef8991478f266b3b46113ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

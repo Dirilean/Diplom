@@ -9,7 +9,7 @@ public class Parallax : MonoBehaviour
     public CameraController camera;
     //позиция игрока в предыдущем кадре
     //и разница в позиции между кадрами
-    Vector3 lastPos, offset;
+    float lastPos, offset;
     //скорость движения фона
     public float speed;
     public float lenghtSprite;
@@ -22,7 +22,7 @@ public class Parallax : MonoBehaviour
     //выполнится один раз при запуске скрипта
     void Start()
     {
-        lastPos = camera.transform.position;
+        lastPos = camera.transform.position.x;
         currentPos1 = transform.position.x;
         if (fon2 != null)
         {
@@ -35,16 +35,16 @@ public class Parallax : MonoBehaviour
     {
         if (camera.transform.position.y > deactivateY) gameObject.SetActive(false);
 
-        offset = camera.transform.position - lastPos;
+        offset = camera.transform.position.x - lastPos;
 
-        lastPos = camera.transform.position;
+        lastPos = camera.transform.position.x;
 
-        fon1.transform.Translate(offset.x * speed * Time.deltaTime,0,0);
+        fon1.transform.Translate(offset * speed * Time.deltaTime,0,0);
 
         if (fon2 != null)
         {
             #region two mod
-            fon2.transform.Translate(offset.x * speed * Time.deltaTime, 0, 0);
+            fon2.transform.Translate(offset * speed * Time.deltaTime, 0, 0);
 
             //вперед
             if (camera.transform.position.x >= fon1.transform.position.x + lenghtSprite * 1.5F)

@@ -24,6 +24,8 @@ public class ManagerPlatformType2 : MonoBehaviour {
     float y2=17F;
     public float maxstep=10;//максимальный шаг между платформами
     int i;
+    float lastGroundPos;
+    public float GroundLenght = 4F;
 
 
 
@@ -34,6 +36,7 @@ public class ManagerPlatformType2 : MonoBehaviour {
         GameObject player = GameObject.Find("Player2(Clone)");
       //  forgen = player.transform.parent.gameObject.transform.Find("Generator").GetComponent<ForGen>();
         forgen = player.transform.Find("Generator").GetComponent<ForGen>();
+        lastGroundPos = forgen.transform.position.x + 20F;
     }
 
 
@@ -41,15 +44,8 @@ public class ManagerPlatformType2 : MonoBehaviour {
     {
         GenPos.x = forgen.transform.position.x + Static.StepPlatf;
 
-        //if ((LastFonPos + 30.0F) <= GenPos.x)//генерация фоновых деревьев
-        //{
-        //    LastFonPos += 30.0F;
-        //    GameObject forestFon = PoolManager.GetObject(ForestFon.name, new Vector3(LastFonPos, 0), GenQ);
-        //}
-
-        if (forgen.busy ==false)//вызывается примерно каждые 2 шага
-        {
-          //  Debug.Log(forgen.GetInstanceID()+" + "+forgen.transform.position);
+        if (lastGroundPos + GroundLenght < forgen.transform.position.x)
+        { 
             GameObject DieArea = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(forgen.transform.position.x), 9), GenQ);//нижняя граница
 
             GenPlat(ref x1, ref y1,ref x1last);

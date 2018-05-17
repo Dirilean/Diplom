@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61267361887578494}
   - component: {fileID: 61917125308145432}
   - component: {fileID: 61972481101722216}
-  - component: {fileID: 114917175243918004}
+  - component: {fileID: 114026492661731696}
   m_Layer: 13
   m_Name: DeathArea
   m_TagString: Ground
@@ -145,6 +145,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 1.05}
   m_EdgeRadius: 0
+--- !u!114 &114026492661731696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787173929363658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9554e18c07526e46a53ff90a34500a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 5
+  TimeToDamage: 0.3
+  Once: 0
+  MinusFireSphere: 0
 --- !u!114 &114537226525179156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,16 +169,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114917175243918004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1787173929363658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 241b2422b48e971459304c94b8b67fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

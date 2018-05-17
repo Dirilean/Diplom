@@ -88,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4331984531786924
 Transform:
   m_ObjectHideFlags: 1
@@ -650,7 +650,7 @@ MonoBehaviour:
   - {fileID: 1766110157373736, guid: e8d3256cf097c0740be5c9e3f26b1043, type: 2}
   - {fileID: 1823244511304618, guid: d01bf2066b568d549afc11377a05b865, type: 2}
   - {fileID: 1198063401067294, guid: ada3c9fdb7b4d434a890e6427495e6be, type: 2}
-  - {fileID: 0}
+  - {fileID: 1628341136617748, guid: 6e9413d5f494efa48997bd4c14f2b4f4, type: 2}
   lenghts:
   - 6
   - 6
@@ -664,9 +664,11 @@ MonoBehaviour:
   - 4
   - 4
   - 4
+  - 4
   gr: {fileID: 1787173929363658, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
   forgen: {fileID: 114464273666282458, guid: 619fdaf93554d194ab51d2c3e33911a8, type: 2}
   maxstep: 10
+  GroundLenght: 4
 --- !u!114 &114529530231424028
 MonoBehaviour:
   m_ObjectHideFlags: 1

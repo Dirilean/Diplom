@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 20
-  TimeToDamage: 0
   DefaultLives: 20
   lives: 20
   DefaultSpeed: 3
@@ -111,13 +110,13 @@ MonoBehaviour:
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
   point: {x: 0, y: 0}
-  animator: {fileID: 0}
   rb: {fileID: 50476471182266012}
   Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
   die: 0
-  isplayer: 0
+  playerNear: 0
   Player: {fileID: 0}
-  radius: 0
+  deltax: 0
+  deltay: 0
   Dalnost: 0
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: 0
