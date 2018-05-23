@@ -168,7 +168,7 @@ public class Character : MonoBehaviour
                 {
                     FlyResourse += 5;
                 }
-                else if (FlyResourse > 0 && !isGrounded)
+                else if (FlyResourse > 0 && !isGrounded && Input.GetButton("Jump"))//вычитает только при нажатой клавише
                 {
                     FlyResourse -= 1;
                 }

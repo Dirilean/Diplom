@@ -88,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4331984531786924
 Transform:
   m_ObjectHideFlags: 1
@@ -186,7 +186,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914696126789022}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!82 &82565727959589338
 AudioSource:
   m_ObjectHideFlags: 1

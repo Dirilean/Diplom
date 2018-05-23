@@ -6,7 +6,9 @@ public class Deleter : MonoBehaviour {
 
     public Vector3 RespPos;//позиция воскрешения
     Rigidbody2D rb;
-    float speed=0.01F;
+    [SerializeField]
+    float speed;
+    [SerializeField]
     Character player;
     [SerializeField]
     float distance;
@@ -28,22 +30,20 @@ public class Deleter : MonoBehaviour {
         }
 
 
-        transform.position += Vector3.right * Time.deltaTime;
-        rb.velocity = new Vector2(speed, rb.velocity.y);
+        //transform.position += Vector3.right * Time.deltaTime;
+         rb.velocity = new Vector2(speed, rb.velocity.y);
+        
         distance = player.transform.position.x - transform.position.x;
-        //10F - расстояние свободного хода
-        if (distance > 50F)//если расстояние между игроком и удаляющим объектом больше 100
+        if (distance > 50F)
         {
             speed = player.speed;
         }
-        if (distance < 10F)
+        else
         {
-            speed = 0.01F;
+            speed = 0F;
         }
-        else if (distance < 40F)
-        {
-            speed = 0.3F;
-        }
+
+        //rb.AddForce(new Vector2(speed, 0F),ForceMode2D.Force);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
