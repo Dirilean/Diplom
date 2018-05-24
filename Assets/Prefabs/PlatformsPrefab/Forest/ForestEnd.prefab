@@ -2345,8 +2345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9554e18c07526e46a53ff90a34500a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
-  TimeToDamage: 0.3
+  Damage: 1
+  TimeToDamage: 0.5
   Once: 0
   MinusFireSphere: 0
 --- !u!114 &114391434647380368
@@ -19564,7 +19564,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1702312154
+  randomSeed: -1237373452
   InitialModule:
     serializedVersion: 3
     enabled: 1
