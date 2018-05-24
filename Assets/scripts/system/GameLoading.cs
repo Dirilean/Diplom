@@ -13,12 +13,10 @@ public class GameLoading : MonoBehaviour
         async = SceneManager.LoadSceneAsync("Demo");
         loadingIcon.SetActive(true);
         loadingInfo.SetActive(false);
-        Debug.Log("load...");
         yield return true;
         async.allowSceneActivation = false;
         loadingIcon.SetActive(false);
         loadingInfo.SetActive(true);
-        Debug.Log("Load complete");
     }
 
     void Update()
@@ -26,7 +24,6 @@ public class GameLoading : MonoBehaviour
         if (Input.anyKeyDown)
         {
             async.allowSceneActivation = true;
-            Debug.Log(async+", "+ async.allowSceneActivation);
         }
     }
 }

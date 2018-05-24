@@ -40,5 +40,15 @@ public class PassiveEnemy : MonoBehaviour {
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Character unit = collision.collider.GetComponent<Character>();
+        if ((unit) && (Time.time - TimeToDamage > LastTime))//нанесение урона
+        {
+            unit.lives = unit.lives - Damage;
+            LastTime = Time.time;
+        }
+    }
+
 
 }

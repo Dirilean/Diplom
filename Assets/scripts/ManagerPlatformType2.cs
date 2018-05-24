@@ -50,6 +50,7 @@ public class ManagerPlatformType2 : MonoBehaviour {
 
             GenPlat(ref x1, ref y1,ref x1last);
             GenPlat(ref x2,ref y2,ref x2last);
+            lastGroundPos = forgen.transform.position.x;
         }
     }
 
