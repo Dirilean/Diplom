@@ -43,14 +43,14 @@ public class Parallax : MonoBehaviour
         //вперед
         if (camera.transform.position.x >= fon1.transform.position.x + lenghtSprite * 1.5F)
         {
-            Debug.Log(gameObject.name +", длина: "+lenghtSprite+ ", 1: " + fon1.transform.position.x + ", " + (fon1.transform.position.x + lenghtSprite * 2));
+          //  Debug.Log(gameObject.name +", длина: "+lenghtSprite+ ", 1: " + fon1.transform.position.x + ", " + (fon1.transform.position.x + lenghtSprite * 2));
             fon1.transform.position = new Vector3(fon1.transform.position.x + lenghtSprite*2, fon1.transform.position.y, fon1.transform.position.z);
             
         }
 
         if (camera.transform.position.x >= fon2.transform.position.x + lenghtSprite * 1.5F)
         {
-            Debug.Log(gameObject.name+", длина: " + lenghtSprite + ", 2: " + fon2.transform.position.x + ", " + (fon2.transform.position.x + lenghtSprite * 2));
+           // Debug.Log(gameObject.name+", длина: " + lenghtSprite + ", 2: " + fon2.transform.position.x + ", " + (fon2.transform.position.x + lenghtSprite * 2));
             fon2.transform.position = new Vector3(fon2.transform.position.x + lenghtSprite*2, fon2.transform.position.y, fon2.transform.position.z);
             
         }

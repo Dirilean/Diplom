@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     #region Players Stats
     [Header("Stats")]
     public int FireColb;//количество огня в колбе
-    public int lives;//количество жизней
+    public int lives=100;//количество жизней
     public float speed;
     private float TempSpeed;//временная скорость (изменяется)
 
@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     [Tooltip("Сколько секунд после смерти нужно ждать чтобы воскреснуть")]
     float zaderzhka = 1;
     public int PlayertLevel;
-    public int FlyResourse;//ресурс полета
+    public int FlyResourse=-1;//ресурс полета
     public float repeat_time; /* Время в секундах для полетов */
     private float curr_time;
     #endregion
@@ -88,7 +88,6 @@ public class Character : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         CheckJump = false;
-        lives = 100;
         LastTimeToPlusLives = 0;
         napravlenie = Vector3.right;
         //счетчики для звуков шагов
@@ -96,7 +95,6 @@ public class Character : MonoBehaviour
         AuSourse.volume = 0.03F;
         LastTimeToPlusLives = -5;
         perehodto2lvl = false;
-        FlyResourse = 0;
         curr_time = repeat_time;
        // if (PrefabLevel == 2) Destroy(gameObject.transform.Find("Player"));
        // Destroy(LastPlayer);

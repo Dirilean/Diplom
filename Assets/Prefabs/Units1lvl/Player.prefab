@@ -328,7 +328,7 @@ MonoBehaviour:
   speed: 3.5
   TimeToPlusLives: 5
   PlayertLevel: 1
-  FlyResourse: 0
+  FlyResourse: -1
   repeat_time: 0
   LastTimeToPlusLives: 0
   AttackType: 0
