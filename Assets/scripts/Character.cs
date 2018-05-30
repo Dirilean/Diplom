@@ -223,7 +223,7 @@ public class Character : MonoBehaviour
     {
         if (AttackType == 1) { prefab = AttackWavePrefab; OfssetY = 0.6F; }
         else if(AttackType==2){ prefab = FirePrefab; OfssetY = 0.7F; }
-        Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F), transform.position.y+OfssetY);//место создания пули относительно персонажа
+        Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.8F : -0.8F), transform.position.y+OfssetY);//место создания пули относительно персонажа
         Fire fire = PoolManager.GetObject(prefab.name,position, prefab.transform.rotation).GetComponent<Fire>();
         fire.napravlenie = fire.transform.right * (GetComponent<SpriteRenderer>().flipX ? 0.5F : -0.5F);//задаем направление и скорость пули (?если  true : false)
         fire.CurrentSpeed+=Mathf.Abs(rb.velocity.x);
@@ -231,10 +231,7 @@ public class Character : MonoBehaviour
         FireColb -= fire.minusFire;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log(lives + ", " + collision.collider.name + ", " + collision.collider.GetInstanceID());
-    //}
+
 
     #region TakeFire
     private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
@@ -252,16 +249,15 @@ public class Character : MonoBehaviour
     {
         if (Time.time>LastTimeToPlusLives+TimeToPlusLives)//в колбе достаточно огня и прошло время перезарядки
         {
-            if (FireColb <= 40)
+            if (FireColb >= (100 - lives))
             {
-                lives += FireColb;//добавляем жизней
-                FireColb =0;
-                
+                FireColb -= 100 - lives;
+                lives = 100;
             }
             else
             {
-                FireColb -= 40;
-                lives +=20;
+                lives += FireColb;
+                FireColb = 0;
             }
             LastTimeToPlusLives = Time.time;
         }
