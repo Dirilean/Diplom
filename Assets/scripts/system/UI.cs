@@ -62,9 +62,9 @@ public class UI : MonoBehaviour {
 
         //отображение экрана заканчивающегося ресурса полета
 
-        if (player.FlyResourse<30F && player.FlyResourse>=0)
+        if (player.FlyResourse<40F && player.FlyResourse>=0)
         {
-            Debug.Log("+");
+            Debug.Log("полетка кончается");
             EndFly.GetComponent<Animation>().Play();
         }
     }

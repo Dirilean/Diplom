@@ -28,7 +28,7 @@ public class Monster : MonoBehaviour
     ParticleSystem Smoke;
     [HideInInspector]
     public bool die;//запустили уже скрипт умирания? (используется для корутины)
-    [HideInInspector]
+   // [HideInInspector]
     public bool playerNear;//мы столкнулись с игроком?
     [HideInInspector]
     public Character Player;
@@ -126,6 +126,14 @@ public class Monster : MonoBehaviour
             {
                 playerNear = false;
             }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Player = collision.gameObject.GetComponent<Character>();
+        if (collision.gameObject.GetComponent<Character>())
+        {
+            playerNear = false;
         }
     }
     #endregion

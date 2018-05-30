@@ -55,8 +55,7 @@ public class Character : MonoBehaviour
     public Fire AttackWavePrefab;
     public Deleter DeleterSmoke;
     Fire prefab; //префаб текущей атаки
-    [SerializeField]
-    GameObject Ligting;
+
     #endregion
 
     #region Flags
@@ -79,7 +78,6 @@ public class Character : MonoBehaviour
 
     #region Level settings
     public Character NextPlayerPrefab;
-    bool perehodto2lvl;
     public int PrefabLevel;//уровень персонажа для этого префаба
     #endregion
 
@@ -94,7 +92,6 @@ public class Character : MonoBehaviour
         i = 0;
         AuSourse.volume = 0.03F;
         LastTimeToPlusLives = -5;
-        perehodto2lvl = false;
         curr_time = repeat_time;
        // if (PrefabLevel == 2) Destroy(gameObject.transform.Find("Player"));
        // Destroy(LastPlayer);
@@ -234,36 +231,10 @@ public class Character : MonoBehaviour
         FireColb -= fire.minusFire;
     }
 
-
-    #region Check End Level
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if ((collision.collider.GetComponent<EndLevel>())&&(PrefabLevel == 1))//если платформа конца уровня
-        {
-            if (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1)
-            {
-                PlayertLevel = 2;
-            }
-            else if (collision.collider.GetComponent<EndLevel>().CurrentLevel == 2)
-            {
-                PlayertLevel = 3;
-            }
-
-            if ((transform.position.y > 12.5F)&& (collision.collider.GetComponent<EndLevel>().CurrentLevel == 1) &&(perehodto2lvl==false))
-            {
-                Instantiate(Ligting,transform.position+0.5F*Vector3.up, new Quaternion(0, 0, 0, 0));
-                Debug.Log("превращееееееееееение на 2ой ур");
-                perehodto2lvl = true;
-                Character Player2 = Instantiate(NextPlayerPrefab, transform.position, new Quaternion(0, 0, 0, 0));
-                Player2.FireColb = 0;
-                gameObject.SetActive(false);
-                
-            }
-        }
-        //дописать для сл уровней
-    }
-    #endregion
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Debug.Log(lives + ", " + collision.collider.name + ", " + collision.collider.GetInstanceID());
+    //}
 
     #region TakeFire
     private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
