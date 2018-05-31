@@ -11,7 +11,8 @@ public class ManagerPlatformType2 : MonoBehaviour {
     Quaternion GenQ = new Quaternion(0, 0, 0, 0);//текущий разворот
     [SerializeField]
     ForGen forgen;
-    float LastFonPos;//координата последнего фонового рисунка
+    //float LastFonPos;//координата последнего фонового рисунка
+    bool EndStartPack=false;
     //[SerializeField]
     //GameObject Fon;
 
@@ -30,27 +31,39 @@ public class ManagerPlatformType2 : MonoBehaviour {
 
 
     void Start()
-    {
-        GenPos = new Vector3((forgen.transform.position.x + Static.StepPlatf), 0);
-        LastFonPos = 16.0F;
+    {  
+        //LastFonPos = 16.0F;
         GameObject player = GameObject.Find("Player2(Clone)");
       //  forgen = player.transform.parent.gameObject.transform.Find("Generator").GetComponent<ForGen>();
-        forgen = player.transform.Find("Generator").GetComponent<ForGen>();
-        lastGroundPos = forgen.transform.position.x + 20F;
+        forgen = player.transform.Find("Generator").GetComponent<ForGen>();    
     }
 
 
     void Update()//генерация !главный метод, вызывающий остальные!
     {
-        GenPos.x = forgen.transform.position.x + Static.StepPlatf;
+        if (EndStartPack == false)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector3(forgen.transform.position.x-GroundLenght, 9.5F), 0.1F,1<<12);
+            if (colliders.Length<1)
+            {
+                EndStartPack = true;
+                GenPos = new Vector3((forgen.transform.position.x + Static.StepPlatf), 0);
+                lastGroundPos = forgen.transform.position.x;
+                Debug.Log("генерация начинается с "+lastGroundPos+", позиция ген:"+GenPos.x);
+            }
+        }
+        else
+        {
+            GenPos.x = forgen.transform.position.x + Static.StepPlatf;
 
-        if (lastGroundPos + GroundLenght < forgen.transform.position.x)
-        { 
-            GameObject DieArea = PoolManager.GetObject(gr.name, new Vector3(Mathf.Round(forgen.transform.position.x), 9), GenQ);//нижняя граница
+            if (lastGroundPos + GroundLenght < GenPos.x)
+            {
+                GameObject DieArea = PoolManager.GetObject(gr.name, new Vector3(lastGroundPos, 9), GenQ);
 
-            GenPlat(ref x1, ref y1,ref x1last);
-            GenPlat(ref x2,ref y2,ref x2last);
-            lastGroundPos = forgen.transform.position.x;
+                GenPlat(ref x1, ref y1, ref x1last);
+                GenPlat(ref x2, ref y2, ref x2last);
+                lastGroundPos += GroundLenght;
+            }
         }
     }
 

@@ -37,7 +37,7 @@ public class ManagerPlatform : MonoBehaviour
 
     void Update()//генерация !главный метод, вызывающий остальные!
     {
-        //устанаовка наального положения генерации
+        //устанаовка начального положения генерации
         if (EndStartPack == false)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector3(forgen.transform.position.x,-1F), 0.1F, 1 << 13);

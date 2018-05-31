@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 212770044384097178}
   - component: {fileID: 114473267523652950}
   - component: {fileID: 60273511562648342}
+  - component: {fileID: 251259253054737924}
   m_Layer: 13
   m_Name: sky4
   m_TagString: Platform
@@ -1459,7 +1460,7 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1705,7 +1706,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 10, y: 10}
+  m_Offset: {x: 6.432707, y: 10}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1716,7 +1717,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18, y: 19}
+  m_Size: {x: 25.134586, y: 19}
   m_EdgeRadius: 0
 --- !u!61 &61248388900453096
 BoxCollider2D:
@@ -1755,7 +1756,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2}
+  m_Offset: {x: -7, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1805,7 +1806,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 10, y: 9.58}
+  m_Offset: {x: 6.4529295, y: 9.58}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1816,7 +1817,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.92, y: 1}
+  m_Size: {x: 27.420187, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &61795698451344880
 BoxCollider2D:
@@ -1830,7 +1831,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 19.24244, y: 22.5}
+  m_Offset: {x: 17.550154, y: 22.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1841,7 +1842,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 83.48488, y: 1}
+  m_Size: {x: 86.869446, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &61886600310301348
 BoxCollider2D:
@@ -2899,7 +2900,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -366808582
+  randomSeed: -661822228
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6260,7 +6261,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1237882753
+  randomSeed: 126760746
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9621,7 +9622,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2103026086
+  randomSeed: -2098559260
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12982,7 +12983,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1173746450
+  randomSeed: -634705762
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16343,7 +16344,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 181745707
+  randomSeed: 1030350946
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19704,7 +19705,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1360720426
+  randomSeed: -1278100399
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -23065,7 +23066,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2084315776
+  randomSeed: 1429886761
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -26426,7 +26427,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -676953631
+  randomSeed: -261343263
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -29787,7 +29788,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -86659197
+  randomSeed: -631718691
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -33148,7 +33149,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 365760611
+  randomSeed: -1937809044
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -36509,7 +36510,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -819200802
+  randomSeed: 2040428542
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -41466,6 +41467,24 @@ PlatformEffector2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156236887212946}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!251 &251259253054737924
+PlatformEffector2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425469303621898}
   m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
