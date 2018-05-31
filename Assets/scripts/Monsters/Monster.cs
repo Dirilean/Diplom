@@ -137,10 +137,12 @@ public class Monster : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Player = collision.gameObject.GetComponent<Character>();
         if (collision.gameObject.GetComponent<Character>())
         {
             playerNear = false;
+            deltax = 0;
+            deltay = 0;
+            Player = null;
         }
     }
     #endregion

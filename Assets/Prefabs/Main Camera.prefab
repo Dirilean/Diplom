@@ -425,7 +425,7 @@ MonoBehaviour:
     count: 1
   - name: FireSphere
     prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
-    count: 10
+    count: 30
   - name: Wolf
     prefab: {fileID: 114250754183206918, guid: 36c1a35d45ec27341a7e619a243a4d55, type: 2}
     count: 3
@@ -573,8 +573,8 @@ MonoBehaviour:
   - name: Smoke
     prefab: {fileID: 114285242594442998, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
     count: 1
-  - name: AttackWave
-    prefab: {fileID: 114603130144821758, guid: a9d537dd03dc6904abe4295814186cb4, type: 2}
+  - name: attack
+    prefab: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942, type: 2}
     count: 1
   - name: boom
     prefab: {fileID: 114205028497694836, guid: c37770ee46a416449865942472729272, type: 2}
@@ -726,8 +726,8 @@ MonoBehaviour:
   - name: Fire
     prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
     count: 1
-  - name: AttackWave
-    prefab: {fileID: 114603130144821758, guid: a9d537dd03dc6904abe4295814186cb4, type: 2}
+  - name: attack
+    prefab: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942, type: 2}
     count: 1
   - name: FireSphere
     prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
@@ -764,7 +764,7 @@ MonoBehaviour:
   ManagerForest: {fileID: 1900108854855658}
   ManagerSky: {fileID: 1931145592275040}
   ManagerSpace: {fileID: 1268707608500470}
-  to2lvl: 1
+  to2lvl: 50
   to3lvl: 1000
   toWin: 1000
   Level: 0
