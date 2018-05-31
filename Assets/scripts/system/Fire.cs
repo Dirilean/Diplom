@@ -67,20 +67,16 @@ public class Fire : MonoBehaviour
     //    }
     //}
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (!collision.gameObject.GetComponent<Character>())
-    //    {
-    //        GetComponent<PoolObject>().ReturnToPool();
-    //    }
-    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+     //   Debug.Log(collision.collider.name);
         Monster monster = collision.collider.GetComponent<Monster>();
         if (monster)
         {
             monster.lives -= damage;//получение урона от пули
+            if (Boom != null)
+            { GameObject boom = PoolManager.GetObject(Boom.name, transform.position, transform.rotation); }
         }
         if (!collision.gameObject.GetComponent<Character>())
         {
@@ -88,8 +84,4 @@ public class Fire : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        GameObject boom = PoolManager.GetObject(Boom.name, transform.position, transform.rotation);
-    }
 }

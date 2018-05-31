@@ -39,8 +39,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245890625398220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 1.97, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.63, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  TimeToDamage: 1
   DefaultLives: 40
   lives: 40
   DefaultSpeed: 1
@@ -145,7 +144,6 @@ MonoBehaviour:
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
   point: {x: 0, y: 0}
-  animator: {fileID: 95643569470689754}
   rb: {fileID: 50151836268202946}
   Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
   die: 0
@@ -153,8 +151,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   deltax: 0
   deltay: 0
-  radius: 1
   Dalnost: 1
+  deltaColor: 0
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: 1
   isGrounded: 0

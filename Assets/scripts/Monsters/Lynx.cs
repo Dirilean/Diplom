@@ -61,7 +61,7 @@ public class Lynx : Monster
             && (Player.isGrounded == true) && (isGrounded == true))//для прыжка
             {
                 //прикладываем силу вверх, чтобы персонаж подпрыгнул
-                rb.AddForce(new Vector3(10F * napravlenie.x, 20), ForceMode2D.Impulse);
+                rb.AddForce(new Vector3(10F * napravlenie.x, 15), ForceMode2D.Impulse);
             }
         }
         else //если не видит лису
