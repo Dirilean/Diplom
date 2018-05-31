@@ -267,15 +267,38 @@ public class Character : MonoBehaviour
     #region Die
     void Die()//смерть персонажа
     {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
-        lives = 0;
-        Debug.Log("Вы умерли!!!!!!!!!!!!!!!!!");
-        timeDie = Time.time;
-        if (timeDie + zaderzhka > Time.time)
+        if (FireColb > 0)//возрадится можно только при имеющихся огоньках
         {
-            transform.position = DeleterSmoke.RespPos;
-            lives = 100;
-            FireColb = 0;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            lives = 0;
+            Debug.Log("Вы умерли!!!!!!!!!!!!!!!!!");
+            timeDie = Time.time;
+            if (timeDie + zaderzhka > Time.time)
+            {
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(DeleterSmoke.RespPos, 1F, 1 << 13);
+                //удаляем платформы что попали в зону респауна
+                if (colliders.Length > 0)
+                {
+                    for (int i = 0; i < colliders.Length; i++)
+                    {
+                        colliders[i].GetComponent<PoolObject>().ReturnToPool();
+                    }
+                }
+                transform.position = DeleterSmoke.RespPos;
+                if (FireColb >= 100)
+                {
+                    lives = 100;
+                }
+                else
+                {
+                    lives += FireColb;
+                }
+                FireColb = 0;
+            }
+        }
+        else
+        {
+            lives = -100;
         }
     }
     #endregion
