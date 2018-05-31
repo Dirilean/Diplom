@@ -1651,6 +1651,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114651073852454648, guid: 182280c478877b5498044305f85b2fad,
+        type: 2}
+      propertyPath: AttackWavePrefab
+      value: 
+      objectReference: {fileID: 114961253663833078, guid: 45d3611c120e3584c9ade61edcd81942,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 61877895669937764, guid: 182280c478877b5498044305f85b2fad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 182280c478877b5498044305f85b2fad, type: 2}
@@ -2201,6 +2207,33 @@ Prefab:
         type: 2}
       propertyPath: to2lvl
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114328283710401862, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[51].name
+      value: attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 114328283710401862, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[51].prefab
+      value: 
+      objectReference: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942,
+        type: 2}
+    - target: {fileID: 114529530231424028, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[14].name
+      value: attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 114529530231424028, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[14].prefab
+      value: 
+      objectReference: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942,
+        type: 2}
+    - target: {fileID: 114328283710401862, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[1].count
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585de285dbcba494bad12a21d8e7a0a8, type: 2}
