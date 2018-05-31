@@ -186,14 +186,14 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914696126789022}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!82 &82565727959589338
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914696126789022}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ed54b0c160b3974a9e3956a8784fde5, type: 3}
@@ -576,6 +576,9 @@ MonoBehaviour:
   - name: AttackWave
     prefab: {fileID: 114603130144821758, guid: a9d537dd03dc6904abe4295814186cb4, type: 2}
     count: 1
+  - name: boom
+    prefab: {fileID: 114205028497694836, guid: c37770ee46a416449865942472729272, type: 2}
+    count: 2
 --- !u!114 &114330612439050182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -755,16 +758,18 @@ MonoBehaviour:
   damping: 5
   offset: {x: 2, y: 4}
   faceLeft: 0
+  player2: {fileID: 114367505891547402, guid: 619fdaf93554d194ab51d2c3e33911a8, type: 2}
+  player3: {fileID: 0}
   player: {fileID: 0}
   ManagerForest: {fileID: 1900108854855658}
   ManagerSky: {fileID: 1931145592275040}
   ManagerSpace: {fileID: 1268707608500470}
-  to2lvl: 20
+  to2lvl: 1
   to3lvl: 1000
   toWin: 1000
   Level: 0
-  EndPlatformForest: {fileID: 1900179446234464, guid: e0f841ec110b27d418c0a0e30932e702,
-    type: 2}
+  Ligting: {fileID: 1868531026016624, guid: 5425c3ebf9e85ad49aa03ccdb9310518, type: 2}
+  EndPlatformForest: {fileID: 0}
   SubMenu: {fileID: 0}
   LoseMenu: {fileID: 0}
 --- !u!114 &114895876656381114

@@ -7,6 +7,7 @@ public class ManagerPlatform : MonoBehaviour
     public GameObject[] f = new GameObject[41]; //все платформы  в лесу
     public GameObject gr;//земля
     public Vector3 GenPos;//текущая позиция генерации
+    float LastGenPos;
     Vector3 GenPosGr;//текущая позиция генерации земли
     Vector3 PlatGenPos;//следующая выбранная позиция генерации
     Quaternion GenQ = new Quaternion(0, 0, 0, 0);//текущий разворот
@@ -14,6 +15,7 @@ public class ManagerPlatform : MonoBehaviour
     ForGen forgen;
     float LastPos;//Координата последней платформы
     byte method;//номер метода платформы, совпадает с номером метода
+    bool EndStartPack;
 
     System.Random rnd = new System.Random();
     int RndStep;//рандомный шаг для создания следущей платформы, ОБЯЗАТЕЛЬНО КРАТНО 2
@@ -25,32 +27,50 @@ public class ManagerPlatform : MonoBehaviour
 
     void Start()
     {
-        GenPosGr = new Vector3((forgen.transform.position.x + Static.StepGenGround), 0);
-        GenPos = new Vector3((forgen.transform.position.x+Static.StepPlatf),0);
-        LastPos = forgen.transform.position.x + Static.StepPlatf;
+        EndStartPack = false;
+        GenPosGr = Vector3.zero;
+        GenPos = Vector3.zero;
+        LastPos = 0;
         RndStep = 1;
-        lastGroundPos = GenPosGr.x;
     }
 
 
     void Update()//генерация !главный метод, вызывающий остальные!
     {
-        GenPosGr.x = forgen.transform.position.x;
-        GenPos.x = forgen.transform.position.x + Static.StepPlatf;
-
-        #region ground
-        if (lastGroundPos+GroundLenght<forgen.transform.position.x)
+        //устанаовка наального положения генерации
+        if (EndStartPack == false)
         {
-            lastGroundPos += GroundLenght;
-            GameObject ground = PoolManager.GetObject(gr.name,new Vector3(lastGroundPos, GenPosGr.y - 3.0F), GenQ);
-            
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector3(forgen.transform.position.x,-1F), 0.1F, 1 << 13);
+            if ((colliders.Length < 1)&&(GenPos.x%2==0))
+            {
+                EndStartPack = true;
+                GenPosGr = new Vector3((forgen.transform.position.x + Static.StepGenGround), 0);
+                GenPos = new Vector3((forgen.transform.position.x + Static.StepPlatf), 0);
+                lastGroundPos = GenPosGr.x-4F;
+                LastPos = forgen.transform.position.x + Static.StepPlatf;
+                LastGenPos = GenPos.x - 2F;
+                RndStep = 0;
+                Debug.Log("НАЧАЛИ ГЕНЕРАЦИЮ В " + GenPos);
+            }
         }
-        #endregion
+        else
+        {
+            GenPosGr.x = forgen.transform.position.x;
+            GenPos.x = forgen.transform.position.x + Static.StepPlatf;
 
+            #region ground
+            if (lastGroundPos + GroundLenght < forgen.transform.position.x)
+            {
+                lastGroundPos += GroundLenght;
+                GameObject ground = PoolManager.GetObject(gr.name, new Vector3(lastGroundPos, GenPosGr.y - 3.0F), GenQ);
+            }
+            #endregion
 
             #region Platforms
-            if (((int)GenPos.x % 2 == 0) && (((int)LastPos + RndStep == (int)GenPos.x)))//каждую четную позицию генерации вызывай это
+           // Debug.Log((LastGenPos + 2F <= GenPos.x) +", "+ (LastPos + RndStep <= GenPos.x));
+            if ((LastGenPos+2F<=GenPos.x)&&(LastPos + RndStep <= GenPos.x))//каждую четную позицию генерации вызывай это
             {
+                LastGenPos += 2;
                 switch (method)
                 {
                     case 0: F0(); break;
@@ -70,6 +90,7 @@ public class ManagerPlatform : MonoBehaviour
                 }
             }
             #endregion
+        }
     }
 
 

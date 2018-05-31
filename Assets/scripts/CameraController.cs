@@ -169,12 +169,14 @@ public class CameraController : MonoBehaviour
                 {
                     Debug.Log("Уровень 2");
                     Level = 2;
-                    GameObject endPlatformForest = Instantiate(EndPlatformForest, new Vector3(transform.position.x-5F, 0F), new Quaternion(0, 0, 0, 0));//строим  конечные объекты уровня
+                    EndPlatformForest.transform.position = new Vector3(transform.position.x - 5F, 0F);//строим  конечные объекты уровня
+                    EndPlatformForest.SetActive(true);
                     ManagerForest.SetActive(false);//выключаем текущий менеджер
                     Instantiate(Ligting, player.transform.position + 0.5F * Vector3.up, new Quaternion(0, 0, 0, 0));
                     player.gameObject.SetActive(false);
                     player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
                     player.FireColb = 0;
+                    ManagerSky.SetActive(true);
                 }
                 break;
             case 2:
@@ -182,6 +184,7 @@ public class CameraController : MonoBehaviour
                     //движение камеры до уровня
                     if (transform.position.y < offset.y + 10F) { Y = offset.y + player.transform.position.y; }
                     else { Y = offset.y + 11F; }
+
                     //перехзод на 3 ур
                     if ((player.FireColb > to3lvl) && (Level == 2)) { Debug.Log("++"); Level = 3; ManagerSpace.SetActive(true); }
                     break;//со 2 на 3
