@@ -17,6 +17,8 @@ public class Fire : MonoBehaviour
     [Tooltip ("анимировать ли обьект?")]
     public bool animate=false;
     Color CurrenAlfa;
+    [SerializeField]
+    ParticleSystem Boom;
 
     private void Start()
     {
@@ -84,5 +86,10 @@ public class Fire : MonoBehaviour
         {
             GetComponent<PoolObject>().ReturnToPool();
         }
+    }
+
+    private void OnDisable()
+    {
+        GameObject boom = PoolManager.GetObject(Boom.name, transform.position, transform.rotation);
     }
 }

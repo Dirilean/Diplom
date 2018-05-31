@@ -7,7 +7,7 @@ public class Smoke : MonoBehaviour {
 
     IEnumerator ForDeactivate()
     {
-        yield return new WaitForSeconds(4F);
+        yield return new WaitForSeconds(5F);
         GetComponent<PoolObject>().ReturnToPool();//"удаление" объекта
     }
 

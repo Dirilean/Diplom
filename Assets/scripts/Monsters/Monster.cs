@@ -10,7 +10,7 @@ public class Monster : MonoBehaviour
     [SerializeField]
     public int Damage;//количество наносимого урона
     public int DefaultLives;//изначальные жизни
-    [HideInInspector]
+  //  [HideInInspector]
     public int lives;// текущие жизни
     public float DefaultSpeed;//изначальная скорость
     [HideInInspector]
@@ -35,6 +35,8 @@ public class Monster : MonoBehaviour
     public float deltax;//записывается текущее расстояние до персонажа
     public float deltay;
     public float Dalnost;//дальность(центр окружности) для проверки стен
+    [SerializeField]
+    float deltaColor;//для плавного изменения цвета игрока
 
     public Vector3 napravlenie;
     [SerializeField]
@@ -57,6 +59,7 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<SpriteRenderer>().color=new Color(255,255,255,1);
         lives = DefaultLives;
         speed = DefaultSpeed;
         napravlenie = Vector3.right;//начальное направление вправо
@@ -100,9 +103,13 @@ public class Monster : MonoBehaviour
 
         if (playerNear)//если столкнулись с игроком спереди то наносим урон
         {
-            
             State = CharState.attack;//запускаем анимацию удара (она же и вызовет метод самого удара)
         }
+
+        //получение урона
+            deltaColor = Mathf.Lerp(deltaColor, ((float)lives / DefaultLives) + 0.2F, Time.deltaTime * 10);
+            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, deltaColor);
+        
     }
 
     public void Attack()//метод атаки
