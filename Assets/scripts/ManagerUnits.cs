@@ -8,25 +8,28 @@ public class ManagerUnits : MonoBehaviour {
     [SerializeField]
     ForGen forgen;
     [SerializeField]
-    Monster WolfPrefab;
+    GameObject[] monsters = new GameObject[3];
     [SerializeField]
-    PassiveEnemy MuskiPrefab;
+    int[] chance = new int[3];
     [SerializeField]
-    Monster BearPrefab;
-    [SerializeField]
-    Ezh EzhPrefab;
-    [SerializeField]
-    Lynx LynxPrefab;
+    float[] Hights=new float[3];//позиция генерации по Y
 
-    System.Random rnd = new System.Random();
     int RndStep;
     int RndPack;
+    int RndY;
     float LastPos;
+    //счетчики
+    int i;
+    int j;
+    int sum;
+    Collider2D[] colliders;
 
     float GenPos;//текущая позиция генерации
 
     // Use this for initialization
     void Start() {
+        GameObject player = GameObject.FindWithTag("Player");
+        forgen = player.transform.Find("Generator").GetComponent<ForGen>();
         RndStep = 0;
         GenPos = Static.ForgenPosition+ Static.StepGenMonster;
         LastPos = GenPos;
@@ -37,53 +40,38 @@ public class ManagerUnits : MonoBehaviour {
         GenPos = forgen.transform.position.x + Static.StepGenMonster;
         if (GenPos > RndStep + LastPos)
         {
-            RndPack = rnd.Next(14);
-            switch (RndPack)
+            RndPack = Random.Range(0,100);
+            RndY = Random.Range(0, Hights.Length);//выбор случайной высоты
+            i = -1;
+            sum=0;
+         //   Debug.Log("rnd=" + RndPack +"sum="+sum);
+            //ищем в диапазоне какокого элемента массива шансов выпало рандомное значение
+            for (j=0;j< chance.Length;)
             {
-                case 0: wolf(); break;
-                case 1: wolf(); break;
-                case 2: wolf(); break;
-                case 3: wolf(); break;
-
-                case 4: bear(); break;
-                case 5: bear(); break;
-                case 6: bear(); break;
-
-                case 7: lynx(); break;
-                case 8: lynx(); break;
-
-                case 9: ezh(); break;
-                case 10: ezh(); break;
-
-                case 11: moski(); break;
-                case 12: moski(); break;
-                case 13: moski(); break;
+                if (RndPack - chance[j] - sum < 0)
+                {
+                    i = j;                    
+                    colliders = Physics2D.OverlapCircleAll(new Vector3((RndStep + LastPos), Hights[RndY]), 0.3F, 1 << 13);
+                 //   Debug.Log((RndPack - chance[j] + sum)+"RndPack - chance[j] + sum " +RndPack+"-"+chance[j]+"+"+sum+"<0"+", i " + i);
+                    j = chance.Length;
+                }
+                else
+                {                 
+                    sum += chance[j];
+                    j++;
+                    //Debug.Log("sum "+sum+", j"+j);
+                }
             }
-            RndStep = rnd.Next(15) + 5;
+            if ((i != -1)&&(colliders.Length==0))//если рандом попал в диапазон  и на месте генерации нет объектов
+            { 
+                GameObject monster = PoolManager.GetObject(monsters[i].name, new Vector3((RndStep + LastPos), Hights[RndY]), monsters[i].transform.rotation);
+              //  Debug.Log("генерация монстра в " + (RndStep + LastPos) + "на высоте: " + Hights[RndY] + ", время: " + Time.time);
+            }
+            RndStep = Random.Range(5,20);
             LastPos = GenPos;
-            //Debug.Log("генерация монстра в "+ (RndStep + LastPos)+", время: "+Time.time);
+            
         }
     }
 
 
-    void wolf()
-    {
-        Monster Wolf = PoolManager.GetObject(WolfPrefab.name, new Vector3((RndStep + LastPos), 10), WolfPrefab.transform.rotation).GetComponent<Monster>();
-    }
-    void bear()
-    {
-        Monster Bear = PoolManager.GetObject(BearPrefab.name, new Vector3((RndStep + LastPos), 10), BearPrefab.transform.rotation).GetComponent<Monster>();
-    }
-    void lynx()
-    {
-        Lynx Lynx = PoolManager.GetObject(LynxPrefab.name, new Vector3((RndStep + LastPos),10), LynxPrefab.transform.rotation).GetComponent<Lynx>();
-    }
-    void ezh()
-    {
-        Ezh Ezh = PoolManager.GetObject(EzhPrefab.name, new Vector3((RndStep + LastPos), 8), EzhPrefab.transform.rotation).GetComponent<Ezh>();
-    }
-    void moski()
-    {
-        PassiveEnemy Muski = PoolManager.GetObject(MuskiPrefab.name, new Vector3((RndStep + LastPos), 8), MuskiPrefab.transform.rotation).GetComponent<PassiveEnemy>();
-    }
 }

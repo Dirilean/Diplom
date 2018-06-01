@@ -168,10 +168,10 @@ public class CameraController : MonoBehaviour
                 if ((player.FireColb > to2lvl))//с 1 на 2
                 {
                     Debug.Log("Уровень 2");
+                    ManagerForest.SetActive(false);//выключаем текущий менеджер
                     Level = 2;
                     EndPlatformForest.transform.position = new Vector3(transform.position.x - 5F, 0F);//строим  конечные объекты уровня
-                    EndPlatformForest.SetActive(true);
-                    ManagerForest.SetActive(false);//выключаем текущий менеджер
+                    EndPlatformForest.SetActive(true);                    
                     Instantiate(Ligting, player.transform.position + 0.5F * Vector3.up, new Quaternion(0, 0, 0, 0));
                     player.gameObject.SetActive(false);
                     player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
