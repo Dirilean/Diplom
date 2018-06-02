@@ -321,11 +321,10 @@ MonoBehaviour:
   AttackType: 0
   FirePrefab: {fileID: 114499267637046000, guid: 96b19e52d4804a047877ee8fea57062b,
     type: 2}
-  AttackWavePrefab: {fileID: 114993579787751452, guid: a9d537dd03dc6904abe4295814186cb4,
+  AttackWavePrefab: {fileID: 114961253663833078, guid: 45d3611c120e3584c9ade61edcd81942,
     type: 2}
   DeleterSmoke: {fileID: 114284598271599640, guid: 5d95cff2a8f6dd44c9578821a3b3baa1,
     type: 2}
-  Ligting: {fileID: 1868531026016624, guid: 5425c3ebf9e85ad49aa03ccdb9310518, type: 2}
   isGrounded: 0
   AuSourse: {fileID: 82181242602451022}
   RunSound:

@@ -97,7 +97,7 @@ MonoBehaviour:
   lifetime: 0.5
   minusFire: 0
   animate: 1
-  Boom: {fileID: 198879396348877974, guid: c37770ee46a416449865942472729272, type: 2}
+  Boom: {fileID: 198075145514661486, guid: 24902a8a7e7c1fe46a550ed42dad000f, type: 2}
 --- !u!212 &212969996784828276
 SpriteRenderer:
   m_ObjectHideFlags: 1

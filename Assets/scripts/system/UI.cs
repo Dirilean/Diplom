@@ -13,6 +13,8 @@ public class UI : MonoBehaviour {
     public Text kolvoOgnya;
     public Image ReciveDamage;
     public Image EndFly;
+    public Image lightUI1;
+    public Image lightUI2;
     public float currentAlfa;//текущиая альфа
     float LastLives;
     float NextAlfa;
@@ -43,11 +45,13 @@ public class UI : MonoBehaviour {
         //изменение прозрачности при перезарядке конвертации жизней
         if (Time.time < player.LastTimeToPlusLives + player.TimeToPlusLives)//если идет перезарядка
         {
-            Ognesvet.color = new Color(Ognesvet.color.r, Ognesvet.color.g, Ognesvet.color.b, 0.2F);
+            lightUI1.color = new Color(lightUI1.color.r, lightUI1.color.g, lightUI1.color.b, 0.1F);
+            lightUI2.color = new Color(lightUI2.color.r, lightUI2.color.g, lightUI2.color.b, 0.1F);
         }
         else //возвращение цвета
         {
-            Ognesvet.color = new Color(Ognesvet.color.r, Ognesvet.color.g, Ognesvet.color.b, 1.0F);
+            lightUI1.color = new Color(lightUI1.color.r, lightUI1.color.g, lightUI1.color.b, 1.0F);
+            lightUI2.color = new Color(lightUI2.color.r, lightUI2.color.g, lightUI2.color.b, 1.0F);
         }
 
       //  Debug.Log(LastLives+"> "+player.lives);
