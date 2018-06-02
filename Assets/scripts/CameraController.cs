@@ -31,6 +31,8 @@ public class CameraController : MonoBehaviour
     public int Level;
     [SerializeField]
     GameObject Ligting;
+    [SerializeField]
+    GameObject Ligting2;
     #endregion
     public GameObject EndPlatformForest;
     Vector3 target;//центр для камеры
@@ -171,19 +173,39 @@ public class CameraController : MonoBehaviour
                     ManagerForest.SetActive(false);//выключаем текущий менеджер
                     Level = 2;
                     EndPlatformForest.transform.position = new Vector3(transform.position.x - 5F, 0F);//строим  конечные объекты уровня
-                    EndPlatformForest.SetActive(true);                    
-                    Instantiate(Ligting, player.transform.position + 0.5F * Vector3.up, new Quaternion(0, 0, 0, 0));
-                    player.gameObject.SetActive(false);
-                    player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
+                    EndPlatformForest.SetActive(true);                 
+                    Ligting2.SetActive(true);
+                    Ligting2.transform.localPosition = new Vector3(-8F, -4F);
                     player.FireColb = 0;
+
+                        
+                        
+                    
                     ManagerSky.SetActive(true);
                 }
                 break;
             case 2:
                 {
                     //движение камеры до уровня
-                    if (transform.position.y < offset.y + 10F) { Y = offset.y + player.transform.position.y; }
-                    else { Y = offset.y + 11F; }
+                    if (transform.position.y < offset.y + 10F)
+                    {
+                        if (Ligting.activeInHierarchy == false&&(Mathf.Abs(player.transform.position.x - Ligting2.transform.position.x) < 0.05F))
+                        {
+                            Ligting.transform.position = player.transform.position + 0.5F * Vector3.up;
+                            Ligting.SetActive(true);
+                            player.gameObject.SetActive(false);
+                            player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
+                            Ligting2.SetActive(false);
+                        }
+                        Y = offset.y + player.transform.position.y;
+                        Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F*Time.deltaTime);
+                        Ligting.transform.position = player.transform.position + 0.5F * Vector3.up;
+                    }
+                    else
+                    {
+                        Ligting.SetActive(false);
+                        Y = offset.y + 11F;
+                    }
 
                     //перехзод на 3 ур
                     if ((player.FireColb > to3lvl) && (Level == 2)) { Debug.Log("++"); Level = 3; ManagerSpace.SetActive(true); }
@@ -193,6 +215,13 @@ public class CameraController : MonoBehaviour
         }
         #endregion
 
+    }
+    IEnumerator Magic()
+    {
+        yield return new WaitForSeconds(2F);
+        Ligting2.SetActive(false);
+        yield return new WaitForSeconds(10F);
+        Ligting.SetActive(false);
     }
 
 
