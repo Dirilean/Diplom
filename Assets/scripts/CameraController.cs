@@ -177,11 +177,6 @@ public class CameraController : MonoBehaviour
                     Ligting2.SetActive(true);
                     Ligting2.transform.localPosition = new Vector3(-8F, -4F);
                     player.FireColb = 0;
-
-                        
-                        
-                    
-                    ManagerSky.SetActive(true);
                 }
                 break;
             case 2:
@@ -196,6 +191,7 @@ public class CameraController : MonoBehaviour
                             player.gameObject.SetActive(false);
                             player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
                             Ligting2.SetActive(false);
+                            ManagerSky.SetActive(true);
                         }
                         Y = offset.y + player.transform.position.y;
                         Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F*Time.deltaTime);

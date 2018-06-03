@@ -1783,7 +1783,7 @@ Prefab:
     - target: {fileID: 114207318972251806, guid: 182280c478877b5498044305f85b2fad,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114651073852454648, guid: 182280c478877b5498044305f85b2fad,
         type: 2}
@@ -2282,7 +2282,7 @@ Prefab:
     - target: {fileID: 114529530231424028, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
       propertyPath: pools.Array.size
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 114895876656381114, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
@@ -2364,7 +2364,7 @@ Prefab:
     - target: {fileID: 114860328137523642, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
       propertyPath: to2lvl
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114390578229499458, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
@@ -2607,6 +2607,22 @@ Prefab:
     - target: {fileID: 114328283710401862, guid: 585de285dbcba494bad12a21d8e7a0a8,
         type: 2}
       propertyPath: pools.Array.data[52].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114529530231424028, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[21].name
+      value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 114529530231424028, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[21].prefab
+      value: 
+      objectReference: {fileID: 114285242594442998, guid: e1229605e194dc548aa3900c17f9b2c4,
+        type: 2}
+    - target: {fileID: 114529530231424028, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: pools.Array.data[21].count
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3784,6 +3800,10 @@ Prefab:
       value: 
       objectReference: {fileID: 508087181}
     - target: {fileID: 1900179446234464, guid: e0f841ec110b27d418c0a0e30932e702, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346514495406386, guid: e0f841ec110b27d418c0a0e30932e702, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

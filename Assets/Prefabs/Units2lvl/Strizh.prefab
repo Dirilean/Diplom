@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 58680320982799872}
   - component: {fileID: 50762310601895378}
   - component: {fileID: 114086343221482914}
+  - component: {fileID: 114432894397852252}
   m_Layer: 11
   m_Name: Strizh
   m_TagString: Mob
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1735008687246910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.385086, y: 13.686081, z: 0.4409968}
+  m_LocalPosition: {x: 1.44, y: 15.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58680320982799872
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -89,6 +90,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114432894397852252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735008687246910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529cd06cf1e0806439af71e444a346f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 15
+  DefaultLives: 10
+  lives: 10
+  DefaultSpeed: 2
+  speed: 0
+  PlusFireColb: 3
+  FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
+    type: 2}
+  point: {x: 0, y: 0}
+  rb: {fileID: 0}
+  Smoke: {fileID: 198304944449529716, guid: e1229605e194dc548aa3900c17f9b2c4, type: 2}
+  die: 0
+  playerNear: 0
+  Player: {fileID: 0}
+  deltax: 0
+  deltay: 0
+  Dalnost: 0
+  deltaColor: 0
+  napravlenie: {x: 0, y: 0, z: 0}
+  SpriteSeeRight: 1
 --- !u!212 &212623094495092184
 SpriteRenderer:
   m_ObjectHideFlags: 1

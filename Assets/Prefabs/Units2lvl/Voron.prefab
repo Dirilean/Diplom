@@ -135,10 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d687eca80bd294449478007e134691b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 10
   DefaultLives: 50
   lives: 0
-  DefaultSpeed: 1
+  DefaultSpeed: 0.8
   speed: 0
   PlusFireColb: 5
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
@@ -155,7 +155,7 @@ MonoBehaviour:
   deltaColor: 0
   napravlenie: {x: 0, y: 0, z: 0}
   SpriteSeeRight: -1
-  StartPosX: 0
+  StartPosX: 1
 --- !u!212 &212682231792127454
 SpriteRenderer:
   m_ObjectHideFlags: 1

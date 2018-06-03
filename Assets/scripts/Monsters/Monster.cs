@@ -21,7 +21,7 @@ public class Monster : MonoBehaviour
     FireSphere FireSpherePrefab;
     [HideInInspector]
     public Vector2 point;//центр окружнгости для определения стен и игрока
-    Animator animator;
+    protected Animator animator;
     [HideInInspector]
     public Rigidbody2D rb;
     [SerializeField]

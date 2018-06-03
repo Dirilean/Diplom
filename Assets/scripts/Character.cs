@@ -168,19 +168,19 @@ public class Character : MonoBehaviour
                     FlyResourse -= 1;
                 }
             }
-
             if (Input.GetButton("Jump") && (FlyResourse > 0))
             {
-                //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
-                if (transform.position.y > 6F) { rb.gravityScale = -0.1F; }
-                else if (transform.position.y > 5F) { rb.gravityScale = -0.2F; }
-                else if (transform.position.y > 5F) { rb.gravityScale = -0.3F; }
-                else { rb.gravityScale = -0.4F; }
+                rb.AddForce(new Vector3(0, 3F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
             }
-            else
-            {
-                rb.gravityScale = 0.3F;
-            }
+            //    if (Input.GetButton("Jump") && (FlyResourse > 0))
+            //{
+            //    //rb.AddForce(new Vector3(0,10F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+            //     rb.gravityScale = -0.2F* Input.GetAxis("Vertical");
+            //}
+            //else
+            //{
+            //    rb.gravityScale = 0.3F;
+            //}
         }
         #endregion
 
