@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class ManagerPlatform : MonoBehaviour
 {
-    public GameObject[] f = new GameObject[41]; //все платформы  в лесу
-    public GameObject gr;//земля
-    public Vector3 GenPos;//текущая позиция генерации
-    float LastGenPos;
-    Vector3 GenPosGr;//текущая позиция генерации земли
-    Vector3 PlatGenPos;//следующая выбранная позиция генерации
-    Quaternion GenQ = new Quaternion(0, 0, 0, 0);//текущий разворот
     [SerializeField]
     ForGen forgen;
-    float LastPos;//Координата последней платформы
-    byte method;//номер метода платформы, совпадает с номером метода
-    bool EndStartPack;
+    public Vector3 GenPos;//текущая позиция генерации
+    float LastGenPos;//последняя позиция генератора
+
+    public GameObject[] f = new GameObject[41]; //все префабы платформ в лесу
+    public GameObject gr;//земля
+    Vector3 GenPosGr;//текущая позиция генерации земли
+    float lastGroundPos;//последняя позиция генерации земли
+    public float GroundLenght = 4F;//длинна объекта земли
+
+    float LastPos;//Координата последней сгенерированной платформы
+    Vector3 PlatGenPos;//следующая выбранная позиция генерации
+
+    Quaternion GenQ = new Quaternion(0, 0, 0, 0);//стандартный поворот объектов
+ 
+    byte method;//номер метода платформы, вызывает соответствующий метод генерации платформы
+    bool EndStartPack;//флаг, показывающий закончились ли настроеные платформы
 
     System.Random rnd = new System.Random();
     int RndStep;//рандомный шаг для создания следущей платформы, ОБЯЗАТЕЛЬНО КРАТНО 2
-    int RndPak;//из какого пака платформ выбирать
-    int RndVid;//какую платформу из пака выбрать
-    public bool once = true;
-    float lastGroundPos;
-   public  float GroundLenght=4F;
+    int RndPak;//из какого набора платформ выбирать
+    int RndVid;//какую конкретно платформу из набора выбрать
 
     void Start()
     {
@@ -34,12 +37,11 @@ public class ManagerPlatform : MonoBehaviour
         RndStep = 1;
     }
 
-
-    void Update()//генерация !главный метод, вызывающий остальные!
+    void Update()
     {
-        //устанаовка начального положения генерации
+        //начинаем ли генерацию
         if (EndStartPack == false)
-        {
+        {//устанановка начального положения генерации
             Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector3(forgen.transform.position.x,-1F), 0.1F, 1 << 13);
             if ((colliders.Length < 1)&&(GenPos.x%2==0))
             {
@@ -50,7 +52,6 @@ public class ManagerPlatform : MonoBehaviour
                 LastPos = forgen.transform.position.x + Static.StepPlatf;
                 LastGenPos = GenPos.x - 2F;
                 RndStep = 0;
-                Debug.Log("НАЧАЛИ ГЕНЕРАЦИЮ В " + GenPos);
             }
         }
         else
@@ -67,7 +68,6 @@ public class ManagerPlatform : MonoBehaviour
             #endregion
 
             #region Platforms
-           // Debug.Log((LastGenPos + 2F <= GenPos.x) +", "+ (LastPos + RndStep <= GenPos.x));
             if ((LastGenPos+2F<=GenPos.x)&&(LastPos + RndStep <= GenPos.x))//каждую четную позицию генерации вызывай это
             {
                 LastGenPos += 2;
@@ -93,7 +93,6 @@ public class ManagerPlatform : MonoBehaviour
         }
     }
 
-
     public int GetRandom(params int[] values)//для выбора рандомного числа из предложеных (используется в методах создания платформ)
     {
         if (values != null)
@@ -101,7 +100,7 @@ public class ManagerPlatform : MonoBehaviour
         else { return 4; }
     }
 
-    void GenPlat(GameObject a1, GameObject a2, GameObject a3)//универсальный метод рандомного создания платформ из подобных
+    void GenPlat(GameObject a1, GameObject a2, GameObject a3)//универсальный метод рандомного создания платформ из набора подобных
     {
         RndVid = rnd.Next(2);
         switch (RndVid)//выбираем внешний вид текущей платформы платформы
@@ -116,11 +115,11 @@ public class ManagerPlatform : MonoBehaviour
     #region platforms descriptions
     void F0()
     {
-        GenPlat(f[0], f[1], f[2]);//Генерирование рандомной платформы из пака
-        RndPak = rnd.Next(12);//число для выбора следующей платформы
-        switch (RndPak)//какая платформа следующая?
-        {
-            case 0: RndStep = GetRandom(2, 4, 8); method = 0; break;//выбираем метод по номеру первой платформы в паке
+        GenPlat(f[0], f[1], f[2]);//Генерирование рандомной платформы из набора
+        RndPak = rnd.Next(12);//число для выбора следующего набора платформ
+        switch (RndPak)//какая платформу можно поставить вслед за только что сгенерированной?
+        {//выбираем метод по номеру первой платформы в наборе
+            case 0: RndStep = GetRandom(2, 4, 8); method = 0; break;
             case 1: RndStep = GetRandom(2, 4, 8); method = 3; break;
             case 2: RndStep = GetRandom(2, 4, 8); method = 6; break;
             case 3: RndStep = 2; method = 9; break;
@@ -133,7 +132,7 @@ public class ManagerPlatform : MonoBehaviour
             case 10: RndStep = 2; method = 36; break;
             case 11: RndStep = 2; method = 39; break;
         }
-        RndStep = RndStep + 4;//увеличиваем шаг на длинну платформы
+        RndStep = RndStep + 4;//увеличиваем шаг на длинну созданной платформы
     }
 
     void F3()
@@ -182,8 +181,6 @@ public class ManagerPlatform : MonoBehaviour
         RndStep = RndStep + 8;
     }
 
-
-
     void F9()
     {
         GenPlat(f[9], f[10], f[11]);
@@ -204,8 +201,6 @@ public class ManagerPlatform : MonoBehaviour
         RndStep = RndStep + 4;
     }
 
-
-
     void F12()
     {
         GenPlat(f[12], f[13], f[14]);
@@ -225,7 +220,6 @@ public class ManagerPlatform : MonoBehaviour
         }
         RndStep = RndStep + 8;
     }
-
 
     void F15()
     {
@@ -248,7 +242,6 @@ public class ManagerPlatform : MonoBehaviour
         }
         RndStep = RndStep + 8;
     }
-
 
     void F18()
     {

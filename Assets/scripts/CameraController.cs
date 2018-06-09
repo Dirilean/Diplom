@@ -162,7 +162,9 @@ public class CameraController : MonoBehaviour
         target = new Vector3(player.transform.position.x + offset.x, Y, transform.position.z);
         Vector3 currentPosition = Vector3.Lerp(transform.position, target, damping * Time.deltaTime);
         transform.position = currentPosition;
+        #endregion
 
+        #region Level
 
         switch (Level)//для создания объектов перехода на сл уровень ()
         {

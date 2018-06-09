@@ -22,8 +22,8 @@ public class UI : MonoBehaviour {
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Character>();
-        Pero.color = new Color(1, 1, 1, 0);//изначально прозрачные
-        Ogon.color= new Color(1, 1, 1, 0);
+        Pero.color = new Color(1, 1, 1, 1);//изначально прозрачные
+        Ogon.color= new Color(1, 1, 1, 1);
         Lives.fillAmount = player.lives / 100.0F;
         Ognesvet.fillAmount =player.FireColb / Static.LevelUp;
         LastLives = player.lives;

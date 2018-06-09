@@ -311,5 +311,6 @@ public class Character : MonoBehaviour
         AuSourse.PlayOneShot(RunSound[i]);
     }
 
+
     #endregion
 }

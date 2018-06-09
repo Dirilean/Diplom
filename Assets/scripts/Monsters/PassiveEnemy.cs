@@ -10,8 +10,6 @@ public class PassiveEnemy : MonoBehaviour {
     float TimeToDamage;//время за которое наносятся один удар
     [SerializeField]
     bool Once;//урон единожды?
-    [SerializeField]
-    int MinusFireSphere;//количество огнесвета в процентах, который забирается при ударе
     float LastTime;//Время последнего удара
     bool Udar;//одиночный удар уже был нанесен?
 
@@ -21,7 +19,6 @@ public class PassiveEnemy : MonoBehaviour {
         if ((unit)&&(Once==true))//Одиночный удар
         {
             unit.lives = unit.lives - Damage;
-            unit.FireColb=Mathf.RoundToInt(unit.FireColb-(unit.FireColb*MinusFireSphere*0.01F));
             Udar = true;
         }
         else if ((unit) && (Time.time-TimeToDamage>LastTime))//нанесение урона
