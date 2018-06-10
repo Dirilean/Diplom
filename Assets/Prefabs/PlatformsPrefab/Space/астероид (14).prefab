@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 60885541282551930}
   - component: {fileID: 50775195571077286}
   - component: {fileID: 114920981866791818}
-  - component: {fileID: 114417229526654236}
+  - component: {fileID: 114843935169506378}
   m_Layer: 13
   m_Name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 (14)"
   m_TagString: Untagged
@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469468111506516}
-  m_LocalRotation: {x: 0, y: 0, z: 0.014049449, w: 0.9999013}
-  m_LocalPosition: {x: -4.6370087, y: 31.63314, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.014049449, w: 0.9999013}
+  m_LocalPosition: {x: 57.423256, y: -0.55132484, z: -2.4935665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,7 +116,7 @@ PolygonCollider2D:
       - {x: 0.48499998, y: -0.775}
       - {x: 0.755, y: -0.695}
       - {x: 0.895, y: -0.615}
---- !u!114 &114417229526654236
+--- !u!114 &114843935169506378
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -124,12 +124,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1469468111506516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9554e18c07526e46a53ff90a34500a9, type: 3}
+  m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 15
-  TimeToDamage: 0
-  Once: 1
+  live: 20
+  Damage: 10
+  Udar: 0
 --- !u!114 &114920981866791818
 MonoBehaviour:
   m_ObjectHideFlags: 1

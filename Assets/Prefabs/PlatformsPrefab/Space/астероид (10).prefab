@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 60999001834589734}
   - component: {fileID: 50259373433029932}
   - component: {fileID: 114282849650512602}
-  - component: {fileID: 114371315147087062}
+  - component: {fileID: 114428843182989876}
   m_Layer: 13
   m_Name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 (10)"
   m_TagString: Untagged
@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1220897098769814}
-  m_LocalRotation: {x: 0, y: 0, z: 0.014049449, w: 0.9999013}
-  m_LocalPosition: {x: -4.6370087, y: 31.63314, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.014049449, w: 0.9999013}
+  m_LocalPosition: {x: 48.603256, y: -0.23132515, z: -2.4935665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114371315147087062
+--- !u!114 &114428843182989876
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -162,12 +162,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1220897098769814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9554e18c07526e46a53ff90a34500a9, type: 3}
+  m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 15
-  TimeToDamage: 0
-  Once: 1
+  live: 50
+  Damage: 10
+  Udar: 0
 --- !u!212 &212375573612021416
 SpriteRenderer:
   m_ObjectHideFlags: 1

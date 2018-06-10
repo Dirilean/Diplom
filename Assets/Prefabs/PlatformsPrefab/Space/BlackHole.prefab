@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 250264392181865606}
   - component: {fileID: 58380745216341602}
   - component: {fileID: 114305221290619708}
+  - component: {fileID: 114893405213516316}
   m_Layer: 0
   m_Name: BlackHole
   m_TagString: Untagged
@@ -88,6 +89,17 @@ MonoBehaviour:
   Damage: 10
   TimeToDamage: 1
   Once: 0
+--- !u!114 &114893405213516316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1893620212126060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212918583981074380
 SpriteRenderer:
   m_ObjectHideFlags: 1
