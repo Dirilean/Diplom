@@ -21,7 +21,13 @@ public class Deleter : MonoBehaviour {
 
     private void Update()
     {
-        RespPos = new Vector3(transform.position.x + 20F, player.transform.position.y + 3.5F);
+        switch(player.PrefabLevel)
+        {
+            case 1: RespPos = new Vector3(transform.position.x + 20F,  3.5F); break;
+            case 2: RespPos = new Vector3(transform.position.x + 20F,  13.5F); break;
+            case 3: RespPos = new Vector3(transform.position.x + 20F,  23.5F); break;
+        }
+        
 
         if (player.isActiveAndEnabled == false)
         {

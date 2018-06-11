@@ -72,13 +72,22 @@ public class Fire : MonoBehaviour
     {
      //   Debug.Log(collision.collider.name);
         Monster monster = collision.collider.GetComponent<Monster>();
+        Asteroid asteroid = collision.collider.GetComponent<Asteroid>();
         if (monster)
         {
             monster.lives -= damage;//получение урона от пули
             if (Boom != null)
             { GameObject boom = PoolManager.GetObject(Boom.name, transform.position, transform.rotation); }
         }
-        if (!collision.gameObject.GetComponent<Character>())
+        else if (asteroid)
+        {
+            asteroid.live -= damage;//получение урона от пули
+
+            if (Boom != null)
+            { GameObject boom = PoolManager.GetObject(Boom.name, transform.position, transform.rotation); }
+            gameObject.GetComponent<PoolObject>().ReturnToPool();
+        }
+        else if (!collision.gameObject.GetComponent<Character>())
         {
             GetComponent<PoolObject>().ReturnToPool();
         }

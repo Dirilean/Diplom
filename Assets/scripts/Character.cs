@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     [Tooltip("Сколько секунд после смерти нужно ждать чтобы воскреснуть")]
     float zaderzhka = 1;
     public int FlyResourse=-1;//ресурс полета
+    public int BoomResourse = -1;//ресурс взрыыва
     public float repeat_time; /* Время в секундах для полетов */
     private float curr_time;
     #endregion
@@ -29,6 +30,7 @@ public class Character : MonoBehaviour
     float deltaColor;//для плавного изменения цвета игрока
     public int AttackType = 0;//1-near,2-shoot
     float OfssetY;//расстояниие появления атаки по у относительно перса
+    float LastBoomTime=0;
     #endregion
 
     #region System
@@ -52,6 +54,7 @@ public class Character : MonoBehaviour
     [Header("Eny GameObjects")]
     public Fire FirePrefab;
     public Fire AttackWavePrefab;
+    public GameObject BoomPrefab;
     public Deleter DeleterSmoke;
     Fire prefab; //префаб текущей атаки
 
@@ -92,8 +95,9 @@ public class Character : MonoBehaviour
         AuSourse.volume = 0.03F;
         LastTimeToPlusLives = -5;
         curr_time = repeat_time;
-       // if (PrefabLevel == 2) Destroy(gameObject.transform.Find("Player"));
-       // Destroy(LastPlayer);
+        // if (PrefabLevel == 2) Destroy(gameObject.transform.Find("Player"));
+        // Destroy(LastPlayer);
+        DeleterSmoke = GameObject.Find("SmokeDelete").GetComponent<Deleter>();
     }
 
     private void FixedUpdate()
@@ -114,7 +118,7 @@ public class Character : MonoBehaviour
             if ((Input.GetAxis("Vertical") != 0) || (Input.GetAxis("Horizontal") != 0))
             {
                 //rb.velocity = (transform.up * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed;
-                rb.AddForce((transform.up * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * 20F, ForceMode2D.Force);
+                rb.AddForce((transform.up * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * 15F, ForceMode2D.Force);
             }
             if (Input.GetAxis("Horizontal") != 0)
             { GetComponent<SpriteRenderer>().flipX = Input.GetAxis("Horizontal") > 0.0F; }
@@ -205,7 +209,6 @@ public class Character : MonoBehaviour
         #endregion
 
 
-
         #region  Attack
         if (Input.GetButtonDown("Fire2")&&FireColb>0)//shooting
         {
@@ -220,6 +223,23 @@ public class Character : MonoBehaviour
         else
         {
             animator.SetBool("attack", false);
+        }
+        #endregion
+
+        #region boom
+        if (PrefabLevel==3 && BoomResourse < 100 && (Time.time + 5F > LastBoomTime) )
+        {
+            BoomResourse++;
+            LastBoomTime = Time.time;
+        }
+
+        if (PrefabLevel==3 && Input.GetButtonDown("Fire3") && FireColb >= 2 && BoomResourse>98)//shooting
+        {
+            animator.SetBool("attackBoom", true);
+        }
+        else
+        {
+            animator.SetBool("attackBoom", false);
         }
         #endregion
 
@@ -254,6 +274,15 @@ public class Character : MonoBehaviour
     }
 
 
+    IEnumerator BoomAttack()//вызывается из аниматора
+    {
+        Vector3 position = new Vector3(transform.position.x + (GetComponent<SpriteRenderer>().flipX ? 0.8F : -0.8F), transform.position.y + OfssetY);//место создания пули относительно персонажа
+        BoomPrefab.SetActive(true);
+        FireColb -= 2;
+        BoomResourse = 0;
+        yield return new WaitForSeconds(1F);
+        BoomPrefab.SetActive(false);
+    }
 
     #region TakeFire
     private void OnTriggerEnter2D(Collider2D collision)//собирание огоньков
@@ -293,7 +322,6 @@ public class Character : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.black;
             lives = 0;
-            Debug.Log("Вы умерли!!!!!!!!!!!!!!!!!");
             timeDie = Time.time;
             if (timeDie + zaderzhka > Time.time)
             {
@@ -306,7 +334,9 @@ public class Character : MonoBehaviour
                         colliders[i].GetComponent<PoolObject>().ReturnToPool();
                     }
                 }
+                Debug.Log(DeleterSmoke.RespPos);
                 transform.position = DeleterSmoke.RespPos;
+                Debug.Log(transform.position);
                 if (FireColb >= 100)
                 {
                     lives = 100;

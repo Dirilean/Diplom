@@ -5,13 +5,14 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour {
 
     [SerializeField]
-    int live;
+   public int live;
     [SerializeField]
-    int Damage;//количество наносимого урона
+   protected int Damage;//количество наносимого урона
     [SerializeField]
     bool Udar;//одиночный удар уже был нанесен?
     [SerializeField]
-    bool dvig;
+   protected bool dvig;
+    bool a;
 
    public GameObject asteroidboom;
     Vector3 t;
@@ -21,25 +22,24 @@ public class Asteroid : MonoBehaviour {
         if (dvig)
         {
             transform.rotation = new Quaternion(0, 0, Random.Range(0F, 360F),0);
-            t = new Vector3(Random.Range(-60F, 60F), Random.Range(-50F, 50F));
+            t = new Vector3(Random.Range(-60F, 60F), Random.Range(-30F, 30F));
             GetComponent<Rigidbody2D>().AddForce(t);
         }
+        a = false;
     }
 
     private void Update()
     {
         if (live < 1)
-        { 
+        {
             GetComponent<PoolObject>().ReturnToPool();//"удаление объекта"
         }
     }
-
     private void OnDisable()
     {
         if (asteroidboom != null)
         {
             GameObject Asterboom = PoolManager.GetObject(asteroidboom.name, transform.position, transform.rotation);
-            Debug.Log(Asterboom.transform.position);
         }
     }
 
@@ -53,17 +53,14 @@ public class Asteroid : MonoBehaviour {
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         Character unit =collision.collider.GetComponent<Character>();
         if (unit)//Одиночный удар
         {
             unit.lives = unit.lives - Damage;
             Udar = true;
-        }
-        else if (collision.collider.GetComponent<Asteroid>())
-        {
-            live -= Damage;
+
         }
     }
 

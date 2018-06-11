@@ -116,8 +116,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
-  m_LinearDrag: 4
+  m_Mass: 2
+  m_LinearDrag: 10
   m_AngularDrag: 0
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
@@ -309,6 +309,7 @@ MonoBehaviour:
     type: 2}
   AttackWavePrefab: {fileID: 114961253663833078, guid: 45d3611c120e3584c9ade61edcd81942,
     type: 2}
+  BoomPrefab: {fileID: 0}
   DeleterSmoke: {fileID: 114284598271599640, guid: 5d95cff2a8f6dd44c9578821a3b3baa1,
     type: 2}
   isGrounded: 0

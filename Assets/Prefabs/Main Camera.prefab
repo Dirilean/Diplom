@@ -662,6 +662,15 @@ MonoBehaviour:
   - name: asteroidBoom
     prefab: {fileID: 114565772586209398, guid: 96c9514c6ea8967418f45f87faf2cc15, type: 2}
     count: 2
+  - name: DeathArea
+    prefab: {fileID: 114537226525179156, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
+    count: 10
+  - name: attack
+    prefab: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942, type: 2}
+    count: 3
+  - name: Fire
+    prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
+    count: 3
 --- !u!114 &114360074000455330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -920,8 +929,8 @@ MonoBehaviour:
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
   lvl: 3
-  minY: 0
-  maxY: 6
+  minY: 21
+  maxY: 29
 --- !u!114 &114973388689347888
 MonoBehaviour:
   m_ObjectHideFlags: 1

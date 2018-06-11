@@ -98,7 +98,7 @@ public class CameraController : MonoBehaviour
         #endregion
 
         #region Play LoseMenu
-        if (player.lives <= 0) SetLoseMenu();
+        if (player.lives <= -100) SetLoseMenu();
         #endregion
 
         #region Camera go

@@ -22,8 +22,8 @@ public class UI : MonoBehaviour {
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Character>();
-        Pero.color = new Color(1, 1, 1, 1);//изначально прозрачные
-        Ogon.color= new Color(1, 1, 1, 1);
+        Pero.color = new Color(1, 1, 1, 0);//изначально прозрачные
+        Ogon.color= new Color(1, 1, 1, 0);
         Lives.fillAmount = player.lives / 100.0F;
         Ognesvet.fillAmount =player.FireColb / Static.LevelUp;
         LastLives = player.lives;
@@ -41,6 +41,7 @@ public class UI : MonoBehaviour {
         Ognesvet.fillAmount = Mathf.Lerp(Ognesvet.fillAmount,(player.FireColb / Static.LevelUp), Time.deltaTime);
         kolvoOgnya.text = player.FireColb.ToString();
         Pero.color = new Color(Pero.color.r,Pero.color.g,Pero.color.b,player.FlyResourse/100F);
+        Ogon.color = new Color(Ogon.color.r,Ogon.color.g, Ogon.color.b, player.BoomResourse / 100F);
 
         //изменение прозрачности при перезарядке конвертации жизней
         if (Time.time < player.LastTimeToPlusLives + player.TimeToPlusLives)//если идет перезарядка
@@ -54,11 +55,9 @@ public class UI : MonoBehaviour {
             lightUI2.color = new Color(lightUI2.color.r, lightUI2.color.g, lightUI2.color.b, 1.0F);
         }
 
-      //  Debug.Log(LastLives+"> "+player.lives);
         //отображение экрана получения урона
         if (LastLives>player.lives)
-        {
-            
+        {  
             ReciveDamage.GetComponent<Animation>().Play();
         }
         LastLives = player.lives;
@@ -68,7 +67,6 @@ public class UI : MonoBehaviour {
 
         if (player.FlyResourse<40F && player.FlyResourse>=0)
         {
-            Debug.Log("полетка кончается");
             EndFly.GetComponent<Animation>().Play();
         }
     }

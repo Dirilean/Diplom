@@ -137,16 +137,18 @@ public class ManagerFire : MonoBehaviour {
                                 case 4: YPos = -1F; break;//будет пусто
                                 case 5: YPos = -1F; break;//будет пусто
                                 case 6: YPos = -1F; break;//будет пусто
+                                case 7: YPos = -1F; break;//будет пусто
+                                case 8: YPos = -1F; break;//будет пусто
+                                case 9: YPos = -1F; break;//будет пусто
                             }
                             YPos = YPos + (float)(rnd.NextDouble()) / 2 + 0.25F;//от 0,25 до 0,75
-                            RndCol = rnd.Next(4) + 2;//максимально на 1 высоте
+                            RndCol = rnd.Next(4) + 1;//максимально на 1 высоте
                         }
                         RndCol--;
                         XPos = forgen.transform.position.x - zaderzka;
 
-                        Collider2D[] nocolliders = Physics2D.OverlapCircleAll(new Vector2(XPos, YPos), 0.4F);
 
-                        if ((nocolliders.Length == 0) && (YPos > minY) && (YPos < maxY))//проверка на близость других коллайдеров и существование высоты
+                        if ((YPos > minY) && (YPos < maxY))//проверка на близость других коллайдеров и существование высоты
                         {
                             FireSphere firesphere = PoolManager.GetObject(FireSpherePrefab.name, new Vector2(XPos, YPos), FireSpherePrefab.transform.rotation).GetComponent<FireSphere>();
                         }
