@@ -44,6 +44,7 @@ public class ObjectPooling
         temp = GameObject.Instantiate(sample.gameObject);
         temp.name = sample.name;
         temp.transform.SetParent(objects_parent);
+
         objects.Add(temp.GetComponent<PoolObject>());
         if (temp.GetComponent<Animator>())
             temp.GetComponent<Animator>().StartPlayback();
