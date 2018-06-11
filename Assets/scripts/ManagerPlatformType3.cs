@@ -13,8 +13,8 @@ public class ManagerPlatformType3 : MonoBehaviour
     ForGen forgen;//ссылка на генератор
     bool EndStartPack = false; //проверка на то, нужно ли начинать генерацию
 
-    float y1 = 13F;//высота платформ 1
-    float y2 = 17F;//высота платформ 2
+    float y1 = 23F;//высота платформ 1
+    float y2 = 27F;//высота платформ 2
     float x1;//расстояние между платформами на высоте 1
     float x2;//расстояние между платформами на высоте 2
     float x1last;//расстояние между платформами предыдущее для высоты 1
@@ -28,7 +28,9 @@ public class ManagerPlatformType3 : MonoBehaviour
     void Start()
     {
         GameObject player = GameObject.Find("Player3(Clone)");
+        //Debug.Log(player.GetInstanceID());
         forgen = player.transform.Find("Generator").GetComponent<ForGen>();
+       // Debug.Log(forgen.GetInstanceID());
     }
 
     void Update()
@@ -36,7 +38,9 @@ public class ManagerPlatformType3 : MonoBehaviour
         //начинать ли генерацию платформ?
         if (EndStartPack == false)
         {//код когда генерация еще не началась
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector3(forgen.transform.position.x - GroundLenght, 19.5F), 0.1F, 1 << 12);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector3(forgen.transform.position.x - GroundLenght, 19.5F), 0.2F, 1 << 12);
+            if (colliders.Length!=0)
+            Debug.Log(colliders.Length);
             if (colliders.Length < 1)
             {
                 EndStartPack = true;

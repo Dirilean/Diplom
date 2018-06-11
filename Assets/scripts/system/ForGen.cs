@@ -20,6 +20,7 @@ public class ForGen : MonoBehaviour {
         {
             case 1: { transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 0); break; }
             case 2: { transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 10F); break; }
+            case 3: { transform.position = new Vector3(Player.transform.position.x + Static.ForgenPosition, 19.8F); break; }
         }
     }
 

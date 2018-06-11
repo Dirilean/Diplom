@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 50691250122235662}
   - component: {fileID: 114260745215693748}
   - component: {fileID: 114922245771016910}
-  - component: {fileID: 114360105536804682}
   m_Layer: 13
   m_Name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 (1)"
   m_TagString: Untagged
@@ -56,7 +55,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -125,22 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0937b54fd458c4f930c38ca4add609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114360105536804682
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1544262921198164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  live: 0
-  Damage: 0
-  Udar: 0
-  dvig: 0
-  asteroidboom: {fileID: 0}
 --- !u!114 &114922245771016910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,10 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 20
+  live: 30
   Damage: 5
   Udar: 0
-  dvig: 0
+  dvig: 1
   asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
     type: 2}
 --- !u!212 &212666417117163220

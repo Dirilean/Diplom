@@ -659,6 +659,9 @@ MonoBehaviour:
   - name: FireSphere
     prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
     count: 20
+  - name: asteroidBoom
+    prefab: {fileID: 114565772586209398, guid: 96c9514c6ea8967418f45f87faf2cc15, type: 2}
+    count: 2
 --- !u!114 &114360074000455330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -727,7 +730,6 @@ MonoBehaviour:
   - {fileID: 1862207344231118, guid: 59a88fa717a5ae948950abe181cb3c7a, type: 2}
   - {fileID: 1361860264324066, guid: de2dc065d6f6f6346b9947625f9d6a67, type: 2}
   - {fileID: 0}
-  - {fileID: 1893620212126060, guid: d051b88d1581b1e4181a6d71fb466853, type: 2}
   gr: {fileID: 1787173929363658, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
   forgen: {fileID: 0}
   maxstep: 10

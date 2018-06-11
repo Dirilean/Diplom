@@ -12,24 +12,34 @@ public class Asteroid : MonoBehaviour {
     bool Udar;//одиночный удар уже был нанесен?
     [SerializeField]
     bool dvig;
-    [SerializeField]
-    GameObject asteroidboom;
+
+   public GameObject asteroidboom;
+    Vector3 t;
 
     private void OnEnable()
     {
         if (dvig)
-        GetComponent<Rigidbody2D>().AddForce(new Vector3(Random.Range(-0.9F, 0.9F), Random.Range(-1.5F, 1.5F)));
+        {
+            transform.rotation = new Quaternion(0, 0, Random.Range(0F, 360F),0);
+            t = new Vector3(Random.Range(-60F, 60F), Random.Range(-50F, 50F));
+            GetComponent<Rigidbody2D>().AddForce(t);
+        }
     }
 
     private void Update()
     {
         if (live < 1)
-        {
-            if (asteroidboom != null)
-            {
-                GameObject Asterboom = PoolManager.GetObject(asteroidboom.name, transform.position, transform.rotation);
-            }
+        { 
             GetComponent<PoolObject>().ReturnToPool();//"удаление объекта"
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (asteroidboom != null)
+        {
+            GameObject Asterboom = PoolManager.GetObject(asteroidboom.name, transform.position, transform.rotation);
+            Debug.Log(Asterboom.transform.position);
         }
     }
 

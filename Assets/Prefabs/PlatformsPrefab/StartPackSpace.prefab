@@ -2746,6 +2746,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114143538670505672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2805,6 +2807,8 @@ MonoBehaviour:
   Damage: 5
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114214330379572358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2875,6 +2879,8 @@ MonoBehaviour:
   Damage: 5
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114345616598977112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2923,6 +2929,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114391859644195202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2963,6 +2971,7 @@ MonoBehaviour:
   Damage: 5
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 0}
 --- !u!114 &114450978383055376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2978,6 +2987,8 @@ MonoBehaviour:
   Damage: 15
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114461683859366548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2993,6 +3004,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114470308986547392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3019,6 +3032,8 @@ MonoBehaviour:
   Damage: 40
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114511905642281052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3045,6 +3060,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114589171366488706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3085,6 +3102,7 @@ MonoBehaviour:
   Damage: 5
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 0}
 --- !u!114 &114610950705811842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3100,6 +3118,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114618867309118326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3159,6 +3179,8 @@ MonoBehaviour:
   Damage: 40
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114750174878846634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3174,6 +3196,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114774999744518888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3222,6 +3246,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114899848338151758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3248,6 +3274,8 @@ MonoBehaviour:
   Damage: 15
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114921651119264246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3263,6 +3291,8 @@ MonoBehaviour:
   Damage: 40
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114930810707535630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3278,6 +3308,8 @@ MonoBehaviour:
   Damage: 10
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114959273102414050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3293,6 +3325,8 @@ MonoBehaviour:
   Damage: 5
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114959491491499268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3308,6 +3342,8 @@ MonoBehaviour:
   Damage: 15
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114994738359741380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3323,6 +3359,8 @@ MonoBehaviour:
   Damage: 5
   Udar: 0
   dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!212 &212104155545811590
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -4302,7 +4340,7 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: -2
+  m_ForceMagnitude: -5
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 0
