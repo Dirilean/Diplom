@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 30
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 50
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 50
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 20
@@ -847,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 30
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 20
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: 10
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad8e82f2455d149b06c6cbebd79f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  Camera: {fileID: 0}
   lastPos: 0
   offset: 0
   speed: -30

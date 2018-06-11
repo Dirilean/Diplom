@@ -12,6 +12,8 @@ public class Asteroid : MonoBehaviour {
     bool Udar;//одиночный удар уже был нанесен?
     [SerializeField]
     bool dvig;
+    [SerializeField]
+    GameObject asteroidboom;
 
     private void OnEnable()
     {
@@ -23,6 +25,10 @@ public class Asteroid : MonoBehaviour {
     {
         if (live < 1)
         {
+            if (asteroidboom != null)
+            {
+                GameObject Asterboom = PoolManager.GetObject(asteroidboom.name, transform.position, transform.rotation);
+            }
             GetComponent<PoolObject>().ReturnToPool();//"удаление объекта"
         }
     }
@@ -45,10 +51,9 @@ public class Asteroid : MonoBehaviour {
             unit.lives = unit.lives - Damage;
             Udar = true;
         }
-        else
+        else if (collision.collider.GetComponent<Asteroid>())
         {
-            Asteroid notBHole = collision.collider.GetComponent<Asteroid>();
-            notBHole.live -= Damage;
+            live -= Damage;
         }
     }
 

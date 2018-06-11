@@ -40,10 +40,15 @@ public class ManagerFire : MonoBehaviour {
             {
                 forgen = GameObject.Find("Player").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
             }
-            else
+            else if (GameObject.Find("Player2(Clone)"))
             {
                 forgen = GameObject.Find("Player2(Clone)").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
             }
+            else if (GameObject.Find("Player3(Clone)"))
+            {
+                forgen = GameObject.Find("Player3(Clone)").GetComponent<Character>().transform.Find("Generator").GetComponent<ForGen>();
+            }
+            else Debug.Log("error!");
         }
 
         switch (lvl)

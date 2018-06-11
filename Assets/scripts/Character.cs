@@ -16,7 +16,6 @@ public class Character : MonoBehaviour
     public float TimeToPlusLives;
     [Tooltip("Сколько секунд после смерти нужно ждать чтобы воскреснуть")]
     float zaderzhka = 1;
-    public int PlayertLevel;
     public int FlyResourse=-1;//ресурс полета
     public float repeat_time; /* Время в секундах для полетов */
     private float curr_time;
@@ -101,27 +100,48 @@ public class Character : MonoBehaviour
     {
         CheckGround();
         if (lives <= 0) { Die(); }
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+        if (PrefabLevel != 3)
+        {
+            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+        }
+        //else
+        //{
+        //     rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+        //}
+        #region SpaceFly
+        if (PrefabLevel == 3)
+        {
+            if ((Input.GetAxis("Vertical") != 0) || (Input.GetAxis("Horizontal") != 0))
+            {
+                //rb.velocity = (transform.up * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed;
+                rb.AddForce((transform.up * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * 20F, ForceMode2D.Force);
+            }
+            if (Input.GetAxis("Horizontal") != 0)
+            { GetComponent<SpriteRenderer>().flipX = Input.GetAxis("Horizontal") > 0.0F; }
+        }
+        #endregion
     }
 
     private void Update()
     {
 
         #region input left - right
-
-        if (Input.GetAxis("Horizontal") != 0)//обычное хождение
+        if (PrefabLevel != 3)
         {
-            napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
-            GetComponent<SpriteRenderer>().flipX = napravlenie.x > 0.0F;
-            State = AnimState.run;
-        }
-        else if (isGrounded)
-        {
-            State = AnimState.stay;
-        }
-        if (!isGrounded)
-        {
-            State = AnimState.jump;
+            if (Input.GetAxis("Horizontal") != 0)//обычное хождение
+            {
+                napravlenie = transform.right * Input.GetAxis("Horizontal"); //(возвращает 1\-1) Unity-> edit-> project settings -> Input 
+                GetComponent<SpriteRenderer>().flipX = napravlenie.x > 0.0F;
+                State = AnimState.run;
+            }
+            else if (isGrounded)
+            {
+                State = AnimState.stay;
+            }
+            if (!isGrounded)
+            {
+                State = AnimState.jump;
+            }
         }
 
         #endregion
@@ -183,6 +203,8 @@ public class Character : MonoBehaviour
             //}
         }
         #endregion
+
+
 
         #region  Attack
         if (Input.GetButtonDown("Fire2")&&FireColb>0)//shooting

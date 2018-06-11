@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50811707654853908}
   - component: {fileID: 114513276751495332}
   - component: {fileID: 114256285263764358}
+  - component: {fileID: 114139640751070672}
   m_Layer: 13
   m_Name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 (12)"
   m_TagString: Untagged
@@ -80,7 +81,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.89, y: 2.29}
+    oldSize: {x: 2.89, y: 2.24}
     newSize: {x: 2.46, y: 2.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -138,6 +139,23 @@ PolygonCollider2D:
       - {x: 1.145, y: -1.125}
       - {x: 1.235, y: -1.0649999}
       - {x: 1.375, y: -0.92499995}
+--- !u!114 &114139640751070672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540899527336608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  live: 20
+  Damage: 5
+  Udar: 0
+  dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
 --- !u!114 &114256285263764358
 MonoBehaviour:
   m_ObjectHideFlags: 1

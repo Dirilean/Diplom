@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50259373433029932}
   - component: {fileID: 114282849650512602}
   - component: {fileID: 114428843182989876}
+  - component: {fileID: 114661288996914400}
   m_Layer: 13
   m_Name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 (10)"
   m_TagString: Untagged
@@ -165,9 +166,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 50
-  Damage: 10
+  live: 20
+  Damage: 5
   Udar: 0
+  dvig: 0
+  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
+    type: 2}
+--- !u!114 &114661288996914400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1220897098769814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  live: 0
+  Damage: 0
+  Udar: 0
+  dvig: 0
+  asteroidboom: {fileID: 0}
 --- !u!212 &212375573612021416
 SpriteRenderer:
   m_ObjectHideFlags: 1

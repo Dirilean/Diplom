@@ -23,7 +23,6 @@ public class FireSphere : MonoBehaviour {
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player");
         smoothTime = rnd.Next(3) + 1;
         smoothTime1 = smoothTime;
         target = new Vector3(0, 1);
@@ -36,6 +35,7 @@ public class FireSphere : MonoBehaviour {
 
     private void OnEnable()
     {
+        Player = GameObject.FindWithTag("Player");
         Verh = new Vector3(0, 0.15F) + transform.position;
         Niz = -new Vector3(0, 0.1F) + transform.position;
         CheckPlayer = false;//изначально к игроку не летим

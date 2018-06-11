@@ -11,11 +11,11 @@ public class CameraController : MonoBehaviour
     public Vector2 offset;
     public bool faceLeft;
     private int lastX;
+    public Character player;
     [SerializeField]
     Character player2;
     [SerializeField]
     Character player3;
-    public Character player;
     [SerializeField]
     GameObject ManagerForest;
     [SerializeField]
@@ -34,7 +34,8 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     GameObject Ligting2;
     #endregion
-    public GameObject EndPlatformForest;
+    public GameObject StartSky;
+    public GameObject StartSpace;
     Vector3 target;//центр для камеры
 
     bool upCamera2lvl;
@@ -100,65 +101,10 @@ public class CameraController : MonoBehaviour
         if (player.lives <= 0) SetLoseMenu();
         #endregion
 
-        //#region Set Player
-        //if (player.isActiveAndEnabled == false)
-        //{
-        //    if (player==player1) player =player2;
-        //    else if (player==player2) player = player3;
-        //}
-        //#endregion
-
-
         #region Camera go
         int currentX = Mathf.RoundToInt(player.transform.position.x);
         lastX = Mathf.RoundToInt(player.transform.position.x);
-        //if (player.PlayertLevel != player.PrefabLevel)//значит переходим на уровень выше
-        //{
-        //    switch (player.PlayertLevel)//зависит от уровня иргрока
-        //    {
-        //        case 1: Y = offset.y; break;
-        //        case 2:
-        //            {
-        //                if (upCamera2lvl == false)//чтоб камера поднялась и больше не опускалась
-        //                {
-        //                    if (player.transform.position.y > 12.4F) Y = offset.y + 11F;
-        //                    else if (player.transform.position.y < offset.y) { Y = offset.y; }
-        //                    else Y = player.transform.position.y;
-        //                }
-        //            }
-        //            break;
-        //        case 3:
-        //            {
-        //                if (upCamera3lvl == false)//чтоб камера поднялась и больше не опускалась
-        //                {
-        //                    if (player.transform.position.y > 21F) Y = offset.y + 21F;
-        //                    else if (player.transform.position.y < offset.y) { Y = offset.y + 11; }
-        //                    else Y = player.transform.position.y;
-        //                }
-        //            }
-        //            break;
-        //    }
-        //}
-        //else//не переходим на уровень выше
-        //{
-        //    if ((ManagerSky.activeInHierarchy == false) && (player.PrefabLevel == 2))
-        //    {
-        //        Destroy(GameObject.Find("Pool"));
-        //        ManagerSky.SetActive(true);
-        //    }
-        //    else if ((ManagerSpace.activeInHierarchy == false) && (player.PrefabLevel == 3))
-        //    {
-        //        Destroy(GameObject.Find("Pool"));
-        //        ManagerSpace.SetActive(true);
-        //    }
-
-        //switch (player.PrefabLevel)
-        //{
-        //    case 1: Y = offset.y; break;
-        //    case 2: Y = offset.y + 11; break;
-        //    case 3: Y = offset.y + 21; break;
-        //}
-        //}
+      
         target = new Vector3(player.transform.position.x + offset.x, Y, transform.position.z);
         Vector3 currentPosition = Vector3.Lerp(transform.position, target, damping * Time.deltaTime);
         transform.position = currentPosition;
@@ -169,18 +115,20 @@ public class CameraController : MonoBehaviour
         switch (Level)//для создания объектов перехода на сл уровень ()
         {
             case 1:
-                if ((player.FireColb > to2lvl))//с 1 на 2
                 {
-                    Debug.Log("Уровень 2");
-                    ManagerForest.SetActive(false);//выключаем текущий менеджер
-                    Level = 2;
-                    EndPlatformForest.transform.position = new Vector3(transform.position.x - 5F, 0F);//строим  конечные объекты уровня
-                    EndPlatformForest.SetActive(true);                 
-                    Ligting2.SetActive(true);
-                    Ligting2.transform.localPosition = new Vector3(-8F, -4F);
-                    player.FireColb = 0;
+                    if (player.FireColb > to2lvl)//с 1 на 2
+                    {
+                        Debug.Log("Уровень 2");
+                        ManagerForest.SetActive(false);//выключаем текущий менеджер   
+                        StartSky.transform.position = new Vector3(transform.position.x - 5F, 0F);//строим  конечные объекты уровня
+                        StartSky.SetActive(true);
+                        Ligting2.SetActive(true);
+                        Ligting2.transform.localPosition = new Vector3(-8F, -4F);
+                        player.FireColb = 0;
+                        Level = 2;
+                    }
+                    break;
                 }
-                break;
             case 2:
                 {
                     //движение камеры до уровня
@@ -193,7 +141,9 @@ public class CameraController : MonoBehaviour
                             player.gameObject.SetActive(false);
                             player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
                             Ligting2.SetActive(false);
+                            Destroy(GameObject.Find("Pool"));
                             ManagerSky.SetActive(true);
+                            
                         }
                         Y = offset.y + player.transform.position.y;
                         Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F*Time.deltaTime);
@@ -203,13 +153,58 @@ public class CameraController : MonoBehaviour
                     {
                         Ligting.SetActive(false);
                         Y = offset.y + 11F;
+                    }// обычное движение
+                    if ((player.FireColb > to3lvl))//переход с 2 на 3
+                    {
+                        Debug.Log("Уровень 3 ");
+                        ManagerSky.SetActive(false);//выключаем текущий менеджер
+                        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, 30F, 1 << 12);
+                        for (int i = 0; i < colliders.Length; i++)
+                        {
+                            if (colliders[i].GetComponent<PoolObject>())
+                            {
+                                colliders[i].GetComponent<PoolObject>().ReturnToPool();
+                            }
+                        }
+                        StartSpace.transform.position = new Vector3(transform.position.x - 5F, 0F);//строим  конечные объекты уровня
+                        StartSpace.SetActive(true);
+                        Ligting2.SetActive(true);
+                        Ligting2.transform.localPosition = new Vector3(-8F, -4F);
+                        player.FireColb = 0;
+                        Level = 3;
                     }
-
-                    //перехзод на 3 ур
-                    if ((player.FireColb > to3lvl) && (Level == 2)) { Debug.Log("++"); Level = 3; ManagerSpace.SetActive(true); }
-                    break;//со 2 на 3
+                    break;
                 }
-            case 3: if ((player.FireColb > toWin)&& (Level == 3)) { Debug.Log("+++"); Level = 4; Debug.Log("WIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN"); } break;//выигрыш
+            case 3:
+                {
+                    //движение камеры до уровня
+                    if (transform.position.y < offset.y + 20F)
+                    {
+                        if (Ligting.activeInHierarchy == false && (Mathf.Abs(player.transform.position.x - Ligting2.transform.position.x) < 0.05F))
+                        {
+                            Ligting.transform.position = player.transform.position + 0.5F * Vector3.up;
+                            Ligting.SetActive(true);
+                            player.gameObject.SetActive(false);
+                            player = Instantiate(player3, player.transform.position, new Quaternion(0, 0, 0, 0));
+                            Ligting2.SetActive(false);
+                            Destroy(GameObject.Find("Pool"));
+                            ManagerSpace.SetActive(true);
+                        }
+                        Y = offset.y + player.transform.position.y;
+                        Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F * Time.deltaTime);
+                        Ligting.transform.position = player.transform.position + 0.5F * Vector3.up;
+                    }
+                    else
+                    {
+                        Ligting.SetActive(false);
+                        Y = offset.y + 21F;
+                    }// обычное движение
+                    if ((player.FireColb > toWin))//переход с 2 на 3
+                    {
+                        Debug.Log("Победа!!");
+                    }
+                        break;//выигрыш
+                }
         }
         #endregion
 
