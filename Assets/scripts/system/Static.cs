@@ -8,6 +8,6 @@ public class Static{
     public static float StepGenGround = 0; //шаг на котором генерируется земля относительно генератора
     public static float StepGenMonster = -6;//шаг на котором генерируются монстры относительно генератора
     public static float StepPlatf=10;//на котором генерируются платформы относительно генератора
-    public static float LevelUp=1000;//количество огнесвета для перехода на сл уровкнь
+    public static float LevelUp=500;//количество огнесвета для перехода на сл уровкнь
 
 }

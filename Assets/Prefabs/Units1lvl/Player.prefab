@@ -118,7 +118,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 5
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -302,6 +302,7 @@ MonoBehaviour:
   speed: 3.5
   TimeToPlusLives: 5
   FlyResourse: -1
+  BoomResourse: -1
   repeat_time: 0
   LastTimeToPlusLives: 0
   AttackType: 0
@@ -309,6 +310,7 @@ MonoBehaviour:
     type: 2}
   AttackWavePrefab: {fileID: 114961253663833078, guid: 45d3611c120e3584c9ade61edcd81942,
     type: 2}
+  BoomPrefab: {fileID: 0}
   DeleterSmoke: {fileID: 0}
   isGrounded: 0
   AuSourse: {fileID: 82398255589741666}
@@ -359,7 +361,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a033691b8fed7e24e9ca4966de4f512e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.99833333, y: 1.0966667}

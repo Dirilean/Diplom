@@ -22,6 +22,9 @@ public class CameraController : MonoBehaviour
     GameObject ManagerSky;
     [SerializeField]
     GameObject ManagerSpace;
+    [SerializeField]
+    GameObject sunPrefab;
+    bool oncewin = false;
 
     #region Level settings
     [Header("Level settings")]
@@ -141,9 +144,11 @@ public class CameraController : MonoBehaviour
                             player.gameObject.SetActive(false);
                             player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
                             Ligting2.SetActive(false);
-                            Destroy(GameObject.Find("Pool"));
-                            ManagerSky.SetActive(true);
-                            
+                            if (player.transform.position.y > offset.y + 9F && ManagerSky.activeInHierarchy==false)
+                            {
+                                Destroy(GameObject.Find("Pool"));
+                                ManagerSky.SetActive(true);
+                            }
                         }
                         Y = offset.y + player.transform.position.y;
                         Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F*Time.deltaTime);
@@ -187,8 +192,11 @@ public class CameraController : MonoBehaviour
                             player.gameObject.SetActive(false);
                             player = Instantiate(player3, player.transform.position, new Quaternion(0, 0, 0, 0));
                             Ligting2.SetActive(false);
-                            Destroy(GameObject.Find("Pool"));
-                            ManagerSpace.SetActive(true);
+                            if (player.transform.position.y > offset.y + 19F && ManagerSpace.activeInHierarchy == false)
+                            {
+                                Destroy(GameObject.Find("Pool"));
+                                ManagerSpace.SetActive(true);
+                            }
                         }
                         Y = offset.y + player.transform.position.y;
                         Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F * Time.deltaTime);
@@ -199,8 +207,18 @@ public class CameraController : MonoBehaviour
                         Ligting.SetActive(false);
                         Y = offset.y + 21F;
                     }// обычное движение
-                    if ((player.FireColb > toWin))//переход с 2 на 3
+                    if ((player.FireColb > toWin)&&oncewin==false)//переход с 2 на 3
                     {
+                        oncewin = true;
+                        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position + Vector3.right * 40F, 20F);
+                        for (int i = 0; i < colliders.Length; i++)
+                        {
+                            if (colliders[i].GetComponent<PoolObject>())
+                            {
+                                colliders[i].GetComponent<PoolObject>().ReturnToPool();
+                            }
+                        }
+                        GameObject sun = Instantiate(sunPrefab, player.transform.position+Vector3.right*40F, new Quaternion(0, 0, 0, 0));
                         Debug.Log("Победа!!");
                     }
                         break;//выигрыш

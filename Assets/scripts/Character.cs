@@ -227,7 +227,7 @@ public class Character : MonoBehaviour
         #endregion
 
         #region boom
-        if (PrefabLevel==3 && BoomResourse < 100 && (Time.time + 5F > LastBoomTime) )
+        if (PrefabLevel==3 && BoomResourse < 100 && (Time.time + 20F > LastBoomTime) )
         {
             BoomResourse++;
             LastBoomTime = Time.time;
@@ -257,7 +257,7 @@ public class Character : MonoBehaviour
     private void CheckGround()//проверка стоит ли персонаж на земле
     {
         //круг вокруг нижней линии персонажа. если в него попадают колайдеры то массив заполняется ими
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1F,1<<13);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.15F,1<<13);
         isGrounded = colliders.Length > 0; //один колайдер всегда внутри (кол. персонажа)
     }
 

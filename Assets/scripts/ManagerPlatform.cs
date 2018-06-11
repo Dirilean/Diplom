@@ -48,9 +48,9 @@ public class ManagerPlatform : MonoBehaviour
                 EndStartPack = true;
                 GenPosGr = new Vector3((forgen.transform.position.x + Static.StepGenGround), 0);
                 GenPos = new Vector3((forgen.transform.position.x + Static.StepPlatf), 0);
-                lastGroundPos = GenPosGr.x-4F;
+                lastGroundPos = GenPosGr.x-8F;
                 LastPos = forgen.transform.position.x + Static.StepPlatf;
-                LastGenPos = GenPos.x - 2F;
+                LastGenPos = GenPos.x - 4F;
                 RndStep = 0;
             }
         }

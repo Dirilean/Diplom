@@ -102,8 +102,6 @@ public class ManagerFire : MonoBehaviour {
                                 case 2: YPos = 16F; break;
                                 case 3: YPos = 18F; break;
                                 case 4: YPos = -1F; break;//будет пусто
-                                case 5: YPos = -1F; break;//будет пусто
-                                case 6: YPos = -1F; break;//будет пусто
                             }
                             YPos = YPos + (float)(rnd.NextDouble()) / 2 + 0.25F;//от 0,25 до 0,75
                             RndCol = rnd.Next(4) + 2;//максимально на 1 высоте

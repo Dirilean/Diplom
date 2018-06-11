@@ -356,6 +356,7 @@ MonoBehaviour:
   speed: 3.5
   TimeToPlusLives: 5
   FlyResourse: 100
+  BoomResourse: -1
   repeat_time: 0.1
   LastTimeToPlusLives: 0
   AttackType: 0
@@ -3915,7 +3916,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a1f971629d509274c834e02c05a1a311, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.99833333, y: 1.0966667}

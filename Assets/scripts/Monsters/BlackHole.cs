@@ -7,7 +7,7 @@ public class BlackHole : Asteroid {
     private void Start()
     {
         dvig = false;
-        live=10000;
+        live = 10000;
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)

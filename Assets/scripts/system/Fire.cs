@@ -78,6 +78,7 @@ public class Fire : MonoBehaviour
             monster.lives -= damage;//получение урона от пули
             if (Boom != null)
             { GameObject boom = PoolManager.GetObject(Boom.name, transform.position, transform.rotation); }
+            gameObject.GetComponent<PoolObject>().ReturnToPool();
         }
         else if (asteroid)
         {

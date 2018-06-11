@@ -106,7 +106,7 @@ MonoBehaviour:
   lives: 10
   DefaultSpeed: 2
   speed: 0
-  PlusFireColb: 3
+  PlusFireColb: 5
   FireSpherePrefab: {fileID: 114990641507224528, guid: 1002d58fa57da4b4aa9adc662c7f6c01,
     type: 2}
   point: {x: 0, y: 0}

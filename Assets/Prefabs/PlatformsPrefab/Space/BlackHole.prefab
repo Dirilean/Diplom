@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 250264392181865606}
   - component: {fileID: 58380745216341602}
   - component: {fileID: 114893405213516316}
-  - component: {fileID: 114228023203585828}
+  - component: {fileID: 114470600097649460}
   m_Layer: 0
   m_Name: BlackHole
   m_TagString: Untagged
@@ -75,7 +75,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &114228023203585828
+--- !u!114 &114470600097649460
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -83,15 +83,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1893620212126060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd23dfbd7b894644fab22425b3123074, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b191884adf6511468cc42a39ab21dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 10000
-  Damage: 20
+  live: 0
+  Damage: 0
   Udar: 0
   dvig: 0
-  asteroidboom: {fileID: 1256712769253542, guid: 96c9514c6ea8967418f45f87faf2cc15,
-    type: 2}
+  asteroidboom: {fileID: 0}
 --- !u!114 &114893405213516316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,7 +156,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 9216
   m_ForceMagnitude: -5
   m_ForceVariation: 0
   m_DistanceScale: 1
