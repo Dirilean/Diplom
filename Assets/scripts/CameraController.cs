@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     GameObject sunPrefab;
     bool oncewin = false;
+    GameObject id;
 
     #region Level settings
     [Header("Level settings")]
@@ -144,11 +145,8 @@ public class CameraController : MonoBehaviour
                             player.gameObject.SetActive(false);
                             player = Instantiate(player2, player.transform.position, new Quaternion(0, 0, 0, 0));
                             Ligting2.SetActive(false);
-                            if (player.transform.position.y > offset.y + 9F && ManagerSky.activeInHierarchy==false)
-                            {
-                                Destroy(GameObject.Find("Pool"));
-                                ManagerSky.SetActive(true);
-                            }
+                            id = GameObject.Find("Pool");
+                            ManagerSky.SetActive(true);
                         }
                         Y = offset.y + player.transform.position.y;
                         Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F*Time.deltaTime);
@@ -156,6 +154,7 @@ public class CameraController : MonoBehaviour
                     }
                     else
                     {
+                        if (id != null) Destroy(id);
                         Ligting.SetActive(false);
                         Y = offset.y + 11F;
                     }// обычное движение
@@ -192,11 +191,8 @@ public class CameraController : MonoBehaviour
                             player.gameObject.SetActive(false);
                             player = Instantiate(player3, player.transform.position, new Quaternion(0, 0, 0, 0));
                             Ligting2.SetActive(false);
-                            if (player.transform.position.y > offset.y + 19F && ManagerSpace.activeInHierarchy == false)
-                            {
-                                Destroy(GameObject.Find("Pool"));
-                                ManagerSpace.SetActive(true);
-                            }
+                            id = GameObject.Find("Pool");
+                            ManagerSpace.SetActive(true);
                         }
                         Y = offset.y + player.transform.position.y;
                         Ligting2.transform.position = Vector3.MoveTowards(Ligting2.transform.position, player.transform.position + 0.5F * Vector3.up, 5F * Time.deltaTime);
@@ -204,6 +200,7 @@ public class CameraController : MonoBehaviour
                     }
                     else
                     {
+                        if (id != null) { Destroy(id); }
                         Ligting.SetActive(false);
                         Y = offset.y + 21F;
                     }// обычное движение

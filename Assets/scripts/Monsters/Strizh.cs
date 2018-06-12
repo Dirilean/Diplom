@@ -11,10 +11,19 @@ public class Strizh : Monster
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        transform.rotation = Quaternion.Euler(0, 0, -45);
-        napravlenie=new Vector3(1,1,0);
+        speed = 2F;
     }
 
+    private void OnEnable()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, -45);
+        napravlenie = new Vector3(1, 1, 0);
+    }
+
+    private void FixedUpdate()
+    {   
+        rb.velocity = new Vector3(speed * napravlenie.x, speed * napravlenie.y, 0);
+    }
 
     public override void Move()
     {
@@ -35,7 +44,7 @@ public class Strizh : Monster
             }
 
         }
-        rb.velocity = new Vector3(speed * napravlenie.x,speed*napravlenie.y,speed * napravlenie.z);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collider)//столкновение с игроком

@@ -192,9 +192,9 @@ public class Character : MonoBehaviour
                     FlyResourse -= 1;
                 }
             }
-            if (Input.GetButton("Jump") && (FlyResourse > 0))
+            if (Input.GetAxis("Vertical")!=0 && (FlyResourse > 0))
             {
-                rb.AddForce(new Vector3(0, 3F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+                rb.AddForce(new Vector3(0, 2F * Input.GetAxis("Vertical")), ForceMode2D.Impulse);
             }
             //    if (Input.GetButton("Jump") && (FlyResourse > 0))
             //{
@@ -334,18 +334,18 @@ public class Character : MonoBehaviour
                         colliders[i].GetComponent<PoolObject>().ReturnToPool();
                     }
                 }
-                Debug.Log(DeleterSmoke.RespPos);
                 transform.position = DeleterSmoke.RespPos;
-                Debug.Log(transform.position);
                 if (FireColb >= 100)
                 {
                     lives = 100;
+                    FireColb -= 100;
                 }
                 else
                 {
                     lives += FireColb;
+                    FireColb = 0;
                 }
-                FireColb = 0;
+                
             }
         }
         else

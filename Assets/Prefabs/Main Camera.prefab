@@ -36,7 +36,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4977627592462440}
-  - component: {fileID: 114973388689347888}
   - component: {fileID: 114953238063334346}
   - component: {fileID: 114330612439050182}
   - component: {fileID: 114393961863092532}
@@ -46,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1490463758472548
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +601,21 @@ MonoBehaviour:
   - name: comet2
     prefab: {fileID: 114936023218234404, guid: 1e6d8516e10d39244ab9dc8b53bd15c1, type: 2}
     count: 2
+  - name: FireSphere
+    prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
+    count: 20
+  - name: asteroidBoom
+    prefab: {fileID: 114565772586209398, guid: 96c9514c6ea8967418f45f87faf2cc15, type: 2}
+    count: 2
+  - name: DeathArea
+    prefab: {fileID: 114537226525179156, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
+    count: 10
+  - name: attack
+    prefab: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942, type: 2}
+    count: 3
+  - name: Fire
+    prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
+    count: 3
   - name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434"
     prefab: {fileID: 114671062103364260, guid: 3d8e556ef8706d74da417156a59cccc2, type: 2}
     count: 3
@@ -656,21 +670,6 @@ MonoBehaviour:
   - name: "\u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 (17)"
     prefab: {fileID: 114665046548867376, guid: de2dc065d6f6f6346b9947625f9d6a67, type: 2}
     count: 3
-  - name: FireSphere
-    prefab: {fileID: 114653093502887810, guid: 1002d58fa57da4b4aa9adc662c7f6c01, type: 2}
-    count: 20
-  - name: asteroidBoom
-    prefab: {fileID: 114565772586209398, guid: 96c9514c6ea8967418f45f87faf2cc15, type: 2}
-    count: 2
-  - name: DeathArea
-    prefab: {fileID: 114537226525179156, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
-    count: 10
-  - name: attack
-    prefab: {fileID: 114155097571685492, guid: 45d3611c120e3584c9ade61edcd81942, type: 2}
-    count: 3
-  - name: Fire
-    prefab: {fileID: 114468514405049976, guid: 96b19e52d4804a047877ee8fea57062b, type: 2}
-    count: 3
 --- !u!114 &114360074000455330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -703,7 +702,7 @@ MonoBehaviour:
   - {fileID: 1172469880215848, guid: 80f6e1c3ef6e58c498c2ccfe83500088, type: 2}
   - {fileID: 1475336608583534, guid: 10c848c90ec62c94292dbfc95a43259b, type: 2}
   - {fileID: 1735008687246910, guid: e80d0d7e4e9ddd54b9cea244c976a778, type: 2}
-  chance: 0f0000000f0000000a000000
+  chance: 0f0000000f0000001e000000
   Hights:
   - 12
   - 15
@@ -738,7 +737,7 @@ MonoBehaviour:
   - {fileID: 1317325119560996, guid: a392cf9b36bfd364a8f5c96e64cdbd99, type: 2}
   - {fileID: 1862207344231118, guid: 59a88fa717a5ae948950abe181cb3c7a, type: 2}
   - {fileID: 1361860264324066, guid: de2dc065d6f6f6346b9947625f9d6a67, type: 2}
-  - {fileID: 0}
+  - {fileID: 1893620212126060, guid: d051b88d1581b1e4181a6d71fb466853, type: 2}
   gr: {fileID: 1787173929363658, guid: a2605f7997028b7449ba1ab826babff9, type: 2}
   forgen: {fileID: 0}
   maxstep: 10
@@ -884,9 +883,10 @@ MonoBehaviour:
   ManagerForest: {fileID: 1900108854855658}
   ManagerSky: {fileID: 1931145592275040}
   ManagerSpace: {fileID: 1268707608500470}
+  sunPrefab: {fileID: 1012062574692674, guid: 554c69e467eba0e43831f8e88eae6dc2, type: 2}
   to2lvl: 2
   to3lvl: 2
-  toWin: 1000
+  toWin: 499
   Level: 0
   Ligting: {fileID: 1039233542335120}
   Ligting2: {fileID: 1490463758472548}
@@ -931,27 +931,6 @@ MonoBehaviour:
   lvl: 3
   minY: 21
   maxY: 29
---- !u!114 &114973388689347888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1268707608500470}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff28ed9dfd88a54fbb2ff1a05231754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forgen: {fileID: 0}
-  monsters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  chance: 000000000000000000000000
-  Hights:
-  - 0
-  - 0
-  - 0
 --- !u!124 &124131544525581346
 Behaviour:
   m_ObjectHideFlags: 1
