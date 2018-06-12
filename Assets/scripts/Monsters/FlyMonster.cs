@@ -22,7 +22,7 @@ public class FlyMonster : Monster
     {
         if (Player)//смотрим только за игроком
         {
-            napravlenie.y = (Player.transform.position.y - transform.position.y) / Mathf.Abs((Player.transform.position.y - transform.position.y));
+            napravlenie.y = (Player.transform.position.y+0.5F - transform.position.y) / Mathf.Abs((Player.transform.position.y+0.5F - transform.position.y));
             napravlenie.x = (Player.transform.position.x - transform.position.x) / Mathf.Abs((Player.transform.position.x - transform.position.x));
         }
         else //смотрим только за платформами

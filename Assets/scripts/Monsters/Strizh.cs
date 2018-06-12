@@ -16,6 +16,12 @@ public class Strizh : Monster
 
     private void OnEnable()
     {
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        lives = DefaultLives;
+        speed = DefaultSpeed;
+        napravlenie = Vector3.right;//начальное направление вправо
+        die = false;
+        StartCoroutine(Zastryal());
         transform.rotation = Quaternion.Euler(0, 0, -45);
         napravlenie = new Vector3(1, 1, 0);
     }

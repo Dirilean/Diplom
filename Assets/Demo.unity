@@ -902,6 +902,11 @@ Prefab:
       propertyPath: to3lvl
       value: 499
       objectReference: {fileID: 0}
+    - target: {fileID: 82565727959589338, guid: 585de285dbcba494bad12a21d8e7a0a8,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4604375d94d6db48aa37ebfd7cf346b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 585de285dbcba494bad12a21d8e7a0a8, type: 2}
   m_IsPrefabParent: 0
@@ -1154,6 +1159,10 @@ Prefab:
       propertyPath: LearningImage
       value: 
       objectReference: {fileID: 1570680088}
+    - target: {fileID: 1349383063436602, guid: e80490c5431b8eb4682614447236d64d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e80490c5431b8eb4682614447236d64d, type: 2}
   m_IsPrefabParent: 0
@@ -1394,23 +1403,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114021759010491424, guid: 88607cb31a8a0b145b05302db7002d0f,
-        type: 2}
-      propertyPath: LearningImage
-      value: 
-      objectReference: {fileID: 508087181}
     - target: {fileID: 114390460316052900, guid: 88607cb31a8a0b145b05302db7002d0f,
         type: 2}
       propertyPath: LearningImage
       value: 
       objectReference: {fileID: 858931291}
+    - target: {fileID: 114021759010491424, guid: 88607cb31a8a0b145b05302db7002d0f,
+        type: 2}
+      propertyPath: LearningImage
+      value: 
+      objectReference: {fileID: 508087181}
     - target: {fileID: 1169539983978600, guid: 88607cb31a8a0b145b05302db7002d0f, type: 2}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570792972215916, guid: 88607cb31a8a0b145b05302db7002d0f, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88607cb31a8a0b145b05302db7002d0f, type: 2}

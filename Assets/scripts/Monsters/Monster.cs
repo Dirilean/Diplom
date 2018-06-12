@@ -13,7 +13,6 @@ public class Monster : MonoBehaviour
   //  [HideInInspector]
     public int lives;// текущие жизни
     public float DefaultSpeed;//изначальная скорость
-    [HideInInspector]
     public float speed;//скорость передвижения
     [SerializeField]
     public int PlusFireColb;//сколько упадет огня с монстров
@@ -67,7 +66,7 @@ public class Monster : MonoBehaviour
         die = false;
         StartCoroutine(Zastryal());
     }
-    IEnumerator Zastryal()
+    public IEnumerator Zastryal()
     {
         timeeeee = transform.position.x;
         yield return new WaitForSeconds(1F);
