@@ -37,6 +37,7 @@ public class Monster : MonoBehaviour
     public float Dalnost;//дальность(центр окружности) для проверки стен
     [SerializeField]
     float deltaColor;//для плавного изменения цвета игрока
+    float timeeeee;
 
     public Vector3 napravlenie;
     [SerializeField]
@@ -64,6 +65,17 @@ public class Monster : MonoBehaviour
         speed = DefaultSpeed;
         napravlenie = Vector3.right;//начальное направление вправо
         die = false;
+        StartCoroutine(Zastryal());
+    }
+    IEnumerator Zastryal()
+    {
+        timeeeee = transform.position.x;
+        yield return new WaitForSeconds(1F);
+        if (Mathf.Abs(timeeeee-transform.position.x)<=0.5F)
+        {
+            Debug.Log("застрял");
+            GetComponent<PoolObject>().ReturnToPool();
+        }
     }
 
     IEnumerator ForDie()
