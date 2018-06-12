@@ -51,5 +51,4 @@ public class ObjectPooling
         temp.SetActive(false);
     }
     #endregion
-
 }

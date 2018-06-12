@@ -231,8 +231,4 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(10F);
         Ligting.SetActive(false);
     }
-
-
-
-
 }

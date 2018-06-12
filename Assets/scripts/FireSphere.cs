@@ -5,8 +5,6 @@ using UnityEngine;
 public class FireSphere : MonoBehaviour {
 
 
-
-
     //transform.Translate(new Vector2(1,0)*Time.deltaTime);
     public Vector2 target;//точка куда сейчас движется огонек (верх-низ)
     float smoothTime;

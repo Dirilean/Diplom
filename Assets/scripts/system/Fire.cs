@@ -50,23 +50,7 @@ public class Fire : MonoBehaviour
             transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 2F, Time.deltaTime), Mathf.Lerp(transform.localScale.y, 1F, Time.deltaTime * 4));
         }
         transform.position = Vector3.MoveTowards(transform.position, transform.position + napravlenie, CurrentSpeed* Time.deltaTime);
-        //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.01F, 1 << 13);
-        //if (colliders.Length>0)//уничтожение пули при касании с платформой
-        //{
-        //    GetComponent<PoolObject>().ReturnToPool();
-        //}
     }
-
-    //private void OnTriggerEnter2D(Collider2D collider)//уничтожение пули в момент попадания в юнит
-    //{
-    //    Monster monster = collider.GetComponent<Monster>();
-    //    if (monster)
-    //    {
-    //        monster.lives-=damage;//получение урона от пули
-    //        GetComponent<PoolObject>().ReturnToPool();
-    //    }
-    //}
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

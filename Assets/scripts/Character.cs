@@ -362,7 +362,5 @@ public class Character : MonoBehaviour
         i = Random.Range(0,6);
         AuSourse.PlayOneShot(RunSound[i]);
     }
-
-
     #endregion
 }
